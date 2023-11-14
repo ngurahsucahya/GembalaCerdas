@@ -9,11 +9,12 @@ $ php artisan migrate
 $ php artisan db:seed UserTestSeeder
 ```
 
+untuk refresh database jika ada kolum tambahan dll
+```
+$ php artisan migrate:refresh --seed
+```
 email dan password untuk test
-```
-email : test@email.com
-password : test1234
-```
+bisa di cek di [Seeder](database/seeders/UserTestSeeder.php)
 
 NOTE : 
 

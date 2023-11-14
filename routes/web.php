@@ -19,8 +19,8 @@ Route::get('/', function () {
 
 Route::controller(\App\Http\Controllers\UserController::class)->group(function(){
     Route::get('/login', 'login')->middleware('guest')->name('login');
-    Route::get('/register', 'register')->middleware('auth');
+    Route::get('/register', 'register')->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
     Route::post('/login', 'authenticate')->middleware('guest');
-    Route::post('/register', 'registerUser')->middleware('guest');
+    Route::post('/register', 'registerUser')->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
     Route::post('/logout', 'logout')->middleware('auth');
 });

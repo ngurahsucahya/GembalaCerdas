@@ -15,9 +15,24 @@ class UserTestSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            'name' => 'Test User',
-            'email' => 'test@email.com',
-            'password' => bcrypt('test1234'),
+            'name' => 'Admin',
+            'email' => 'admin@email.com',
+            'password' => bcrypt('admin1234'),
+            'role' => 'admin'
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Doctor',
+            'email' => 'doctor@email.com',
+            'password' => bcrypt('doctor1234'),
+            'role' => 'doctor'
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Employee',
+            'email' => 'employee@email.com',
+            'password' => bcrypt('employee1234'),
+            'role' => 'employee'
         ]);
     }
 }

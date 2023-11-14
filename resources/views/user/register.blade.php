@@ -51,6 +51,30 @@
               <label for="password" class="form-label">Password</label>
               <input type="password" class="form-control" id="password" name="password" required>
             </div>
+            <div class="mb-3">
+                <label class="form-label">Role</label>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="role" id="admin" value="admin" required>
+                            <label class="form-check-label" for="admin">Admin</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="role" id="doctor" value="doctor" required>
+                            <label class="form-check-label" for="doctor">Doctor</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="role" id="employee" value="employee" required>
+                            <label class="form-check-label" for="employee">Employee</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary text">Register</button>
           </form>
         </div>

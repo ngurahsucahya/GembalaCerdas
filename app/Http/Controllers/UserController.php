@@ -50,20 +50,24 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8'
+            'password' => 'required|min:8',
+            'role' => 'required|in:admin,doctor,employee',
         ], [
             'name.required' => 'Name is required',
             'email.required' => 'Email is required',
             'email.email' => 'Invalid email address',
             'email.unique' => 'Email already exists',
             'password.required' => 'Password is required',
-            'password.min' => 'Password must be at least 8 characters'
+            'password.min' => 'Password must be at least 8 characters',
+            'role.required' => 'Role is required',
+            'role.in' => 'Invalid role. Must be one of: admin, doctor, employee',
         ]);
 
         $data = [
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => bcrypt( $request->input('password') )
+            'password' => bcrypt( $request->input('password') ),
+            'role' => $request->input('role'),
         ];
         try {
             User::create($data);
