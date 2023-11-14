@@ -9,8 +9,12 @@
     body, html {
       height: 100%;
       margin:0;
-      background-color: #ECECEC;
+      background-image: url("{{ asset('images/background.png') }}");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
     }
+
     .container {
       display: flex;
       justify-content: center;
@@ -35,17 +39,19 @@
     @endif
   <div class="container">
     <div class="col-md-6">
+    <img src="{{ asset('images/logotext.png') }}" alt="GembalaCerdas" width="315" height="70" class="mx-auto d-block" style=margin:5px>
       <div class="card">
         <div class="card-body">
+        <h3 class="card-title">Register</h3>
           <form action="/register" method="post">
             @csrf
             <div class="mb-3">
-              <label for="email" class="form-label">email</label>
-              <input type="text" class="form-control" value="{{ old('email') }}" id="email" name="email" autofocus required>
-            </div>
-            <div class="mb-3">
               <label for="name" class="form-label">name</label>
               <input type="text" class="form-control" value="{{ old('name') }}" id="name" name="name" autofocus required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">email</label>
+              <input type="text" class="form-control" value="{{ old('email') }}" id="email" name="email" autofocus required>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
@@ -75,7 +81,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary text">Register</button>
+            <button type="submit" class="btn btn-primary text" style=float:right>Register</button>
           </form>
         </div>
       </div>
