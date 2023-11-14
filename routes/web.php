@@ -13,14 +13,49 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::controller(\App\Http\Controllers\DashboardController::class)
+    ->middleware('auth')->group(function(){
+    Route::get('/', 'index');
+    Route::redirect('/dashboard', '/');
 });
 
 Route::controller(\App\Http\Controllers\UserController::class)->group(function(){
-    Route::get('/login', 'login')->middleware('guest')->name('login');
+   Route::get('/login', 'login')->middleware('guest')->name('login');
     Route::get('/register', 'register')->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
+    Route::get('/profile', 'profile')->middleware('auth');
+    Route::get('/register', 'register')->middleware([
+        \App\Http\Middleware\OnlyAdminMiddleware::class,
+        'auth',
+    ]);
     Route::post('/login', 'authenticate')->middleware('guest');
     Route::post('/register', 'registerUser')->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
-    Route::post('/logout', 'logout')->middleware('auth');
+    Route::post('/register', 'registerUser')->middleware([
+        \App\Http\Middleware\OnlyAdminMiddleware::class,
+        'auth',
+    ]);
+   Route::post('/logout', 'logout')->middleware('auth');
+});
+
+Route::controller(\App\Http\Controller\TernakController::class)->group(function(){
+    Route::get('/ternak', 'index')->middleware('auth');
+    Route::get('/ternak/edit/{id}', 'edit')->middleware([
+        \App\Http\Middleware\OnlyAdminMiddleware::class,
+        'auth',
+    ]);
+    Route::post('/ternak/add', 'add')->middleware([
+        \App\Http\Middleware\OnlyAdminMiddleware::class,
+        'auth',
+    ]);
+    Route::post('/ternak/update/{id}', 'update')->middleware([
+        \App\Http\Middleware\OnlyAdminMiddleware::class,
+        'auth',
+    ]);;
+    Route::post('/ternak/delete/{id}', 'delete')->middleware([
+        \App\Http\Middleware\OnlyAdminMiddleware::class,
+        'auth',
+    ]);;
+});
+
+Route::fallback(function(){
+    return view('error.custom');
 });

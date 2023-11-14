@@ -13,6 +13,19 @@ untuk refresh database jika ada kolum tambahan dll
 ```
 $ php artisan migrate:refresh --seed
 ```
+
+Edit file css via resources lalu di kompile dengan npm
+
+dilakukan sekali di awal 
+```
+$ npm install
+```
+
+untuk kompile
+```
+$ npm run build
+```
+
 email dan password untuk test
 bisa di cek di [Seeder](database/seeders/UserTestSeeder.php)
 
