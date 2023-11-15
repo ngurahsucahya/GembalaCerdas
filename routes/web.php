@@ -36,7 +36,7 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(function()
    Route::post('/logout', 'logout')->middleware('auth');
 });
 
-Route::controller(\App\Http\Controller\TernakController::class)->group(function(){
+Route::controller(\App\Http\Controllers\TernakController::class)->group(function(){
     Route::get('/ternak', 'index')->middleware('auth');
     Route::get('/ternak/edit/{id}', 'edit')->middleware([
         \App\Http\Middleware\OnlyAdminMiddleware::class,

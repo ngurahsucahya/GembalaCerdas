@@ -10,6 +10,11 @@ class TernakController extends Controller
 {
 
     // Belum fix, cuma untuk test routing
+    public function index()
+    {
+        // $ternak = Ternak::all();
+        return view('ternak.index');
+    }
 
     public function edit($id)
     {
