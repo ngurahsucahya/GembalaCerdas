@@ -1,2 +1,2 @@
-<h1>Bajingan temera</h1>
-<p>{{dd($user)}}</p>
+<h1>test</h1>
+<p>{{($user->email)}}</p>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="{{ asset('images/logo.png') }}">
+        <link rel="icon" href="{{Vite::asset('resources/images/logo.png')}}">
         <title>GembalaCerdas</title>
 
         <!-- Fonts -->
@@ -89,7 +89,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
             <div class="container">
-            <img src="{{ asset('images/logo.png') }}" alt="GembalaCerdas" width="45" height="45">
+            <img src="{{Vite::asset('resources/images/logo.png')}}" alt="GembalaCerdas" width="45" height="45">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -111,10 +111,12 @@
                         <a class="nav-link active text-center" aria-current="page" href="/input_ternak">Input Ternak</a>
                      </li>
                      <li class="nav-item">
-                        <img src="{{ asset('images/notif.png') }}" alt="Notif" width="40" height="40">
+                        <img src="{{Vite::asset('resources/images/notif.png')}}" alt="Notif" width="40" height="40">
                      </li>
                      <li class="nav-item">
-                        <img src="{{ asset('images/profile.png') }}" alt="Notif" width="45" height="45">
+                        <a  href="/profile">
+                           <img src="{{Vite::asset('resources/images/profile.png')}}" alt="profile" width="45" height="45">
+                        </a>
                      </li>
                      <form action="/logout" method="post"> @csrf <div class="d-grid gap-3">
                            <button type="submit" class="btn btn-warning btn-block" id="logout">Logout</button>
@@ -139,7 +141,7 @@
          
          <section class="title-section">
             <div class="container">
-               <img src="{{ asset('images/logotext.png') }}" alt="GembalaCerdas" width="450" height="100">
+               <img src="{{Vite::asset('resources/images/logotext.png')}}" alt="GembalaCerdas" width="450" height="100">
             </div>
          </section>
     </body>

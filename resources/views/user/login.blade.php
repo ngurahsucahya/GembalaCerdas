@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="{{ asset('images/logo.png') }}">
+  <link rel="icon" href="{{Vite::asset('resources/images/logo.png')}}">
   <title>Log in | GembalaCerdas</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body, html {
       height: 100%;
       margin:0;
-      background-image: url("{{ asset('images/background.png') }}");
+      background-image: url("{{Vite::asset('resources/images/background.png')}}");
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;
@@ -40,7 +40,7 @@
           
   <div class="container">
     <div class="col-md-6">
-    <img src="{{ asset('images/logotext.png') }}" alt="GembalaCerdas" width="315" height="70" class="mx-auto d-block" style=margin:5px>
+    <img src="{{Vite::asset('resources/images/logotext.png')}}" alt="GembalaCerdas" width="315" height="70" class="mx-auto d-block" style=margin:5px>
       <div class="card">
         <div class="card-body">
           <h3 class="card-title">Login</h3>
