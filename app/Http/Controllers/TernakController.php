@@ -84,8 +84,10 @@ class TernakController extends Controller
             'ras' => 'nullable|in:' . implode(',', $list_ras),
             'jenis_kelamin' => 'required|in:Jantan,Betina',
             'tanggal_lahir' => 'required|date',
-            'bobot_badan' => 'required|numeric|between:0,99999.99',
+            'bobot_badan' => 'required|numeric|between:0,999.99',
             'deskripsi_fenotip' => 'nullable|string',
+            'status_sekarang' => 'nullable|string',
+            'id_anak' => 'nullable|numeric',
         ],[
             'nama_ternak.required' => 'Nama ternak is required',
             'nama_ternak.unique' => 'Nama ternak already exists',
@@ -94,6 +96,9 @@ class TernakController extends Controller
             'tanggal_lahir.date' => 'Tanggal lahir is not valid',
             'bobot_badan.numeric' => 'Bobot badan is not valid',
             'bobot_badan.between' => 'Bobot badan is not valid',
+            'deskripsi_fenotip.string' => 'Deskripsi fenotip is not valid',
+            'status_sekarang.string' => 'Status sekarang is not valid',
+            'id_anak.numeric' => 'Id anak is not valid',
         ]);
         Ternak::create($data);
         return back()->withErrors([

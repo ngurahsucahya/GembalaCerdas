@@ -31,6 +31,7 @@ class Ternak extends Model
         'tanggal_lahir',
         'bobot_badan',
         'deskripsi_fenotip',
+        'status_sekarang',
         'statusable_id',
         'statusable_type',
         'id_anak'
@@ -63,14 +64,16 @@ class Ternak extends Model
         return $this->hasOne(Anak::class, 'id_anak');
     }
 
-    public function status(): string
+    public function updateStatus()
     {
-        if (is_null($this->statusable_type)) {
-            return "Domba dari luar";
-        } else if (is_null($this->statusable_type) && !is_null($this->id_anak)){
-            return "Anak";
+        if (is_null($this->statusable_type) && !is_null($this->id_anak)){
+            return $this->update([
+                'status_sekarang' => 'Anak',
+            ]);
         } else {
-            return $this->jenis_kelamin === 'Jantan' ? 'Pejantan' : 'Induk';
+            return $this->update([
+                'status_sekarang' => $this->jenis_kelamin === 'Jantan' ? 'Pejantan' : 'Induk'
+            ]);
         }
     }
 }

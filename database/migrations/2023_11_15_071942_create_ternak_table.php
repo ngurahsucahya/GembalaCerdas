@@ -14,6 +14,7 @@ return new class extends Migration
             $table->enum('ras', ['Garut','Ekor Gemuk','Ekor Tipis','Merio','Suffolk','Texel','Domer','Dorper','Corriedele','Batur','Barbados Blackbelly','Compass Agrinak'])->nullable();
             $table->enum('jenis_kelamin', ['Jantan', 'Betina']);
             $table->date('tanggal_lahir');
+            $table->string('status_sekarang')->nullable();
             $table->decimal('bobot_badan', 5, 2);
             $table->text('deskripsi_fenotip')->nullable();   
             $table->unsignedBigInteger('statusable_id')->nullable();

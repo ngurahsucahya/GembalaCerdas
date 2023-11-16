@@ -62,7 +62,7 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuBlocks">
                       <div class="d-none d-lg-block">
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
-                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/add">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/input">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
                                 <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Input Ternak</h6>

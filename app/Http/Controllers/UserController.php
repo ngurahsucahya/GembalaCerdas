@@ -35,7 +35,7 @@ class UserController extends Controller
 
         return back()->withErrors([
                 'auth' => 'Invalid Credentials',
-            ])->withInput($request->only('email'));
+            ]);
 
         // return dd($creds);
     }
@@ -75,7 +75,7 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return back()->withErrors([
                 'regist' => 'Cannot register user',
-            ])->withInput($request->only('name', 'email'));
+            ]);
         }
     }
 
@@ -88,7 +88,7 @@ class UserController extends Controller
     public function profile(Request $request)
     {
         $user = Auth::user();
-        return view('user.profile', ['user' => $user]);
+        return view('user.profile', compact('user'));
     }
 
 }
