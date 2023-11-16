@@ -19,6 +19,7 @@ class TernakFactory extends Factory
             'jenis_kelamin' => $this->faker->randomElement(['Jantan', 'Betina']),
             'tanggal_lahir' => $this->faker->date,
             'bobot_badan' => $this->faker->randomFloat(2, 10, 200),
+            'status_sekarang' => $this->faker->randomElement(['Pejantan', 'Induk', 'Anak']),
             'deskripsi_fenotip' => $this->faker->text,
             'statusable_id' => null,
             'statusable_type' => null,

@@ -11,6 +11,8 @@ use \App\Models\Anak;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class TernakController extends Controller
 {
 
@@ -23,22 +25,41 @@ class TernakController extends Controller
 
     public function edit($id)
     {
-        $ternak = Ternak::find($id);
+        try {
+            $ternak = Ternak::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return back()->withErrors([
+                'edit' => 'Cannot edit data',
+            ]);
+        }
+
         return view('ternak.edit', compact('ternak'));
     }
 
     public function update(Request $request, $id)
     {
-        $ternak = Ternak::find($id);
-        $ternak->update($request->all());
-        return back();
+        try {
+            $ternak = Ternak::findOrFail($id);
+            $ternak->update($request->all());
+            return back();
+        } catch (ModelNotFoundException $e) {
+            return back()->withErrors([
+                'update' => 'Cannot update data',
+            ]);
+        }
     }
     
     public function delete($id)
-    {
-        $ternak = Ternak::find($id);
-        $ternak->delete();
-        return redirect()->intended('/ternak');
+    {   
+        try {
+            $ternak = Ternak::findORFail($id);
+            $ternak->delete();
+            return back();
+        } catch (ModelNotFoundException $e) {
+            return back()->withErrors([
+                'delete' => 'Cannot delete data',
+            ]);
+        }
     }
 
     public function input(){
@@ -86,7 +107,7 @@ class TernakController extends Controller
             'tanggal_lahir' => 'required|date',
             'bobot_badan' => 'required|numeric|between:0,999.99',
             'deskripsi_fenotip' => 'nullable|string',
-            'status_sekarang' => 'nullable|string',
+            'status_sekarang' => 'nullable|in:Pejantan,Induk,Anak',
             'id_anak' => 'nullable|numeric',
         ],[
             'nama_ternak.required' => 'Nama ternak is required',
@@ -100,10 +121,29 @@ class TernakController extends Controller
             'status_sekarang.string' => 'Status sekarang is not valid',
             'id_anak.numeric' => 'Id anak is not valid',
         ]);
-        Ternak::create($data);
-        return back()->withErrors([
-            'input' => 'Cannot input data',
-        ]);
+
+        if ($data['jenis_kelamin'] === 'Jantan' && $data['status_sekarang'] === 'Induk'){
+            return back()->withErrors([
+                'input' => 'Invalid data',
+            ]);
+        } else if ($data['jenis_kelamin'] === 'Betina' && $data['status_sekarang'] === 'Pejantan'){
+            return back()->withErrors([
+                'input' => 'Invalid data',
+            ]);
+        } else if (is_null($data['id_anak']) && $data['status_sekarang'] === 'Anak'){
+            return back()->withErrors([
+                'input' => 'Invalid data',
+            ]);
+        }
+
+        try {
+            Ternak::create($data);
+            return back();
+        } catch (\Exception $e) {
+            return back()->withErrors([
+                'input' => 'Cannot input data',
+            ]);
+        }
 
         // return dd($data);
     }
