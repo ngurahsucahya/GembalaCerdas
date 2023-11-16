@@ -1,148 +1,202 @@
+<!--
+=========================================================
+* Material Kit 2 - v3.0.4
+=========================================================
+
+* Product Page:  https://www.creative-tim.com/product/material-kit 
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="{{Vite::asset('resources/images/logo.png')}}">
-        <title>GembalaCerdas</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <!-- <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" /> -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Styles -->
-        <style>
-         body {
-            height: 100%;
-            margin: 0;
-            background-color: white;
-            justify-content: center;
-            align-items: center;
-         }
-
-         .fixed-top {
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 0;
-            z-index: 1030;
-         }
-
-         .title-section {
-            justify-content: center;
-            /* position: relative; */
-            background-color: transparent;
-            align-items: center;
-            padding: 30px 0;
-            text-align: center;
-            margin-top: 6vh;
-         }
-
-         .navbar {
-            display: flex;
-            justify-content: center;
-            background-color: #118F6A;
-         }
-
-         .navbar-brand {
-            color: #ffffff;
-         }
-
-         .navbar-collapse {
-            justify-content: flex-end;
-         }
-
-         .navbar-nav .nav-link {
-            color: #ffffff !important;
-         }
-
-         .bg-primary {
-            background-color: #118F6A;
-         }
-
-         .nav-item {
-            margin-right: 20px;
-            justify-content: center;
-            align-items: center;
-         }
-
-         .bg1{
-            background-color: #14795C;
-         }
-
-         .bg2{
-            background-color: #209C77;
-         }
-
-         .bg3{
-            background-color: #44AB7F;
-         }
-
-         .container{
-            justify-content: center;
-            align-items: center;
-            /* background-color: #000000; */
-         }
-        </style>
-    </head>
-    
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
-            <div class="container">
-            <img src="{{Vite::asset('resources/images/logo.png')}}" alt="GembalaCerdas" width="45" height="45">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-            <div class="container">
-           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            @if (Route::has('login'))
-                    @auth
-                  <ul class="navbar-nav">
-                     <li class="nav-item">
-                        <a class="nav-link active text-center" aria-current="page" href="/">
-                           <u>Dashboard</u>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link active text-center" aria-current="page" href="/data-ternak">Data Ternak</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link active text-center" aria-current="page" href="/input_ternak">Input Ternak</a>
-                     </li>
-                     <li class="nav-item">
-                        <img src="{{Vite::asset('resources/images/notif.png')}}" alt="Notif" width="40" height="40">
-                     </li>
-                     <li class="nav-item">
-                        <a  href="/profile">
-                           <img src="{{Vite::asset('resources/images/profile.png')}}" alt="profile" width="45" height="45">
-                        </a>
-                     </li>
-                     <form action="/logout" method="post"> @csrf <div class="d-grid gap-3">
-                           <button type="submit" class="btn btn-warning btn-block" id="logout">Logout</button>
-                        </div>
-                     </form>
-                     @if(auth()->user()->role == 'admin')
-                        <li class="nav-item">
-                           <a class="btn btn-warning btn-block" aria-current="page" href="/register" style=margin-left:10px>Register</a>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{{Vite::asset('resources/images/logo.png')}}">
+    <title>Dashboard | GembalaCerdas</title>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    @vite('resources/css/material-kit.css')
+    <!-- Nepcha Analytics (nepcha.com) -->
+    <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+    <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  </head>
+  <body class="index-page bg-gray-200">
+    <!-- Navbar -->
+    <div class="container position-sticky z-index-sticky top-0">
+      <div class="row">
+        <div class="col-12">
+          <nav class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+            <div class="container-fluid px-0">
+              <a class="navbar-brand" href="/" rel="tooltip">
+                <img src="{{Vite::asset('resources/images/logo.png')}}" alt="GembalaCerdas" width="35" height="35">
+              </a>
+              <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon mt-2">
+                  <span class="navbar-toggler-bar bar1"></span>
+                  <span class="navbar-toggler-bar bar2"></span>
+                  <span class="navbar-toggler-bar bar3"></span>
+                </span>
+              </button>
+              <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+                <ul class="navbar-nav navbar-nav-hover ms-auto">
+                  <li class="nav-item dropdown dropdown-hover mx-2  my-auto ms-3 ms-lg-0">
+                    <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false" href="/">
+                        Dashboard 
+                    </a>
+                  </li>
+                    
+                  <li class="nav-item dropdown dropdown-hover mx-2  my-auto ms-3 ms-lg-0">
+                    <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
+                      Ternak
+                      <img src="{{Vite::asset('resources/images/down-arrow-dark.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuBlocks">
+                      <div class="d-none d-lg-block">
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/add">
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                              <div>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Input Ternak</h6>
+                                
+                              </div>
+                            </div>
+                          </a>
                         </li>
-                     @endif
-                  </ul>
-               
-                    @else
-                        <a href="{{ route('login') }}" class="btn btn-warning btn-block">Log in</a>
-                    @endauth
-                    </div>
-               </div>
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/search">
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                              <div>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Search Ternak</h6>
+                                
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/kesehatan">
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                              <div>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Riwayat Kesehatan Ternak</h6>
+                                
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      </div>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown dropdown-hover mx-2  my-auto ms-3 ms-lg-0">
+                    <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
+                       kandang
+                       <img src="{{Vite::asset('resources/images/down-arrow-dark.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
+                    <div class="d-none d-lg-block">
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/add">
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                              <div>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Input Kandang</h6>
+                                
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/edit">
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                              <div>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Pindah Kandang</h6>
+                                
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      </div>
+                    </ul>
+                  </li>
+                  <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false" href="/profile">
+                    <img src="{{Vite::asset('resources/images/profile.png')}}" alt="profile" class="arrow ms-auto ms-md-2" width="35" height="35" style=margin-right:10px>
+                  </a>
+                  @if(auth()->user()->role == 'admin')
+                    <li class="nav-item my-auto ms-3 ms-lg-0">
+                      <a href="/register" class="btn btn-sm  bg-gradient-success  mb-0 me-1 mt-2 mt-md-0">Register</a>
+                    </li>
+                  @endif
+                  <li class="nav-item my-auto ms-3 ms-lg-0">
+                    <form action="/logout" method="post"> @csrf <div>
+                        <button type="submit" class="btn btn-sm  bg-gradient-danger  mb-0 me-1 mt-2 mt-md-0" id="logout">Logout</button>
+                      </div>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <!-- End Navbar -->
+        </div>
+      </div>
+    </div>
+    <header class="header-2">
+      <div class="page-header min-vh-75 relative" style="background-image: url({{Vite::asset('resources/images/background.png')}})">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7 text-center mx-auto">
+              <!-- <h1 class="text-white pt-3 mt-n5">GembalaCerdas</h1> -->
+              <img src="{{ Vite::asset('resources/images/logotextwhite.png') }}" alt="GembalaCerdas" width="450" height="105">
+              <p class="lead text-white mt-3">Ceritanya mau dikasih jargon<br/>hehe</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+      <section class="pt-3 pb-4" id="count-stats">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-9 mx-auto py-3">
+              <div class="row">
+                <div class="col-md-4 position-relative">
+                  <div class="p-3 text-center">
+                    <h1 class="text-primary">
+                      <span id="state1" countTo="70">0</span>
+                    </h1>
+                    <h5 class="mt-3">Pejantan</h5>
+                    <!-- <p class="text-sm font-weight-normal">From buttons, to inputs, navbars, alerts or cards, you are covered</p> -->
+                  </div>
+                  <hr class="vertical dark">
                 </div>
-            @endif   
+                <div class="col-md-4 position-relative">
+                  <div class="p-3 text-center">
+                    <h1 class="text-primary">
+                      <span id="state2" countTo="15">0</span>
+                    </h1>
+                    <h5 class="mt-3">Induk</h5>
+                    <!-- <p class="text-sm font-weight-normal">Mix the sections, change the colors and unleash your creativity</p> -->
+                  </div>
+                  <hr class="vertical dark">
+                </div>
+                <div class="col-md-4">
+                  <div class="p-3 text-center">
+                    <h1 class="text-primary" id="state3" countTo="4">0</h1>
+                    <h5 class="mt-3">Anak</h5>
+                    <!-- <p class="text-sm font-weight-normal">Save 3-4 weeks of work when you use our pre-made pages for your website</p> -->
+                  </div>
+                </div>
+              </div>
             </div>
-         </nav>
-         
-         <section class="title-section">
-            <div class="container">
-               <img src="{{Vite::asset('resources/images/logotext.png')}}" alt="GembalaCerdas" width="450" height="100">
-            </div>
-         </section>
-    </body>
+          </div>
+        </div>
+      </section>
+  </body> 
 </html>
