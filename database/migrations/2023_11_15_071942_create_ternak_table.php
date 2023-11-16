@@ -7,22 +7,24 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('ternak', function (Blueprint $table) {
+        Schema::create('ternaks', function (Blueprint $table) {
             $table->id();
             $table->string('rfid', 50)->nullable();
             $table->string('nama_ternak', 255)->unique();
-            $table->enum('rasa', ['Garut','Ekor Gemuk','Ekor Tipis','Merio','Suffolk','Texel','Domer','Dorper','Corriedele','Batur','Barbados Blackbelly','Compass Agrinak'])->nullable();
+            $table->enum('ras', ['Garut','Ekor Gemuk','Ekor Tipis','Merio','Suffolk','Texel','Domer','Dorper','Corriedele','Batur','Barbados Blackbelly','Compass Agrinak'])->nullable();
             $table->enum('jenis_kelamin', ['Jantan', 'Betina']);
             $table->date('tanggal_lahir');
-            $table->decimal('bobot_badan', 5, 2)->nullable();
-            $table->decimal('bobot_lahir', 5, 2)->nullable(); 
-            $table->text('deskripsi_fenotip')->nullable();
-            $table->enum('status', ['Pejantan', 'Induk', 'Anak'])->default('Anak');       
+            $table->decimal('bobot_badan', 5, 2);
+            $table->text('deskripsi_fenotip')->nullable();   
+            $table->unsignedBigInteger('statusable_id')->nullable();
+            $table->string('statusable_type')->nullable();
+            $table->foreignId('id_anak')->nullable();
+            $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('ternak');
+        Schema::dropIfExists('ternaks');
     }
 };

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Ternak extends Model
 {
@@ -14,7 +16,7 @@ class Ternak extends Model
      *
      * @var string
      */
-    protected $table = 'data_ternak';
+    protected $table = 'ternaks';
 
     /**
      * The attributes that are mass assignable.
@@ -22,19 +24,16 @@ class Ternak extends Model
      * @var array
      */
     protected $fillable = [
-        'rfid_ternak',
-        'jenis_hewan',
-        'ras_kambing',
+        'rfid',
+        'nama_ternak',
+        'ras',
         'jenis_kelamin',
         'tanggal_lahir',
         'bobot_badan',
-        'bobot_lahir',
-        'bobot_sapih',
-        'status',
-        'kehidupan',
-        'asal',
-        'deskripsi_asal',
         'deskripsi_fenotip',
+        'statusable_id',
+        'statusable_type',
+        'id_anak'
     ];
 
     /**
@@ -53,4 +52,25 @@ class Ternak extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function statusable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    public function anak(): HasOne
+    {
+        return $this->hasOne(Anak::class, 'id_anak');
+    }
+
+    public function status(): string
+    {
+        if (is_null($this->statusable_type)) {
+            return "Domba dari luar";
+        } else if (is_null($this->statusable_type) && !is_null($this->id_anak)){
+            return "Anak";
+        } else {
+            return $this->jenis_kelamin === 'Jantan' ? 'Pejantan' : 'Induk';
+        }
+    }
 }
