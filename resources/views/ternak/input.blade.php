@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Ternak</title>
+    <title>Input Data Ternak</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -18,7 +18,7 @@
 <body>
 
 <div class="container">
-    <h2>Create Ternak</h2>
+    <h2>Input Data Ternak</h2>
 
     <form action="{{ url('/ternak/add') }}" method="POST">
         @csrf
@@ -33,7 +33,7 @@
 
         <div class="form-group">
             <label for="nama_ternak">Nama Ternak:</label>
-            <input type="text" class="form-control" id="nama_ternak" name="nama_ternak" value="{{ old('nama_ternak') }}">
+            <input type="text" class="form-control" id="nama_ternak" name="nama_ternak" value="{{ old('nama_ternak') }}" required>
             @error('nama_ternak')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -41,10 +41,13 @@
 
         <div class="form-group">
             <label for="ras">Ras:</label>
-            <select class="form-control" id="ras" name="ras">
-                <option value="">Select Ras</option>
-                <option value="Garut">Garut</option>
+            <select class="form-control" id="ras" name="ras" required>
+                <option value="" {{ old('ras') === '' ? 'selected' : '' }} >Select Ras</option>
+                <!-- <option value="Garut" {{ old('ras') === 'Garut' ? 'selected' : '' }} >Garut</option> -->
                 <!-- Add options for each ras value -->
+                @foreach ($list_ras as $each_ras)
+                    <option value="{{ $each_ras }}" {{ old('ras') === $each_ras ? 'selected' : '' }}>{{ $each_ras }}</option>
+                @endforeach
             </select>
             @error('ras')
                 <small class="text-danger">{{ $message }}</small>
@@ -53,10 +56,10 @@
 
         <div class="form-group">
             <label for="jenis_kelamin">Jenis Kelamin:</label>
-            <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                <option value="">Select Jenis Kelamin</option>
-                <option value="Jantan">Jantan</option>
-                <option value="Betina">Betina</option>
+            <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
+                <option value="" {{ old('jenis_kelamin') === '' ? 'selected' : '' }}>Select Jenis Kelamin</option>
+                <option value="Jantan" {{ old('jenis_kelamin') === 'Jantan' ? 'selected' : '' }}>Jantan</option>
+                <option value="Betina" {{ old('jenis_kelamin') === 'Betina' ? 'selected' : '' }}>Betina</option>
             </select>
             @error('jenis_kelamin')
                 <small class="text-danger">{{ $message }}</small>

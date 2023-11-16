@@ -42,15 +42,46 @@ class TernakController extends Controller
     }
 
     public function input(){
-        return view('ternak.input');
+
+        $list_ras = [
+            'Garut',
+            'Ekor Gemuk',
+            'Ekor Tipis',
+            'Merio',
+            'Suffolk',
+            'Texel',
+            'Domer',
+            'Dorper',
+            'Corriedele',
+            'Batur',
+            'Barbados Blackbelly',
+            'Compass Agrinak',
+        ];
+        return view('ternak.input', compact('list_ras'));
     }
 
     public function add(Request $request)
     {
+
+        $list_ras = [
+            'Garut',
+            'Ekor Gemuk',
+            'Ekor Tipis',
+            'Merio',
+            'Suffolk',
+            'Texel',
+            'Domer',
+            'Dorper',
+            'Corriedele',
+            'Batur',
+            'Barbados Blackbelly',
+            'Compass Agrinak',
+        ];
+
         $data = $request->validate([
             'rfid' => 'nullable|string|max:50',
             'nama_ternak' => 'required|string|max:255|unique:ternaks',
-            'ras' => 'nullable|in:Garut,Ekor Gemuk,Ekor Tipis,Merio,Suffolk,Texel,Domer,Dorper,Corriedele,Batur,Barbados Blackbelly,Compass Agrinak',
+            'ras' => 'nullable|in:' . implode(',', $list_ras),
             'jenis_kelamin' => 'required|in:Jantan,Betina',
             'tanggal_lahir' => 'required|date',
             'bobot_badan' => 'required|numeric|between:0,99999.99',
@@ -67,7 +98,7 @@ class TernakController extends Controller
         Ternak::create($data);
         return back()->withErrors([
             'input' => 'Cannot input data',
-        ])->withInput($request->only('name', 'email'));
+        ]);
 
         // return dd($data);
     }
