@@ -22265,7 +22265,7 @@ body.dark-version {
 .input-group.input-group-dynamic .form-control:focus,
 .input-group.input-group-static .form-control,
 .input-group.input-group-static .form-control:focus {
-  background-image: linear-gradient(0deg, #118F6A  2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0);
+  background-image: linear-gradient(0deg, #118F6A  2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #595959 1px, rgba(209, 209, 209, 0) 0);
   border-radius: 0 !important;
 }
 
@@ -22311,7 +22311,7 @@ body.dark-version {
 .input-group.input-group-dynamic.is-focused.is-valid .form-control:focus,
 .input-group.input-group-static.is-focused.is-valid .form-control,
 .input-group.input-group-static.is-focused.is-valid .form-control:focus {
-  background-image: linear-gradient(0deg, #4CAF50 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0);
+  background-image: linear-gradient(0deg, #4CAF50 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #595959 1px, rgba(209, 209, 209, 0) 0);
   border-radius: 0 !important;
 }
 
@@ -22324,7 +22324,7 @@ body.dark-version {
 .input-group.input-group-dynamic.is-focused.is-invalid .form-control:focus,
 .input-group.input-group-static.is-focused.is-invalid .form-control,
 .input-group.input-group-static.is-focused.is-invalid .form-control:focus {
-  background-image: linear-gradient(0deg, #F44335 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0);
+  background-image: linear-gradient(0deg, #F44335 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #595959 1px, rgba(209, 209, 209, 0) 0);
   border-radius: 0 !important;
 }
 
@@ -22340,7 +22340,7 @@ body.dark-version {
 .input-group.input-group-dynamic.is-invalid .form-control:focus,
 .input-group.input-group-static.is-invalid .form-control,
 .input-group.input-group-static.is-invalid .form-control:focus {
-  background-image: linear-gradient(0deg, #F44335 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0);
+  background-image: linear-gradient(0deg, #F44335 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #595959 1px, rgba(209, 209, 209, 0) 0);
   border-radius: 0 !important;
 }
 

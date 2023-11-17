@@ -124,6 +124,16 @@
                       </div>
                     </ul>
                   </li>
+                  
+                  <li class="nav-item dropdown dropdown-hover mx-2  my-auto ms-3 ms-lg-0">
+                    <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="{{Vite::asset('resources/images/notif.png')}}" alt="profile" class="arrow ms-auto ms-md-2" width="35" height="35">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
+                      <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Tidak ada notifikasi</h6>
+                    </ul>
+                  </li>
+
                   <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false" href="/profile">
                     <img src="{{Vite::asset('resources/images/profile.png')}}" alt="profile" class="arrow ms-auto ms-md-2" width="35" height="35" style=margin-right:10px>
                   </a>
@@ -160,9 +170,9 @@
         </div>
       </div>
     </header>
-    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+    
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6" style="margin-bottom:10px">
       <section class="pt-3 pb-4" id="count-stats">
-        <div class="container">
           <div class="row">
             <div class="col-lg-9 mx-auto py-3">
               <div class="row">
@@ -198,5 +208,6 @@
           </div>
         </div>
       </section>
+      </div>
   </body> 
 </html>
