@@ -39,20 +39,24 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(function()
 
 Route::controller(\App\Http\Controllers\TernakController::class)->group(function(){
     Route::get('/ternak', 'index')->middleware('auth');
+    Route::get('/ternak/input', 'input')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);
     Route::get('/ternak/edit/{id}', 'edit')->middleware([
-        \App\Http\Middleware\OnlyAdminMiddleware::class,
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);
     Route::post('/ternak/add', 'add')->middleware([
-        \App\Http\Middleware\OnlyAdminMiddleware::class,
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);
     Route::post('/ternak/update/{id}', 'update')->middleware([
-        \App\Http\Middleware\OnlyAdminMiddleware::class,
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;
     Route::post('/ternak/delete/{id}', 'delete')->middleware([
-        \App\Http\Middleware\OnlyAdminMiddleware::class,
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;
 });
