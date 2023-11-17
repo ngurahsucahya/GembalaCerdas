@@ -29,73 +29,72 @@
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
     <style>
-            body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-image: url('background.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            }
-            main {
-                display: flex;
-            }
-
-            .profile-container {
-            background: rgb(2,0,36);
-            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(201,235,235,0.997161779510841) 100%, rgba(0,212,255,1) 100%);
-            position: relative;
-            padding: 200px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            transform: translate(100%,30%);
-            display: flex;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            align-items:center;
-            width:150px;
-            height:150px;
-        }
-
-
-        .profile-content {
-            text-align:left;
-            position:relative;
-            align-items: left;
-            margin-top:-90px;
-            transform: translate(-70%,70%);
-            justify-content: space-between;
+					                
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      background-image: url('{{ asset('background.png') }}');
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 120vh;
     }
-        .edit-button {
-            background-color: green; /* Ganti warna latar belakang menjadi hijau */
-            color: white; /* Ganti warna teks menjadi putih */
-            padding: 2px 5px; /* Sesuaikan padding sesuai kebutuhan Anda */
-            border-radius:5px;
-            transform: translate(-640%,-500%);
-            align-items: center;
-            position:relative;
-    }
-        .profile-picture{
-            position: absolute; 
-            margin-top:-200px;
-            align-items:center;
-            width:150px;
-            height:150px;
-            border-radius:100%;
-            transform: translateX(-50%);
-    }
-        .container {
-            text-align:center;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
-</head>
 
+    .form-space {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transform: translateY(10%);
+      background-position: auto;
+     
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 8px;
+    }
+
+    input {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+		image{
+      width: 100px;
+      height: 100px;
+    }
+    html, body {
+    width: 100%;
+    margin: 0; 
+    padding: 0; 
+    }
+    
+	</style>
+<!-- Navbar Transparent -->
 <body>
-
 <header><!-- NAVIGATION BAR-->
-   <span class="mask bg-gradient-dark opacity-6"></span>
+   <span class="mask bg-gradient-dark opacity-6" style="  height: 120vh;"></span>
    <div class="container position-sticky z-index-sticky top-0">
       <div class="row">
         <div class="col-12">
@@ -208,23 +207,42 @@
             </div>
           </nav>
 </header>
+<!-- End Navbar -->
 
-  <main>
-   <div class="profile-container">
-   
-   <img class="profile-picture" src="download.png" alt="User Profile Picture">
-   <a href="{{ route('profile.edit') }}"><button class="edit-button" id="EditDATA"><span class="icon">&#9998;</span></button></a><!-- tombol edit semua data user -->
-      <div class="profile-content">
-       <strong>
-       <p style="font-size: 25px;">User Name </p>
-       <p style="font-size: 25px;">john.doe@example.com </p>
-       <p style="font-size: 25px;">Role</p>
-       </strong>
-       <!-- Tambahkan informasi pengguna lainnya sesuai kebutuhan -->
-</div>
+<main>
 
-</main>
+  <div class="form-space">
+    <h2>Edit Profile</h2>
+    <form>
+      <div class="text-center">
+        <img src="imej" class="avatar img-circle img-thumbnail" alt="test">
+        <h5>Upload foto baru...</h5>
+        
+        <input type="file" class="form-control">
+      </div>
 
-</body>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Enter new username">
 
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter new email">
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter new password">
+
+      <label for="role">Role:</label>
+      <select id="role" name="role">
+        <option value="user">Employee</option>
+        <option value="admin">Doctor</option>
+
+
+      </select>
+
+      <button type="button" style="margin-top:20px;" onclick="submitForm()">Save Changes</button>
+    </form>
+  </div>
+
+
+  </main>
+  </body>
 </html>
