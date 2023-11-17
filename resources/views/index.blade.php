@@ -179,7 +179,7 @@
                 <div class="col-md-4 position-relative">
                   <div class="p-3 text-center">
                     <h1 class="text-primary">
-                      <span id="state1" countTo="70">{{ $jumlah_Pejantan }}</span>
+                      <span id="state1" countTo="70">{{ $jumlah_pejantan }}</span>
                     </h1>
                     <h5 class="mt-3">Pejantan</h5>
                     <!-- <p class="text-sm font-weight-normal">From buttons, to inputs, navbars, alerts or cards, you are covered</p> -->
