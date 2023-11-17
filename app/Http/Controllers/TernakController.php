@@ -21,6 +21,7 @@ class TernakController extends Controller
     {
         $ternak = Ternak::all();
         return view('ternak.index', compact('ternak'));
+        // return dd($ternak);
     }
 
     public function edit($id)
@@ -38,6 +39,43 @@ class TernakController extends Controller
 
     public function update(Request $request, $id)
     {
+        $data = $request->validate([
+            'rfid' => 'nullable|string|max:50',
+            'nama_ternak' => 'required|string|max:255|unique:ternaks',
+            'ras' => 'nullable|in:' . implode(',', $list_ras),
+            'jenis_kelamin' => 'required|in:Jantan,Betina',
+            'tanggal_lahir' => 'required|date',
+            'bobot_badan' => 'required|numeric|between:0,999.99',
+            'deskripsi_fenotip' => 'nullable|string',
+            'status_sekarang' => 'nullable|in:Pejantan,Induk,Anak',
+            'id_anak' => 'nullable|numeric',
+        ],[
+            'nama_ternak.required' => 'Nama ternak is required',
+            'nama_ternak.unique' => 'Nama ternak already exists',
+            'ras.in' => 'Ras is not valid',
+            'jenis_kelamin.in' => 'Jenis kelamin is not valid',
+            'tanggal_lahir.date' => 'Tanggal lahir is not valid',
+            'bobot_badan.numeric' => 'Bobot badan is not valid',
+            'bobot_badan.between' => 'Bobot badan is not valid',
+            'deskripsi_fenotip.string' => 'Deskripsi fenotip is not valid',
+            'status_sekarang.string' => 'Status sekarang is not valid',
+            'id_anak.numeric' => 'Id anak is not valid',
+        ]);
+
+        if ($data['jenis_kelamin'] === 'Jantan' && $data['status_sekarang'] === 'Induk'){
+            return back()->withErrors([
+                'update' => 'Invalid data',
+            ]);
+        } else if ($data['jenis_kelamin'] === 'Betina' && $data['status_sekarang'] === 'Pejantan'){
+            return back()->withErrors([
+                'update' => 'Invalid data',
+            ]);
+        } else if (is_null($data['id_anak']) && $data['status_sekarang'] === 'Anak'){
+            return back()->withErrors([
+                'update' => 'Invalid data',
+            ]);
+        }
+
         try {
             $ternak = Ternak::findOrFail($id);
             $ternak->update($request->all());
@@ -53,6 +91,13 @@ class TernakController extends Controller
     {   
         try {
             $ternak = Ternak::findORFail($id);
+            if ($ternak->status_sekarang === 'Induk'){
+                $induk = Induk::where('id', $ternak->statusable_id)->firstOrFail();
+                $induk->delete();
+            } else if ($ternak->status_sekarang === 'Pejantan'){
+                $pejantan = Pejantan::where('id', $ternak->statusable_id)->firstOrFail();
+                $pejantan->delete();
+            }
             $ternak->delete();
             return back();
         } catch (ModelNotFoundException $e) {
@@ -137,7 +182,14 @@ class TernakController extends Controller
         }
 
         try {
-            Ternak::create($data);
+            $ternak = Ternak::create($data);
+            if ($data['status_sekarang'] === 'Induk'){
+                $induk = Induk::create();
+                $induk->ternak()->save($ternak);
+            } else if ($data['status_sekarang'] === 'Pejantan'){
+                $pejantan = Pejantan::create();
+                $pejantan->ternak()->save($ternak);
+            } 
             return back();
         } catch (\Exception $e) {
             return back()->withErrors([

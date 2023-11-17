@@ -271,15 +271,15 @@
                 <section class="py-1">
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
-                        <div class="input-group input-group-static mb-1" id="statusField" style="display: {{ old('status') === '' ? 'block' : 'none' }};">
-                            <label for="status">Status</label>
-                            <select class="form-control" id="status" name="status">
-                                <option value="" {{ old('status') === '' ? 'selected' : '' }}>Select Status</option>
-                                <option value="Induk" {{ old('status') === 'Induk' ? 'selected' : '' }}>Induk</option>
-                                <option value="Pejantan" {{ old('status') === 'Pejantan' ? 'selected' : '' }}>Pejantan</option>
-                                <option value="Anak" {{ old('status') === 'Anak' ? 'selected' : '' }}>Anak</option>
+                        <div class="input-group input-group-static mb-1" id="statusField" style="display: {{ old('status_sekarang') === '' ? 'block' : 'none' }};">
+                            <label for="status_sekarang">Status</label>
+                            <select class="form-control" id="status_sekarang" name="status_sekarang">
+                                <option value="" {{ old('status_sekarang') === '' ? 'selected' : '' }}>Select Status</option>
+                                <option value="Induk" {{ old('status_sekarang') === 'Induk' ? 'selected' : '' }}>Induk</option>
+                                <option value="Pejantan" {{ old('status_sekarang') === 'Pejantan' ? 'selected' : '' }}>Pejantan</option>
+                                <option value="Anak" {{ old('status_sekarang') === 'Anak' ? 'selected' : '' }}>Anak</option>
                             </select>
-                            @error('status')
+                            @error('status_sekarang')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -314,18 +314,18 @@
             statusSelect.value = '';
         } else if (this.value === 'Jantan') {
             statusField.style.display = 'block';
-            document.querySelector('#status option[value="Induk"]').disabled = true;
-            document.querySelector('#status option[value="Pejantan"]').disabled = false;
+            document.querySelector('#status_sekarang option[value="Induk"]').disabled = true;
+            document.querySelector('#status_sekarang option[value="Pejantan"]').disabled = false;
         } else if (this.value === 'Betina') {
             statusField.style.display = 'block';
-            document.querySelector('#status option[value="Induk"]').disabled = false;
-            document.querySelector('#status option[value="Pejantan"]').disabled = true;
+            document.querySelector('#status_sekarang option[value="Induk"]').disabled = false;
+            document.querySelector('#status_sekarang option[value="Pejantan"]').disabled = true;
         } else {
             statusField.style.display = 'block';
         }
     });
 
-    document.getElementById('status').addEventListener('change', function() {
+    document.getElementById('status_sekarang').addEventListener('change', function() {
         var idAnakField = document.getElementById('idAnakField');
 
         if (this.value === 'Anak') {
