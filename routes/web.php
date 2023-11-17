@@ -23,6 +23,7 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(function()
    Route::get('/login', 'login')->middleware('guest')->name('login');
     Route::get('/register', 'register')->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
     Route::get('/profile', 'profile')->middleware('auth');
+    Route::get('/profile/edit', 'edit')->middleware('auth')->name('profile.edit');
     Route::get('/register', 'register')->middleware([
         \App\Http\Middleware\OnlyAdminMiddleware::class,
         'auth',

@@ -134,7 +134,7 @@
 	</nav>
 	<div class="container mt-5">
 		<h1>Data Ternak</h1>
-		<form method="GET" action="/data-ternak" class="mb-4">
+		<form method="GET" action="/ternak" class="mb-4">
 			<div class="input-group">
 				<input type="text" name="query" class="form-control" placeholder="Ketik disini..." value="" required>
 				<button type="submit" class="btn btn-primary">Cari</button>
@@ -149,50 +149,49 @@
 					<th>Jenis Kelamin</th>
 					<th>Tanggal Lahir</th>
 					<th>Bobot Badan</th>
-					<th>Bobot lahir</th>
-					<th>Bobot sapih</th>
-					<th>kandang</th>
 					<th>Edit</th>
 					<th>Delete</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>
-						<p>x</p>
-					</td>
-					<td>
-						<p>x</p>
-					</td>
-					<td>
-						<p>x</p>
-					</td>
-					<td>
-						<p>x</p>
-					</td>
-					<td>
-						<p>x</p>
-					</td>
-					<td>
-						<p>x</p>
-					</td>
-					<td>
-						<p>x</p>
-					</td>
-					<td>
-						<p>x</p>
-					</td>
-					<td>
-						<p>x</p>
+					@foreach ($ternaks as $ternak)
+						<td>
+							<p>x</p>
+						</td>
+						<td>
+							<p>x</p>
+						</td>
+						<td>
+							<p>x</p>
+						</td>
+						<td>
+							<p>x</p>
+						</td>
+						<td>
+							<p>x</p>
+						</td>
+						<td>
+							<p>x</p>
+						</td>
+						<td>
+							<p>x</p>
+						</td>
+						<td>
+							<p>x</p>
+						</td>
+						<td>
+							<p>x</p>
+						</td>
 						<div class="custom-card-buttons">
-							<!-- <td><button class="btn btn-success" style="margin-right: 5px;" onclick="window.location.href='/lihat-lengkap/{{ $ternakItem->id }}'">Lihat Lengkap</button></td> -->
 							<td>
-								<button class="btn btn-primary" style="margin-right: 5px;" onclick="window.location.href='{{ route('edit-ternak', ['id' => $ternakItem->id]) }}'">Edit</button>
+								<button class="btn btn-primary" style="margin-right: 5px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button>
 							</td>
 							<td>
-								<button class="btn btn-danger" onclick="deleteTernak({{ $ternakItem->id }})">Delete</button>
+								<button class="btn btn-danger" onclick="deleteTernak({{ $ternak->id }})">Delete</button>
 							</td>
 						</div>
+					@endforeach
 		</table>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@2.11.8/dist/umd/popper.min.js"></script>
@@ -201,26 +200,21 @@
 <script>
 function deleteTernak(id) {
 	if(confirm("Apakah Anda yakin ingin menghapus ternak ini?")) {
-		// Dapatkan token CSRF dari meta tag.
 		var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-		// Jika pengguna menekan OK, kirim permintaan POST ke rute penghapusan dengan token CSRF.
-		fetch(`/delete-ternak/${id}`, {
-			// alert("TEST")
+		fetch(`/ternak/delete/${id}`, {
 			method: 'DELETE',
 			headers: {
-				'X-CSRF-TOKEN': csrfToken, // Menambahkan token CSRF ke header.
+				'X-CSRF-TOKEN': csrfToken,
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
 				id: id
-			}), // Mengirimkan data yang diperlukan (opsional).
+			}),
 		}).then(response => response.json()).then(data => {
 			if(data.success) {
-				// Refresh atau lakukan tindakan lain setelah penghapusan berhasil.
-				location.reload(); // Contoh: Muat ulang halaman.]
+				location.reload();
 				alert("berhasil");
 			} else {
-				// Tampilkan pesan kesalahan jika diperlukan.
 				alert("gagal");
 				location.reload();
 			}
