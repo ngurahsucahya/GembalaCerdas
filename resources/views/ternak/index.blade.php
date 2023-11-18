@@ -44,7 +44,7 @@
 	<div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/background2.png')}}); align-items: center;" loading="lazy">
 		<div class="col-12">
 			<div class="col-lg-7 text-center mx-auto" style="margin-top: 130px">
-              <h3 class="text-dark pt-3 mt-n5">Data Ternak</h3>
+              <h3 class="text-white pt-3 mt-n5">Data Ternak</h3>
             </div>
 			<div class="search-container">
 				<form method="GET" action="/ternak">

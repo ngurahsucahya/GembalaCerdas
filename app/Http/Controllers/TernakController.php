@@ -26,15 +26,29 @@ class TernakController extends Controller
 
     public function edit($id)
     {
-        try {
-            $ternak = Ternak::findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            return back()->withErrors([
+        $list_ras = [
+            'Garut',
+            'Ekor Gemuk',
+            'Ekor Tipis',
+            'Merio',
+            'Suffolk',
+            'Texel',
+            'Domer',
+            'Dorper',
+            'Corriedele',
+            'Batur',
+            'Barbados Blackbelly',
+            'Compass Agrinak',
+        ];
+
+        $ternak = Ternak::find($id);
+        if ($ternak === null){
+            return redirect()->intended('/ternak')->withErrors([
                 'edit' => 'Cannot edit data',
             ]);
         }
-
-        return view('ternak.edit', compact('ternak'));
+        // return dd($ternak);
+        return view('ternak.edit', compact('ternak', 'list_ras'));
     }
 
     public function update(Request $request, $id)
