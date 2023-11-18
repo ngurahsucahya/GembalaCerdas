@@ -179,7 +179,7 @@
                 <div class="col-md-4 position-relative">
                   <div class="p-3 text-center">
                     <h1 class="text-primary">
-                      <span id="state1" countTo="70">0</span>
+                      <span id="state1" countTo="70">{{ $jumlah_pejantan }}</span>
                     </h1>
                     <h5 class="mt-3">Pejantan</h5>
                     <!-- <p class="text-sm font-weight-normal">From buttons, to inputs, navbars, alerts or cards, you are covered</p> -->
@@ -189,7 +189,7 @@
                 <div class="col-md-4 position-relative">
                   <div class="p-3 text-center">
                     <h1 class="text-primary">
-                      <span id="state2" countTo="15">0</span>
+                      <span id="state2" countTo="15">{{ $jumlah_induk }}</span>
                     </h1>
                     <h5 class="mt-3">Induk</h5>
                     <!-- <p class="text-sm font-weight-normal">Mix the sections, change the colors and unleash your creativity</p> -->
@@ -198,7 +198,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="p-3 text-center">
-                    <h1 class="text-primary" id="state3" countTo="4">0</h1>
+                    <h1 class="text-primary" id="state3" countTo="4">{{ $jumlah_anak }}</h1>
                     <h5 class="mt-3">Anak</h5>
                     <!-- <p class="text-sm font-weight-normal">Save 3-4 weeks of work when you use our pre-made pages for your website</p> -->
                   </div>
