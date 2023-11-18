@@ -301,7 +301,7 @@
                     </div>
                 </section>
 
-                <button type="submit"  class="btn btn-sm  bg-gradient-success  mb-0 me-1 mt-2 mt-md-0">Submit</button>
+                <button type="submit"  class="btn bg-gradient-success  mb-0 me-1 mt-2 mt-md-0">Submit</button>
             </form>
         </div>
         </div>
