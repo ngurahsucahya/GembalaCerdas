@@ -31,7 +31,6 @@
     <style>
 					                
     body {
-      font-family: Arial, sans-serif;
       background-color: #f4f4f4;
       background-image: url('{{ asset('background.png') }}');
       background-size: cover;
@@ -43,7 +42,8 @@
     .form-space {
       max-width: 600px;
       margin: 50px auto;
-      background-color: #fff;
+      background: rgb(2,0,36);
+      background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(201,235,235,0.997161779510841) 100%, rgba(0,212,255,1) 100%);
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -66,20 +66,24 @@
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      
     }
 
-    button {
-      background-color: #4caf50;
+    .submit-button {
+      background: linear-gradient(87deg, #ade38d 0, #118F6A 100%) !important;
       color: #fff;
       padding: 10px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      margin-top:20px
+      
     }
 
-    button:hover {
-      background-color: #45a049;
+    .submit-button:hover {
+    background-color: #45a049;
     }
+
 		image{
       width: 100px;
       height: 100px;
@@ -91,7 +95,6 @@
     }
     
 	</style>
-<!-- Navbar Transparent -->
 <body>
 <header><!-- NAVIGATION BAR-->
    <span class="mask bg-gradient-dark opacity-6" style="  height: 120vh;"></span>
@@ -198,7 +201,7 @@
                   @endif
                   <li class="nav-item my-auto ms-3 ms-lg-0">
                     <form action="/logout" method="post"> @csrf <div>
-                        <button type="submit" class="btn btn-sm  bg-gradient-danger  mb-0 me-1 mt-2 mt-md-0" id="logout">Logout</button>
+                        <button type="submit"class="btn btn-sm  bg-gradient-danger  mb-0 me-1 mt-2 mt-md-0" id="logout">Logout</button>
                       </div>
                     </form>
                   </li>
@@ -222,23 +225,25 @@
       </div>
 
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username" placeholder="Enter new username">
+      <input type="text" id="username" name="username" placeholder="Enter new username" value="current_username">
 
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" placeholder="Enter new email">
+      <input type="email" id="email" name="email" placeholder="Enter new email" value="current_email">
 
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" placeholder="Enter new password">
+      <!--  nanti value nya itu autofill ke data si user sekarang-->
 
       <label for="role">Role:</label>
       <select id="role" name="role">
         <option value="user">Employee</option>
         <option value="admin">Doctor</option>
 
-
+      <!-- jika si user selesai meng edit, redirect kembali ke profile -->
       </select>
+      <button type="button" class="submit-button" onclick="submitForm()">Save Changes</button>
 
-      <button type="button" style="margin-top:20px;" onclick="submitForm()">Save Changes</button>
+      <!-- route sama function nya belum dibuat -->
     </form>
   </div>
 

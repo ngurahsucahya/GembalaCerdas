@@ -30,7 +30,6 @@
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
     <style>
             body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -42,53 +41,82 @@
                 display: flex;
             }
 
-            .profile-container {
+            .profile-card {
+            width: 300px;
+            height: 400px;
             background: rgb(2,0,36);
             background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(201,235,235,0.997161779510841) 100%, rgba(0,212,255,1) 100%);
-            position: relative;
-            padding: 200px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            transform: translate(100%,30%);
-            display: flex;
+            border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            align-items:center;
-            width:150px;
-            height:150px;
+            overflow: hidden;
+            text-align: center;
+            transform: translate(155%,40%);
         }
 
-
-        .profile-content {
-            text-align:left;
-            position:relative;
-            align-items: left;
-            margin-top:-90px;
-            transform: translate(-70%,70%);
-            justify-content: space-between;
-    }
-        .edit-button {
-            background-color: green; /* Ganti warna latar belakang menjadi hijau */
-            color: white; /* Ganti warna teks menjadi putih */
-            padding: 2px 5px; /* Sesuaikan padding sesuai kebutuhan Anda */
-            border-radius:5px;
-            transform: translate(-640%,-500%);
-            align-items: center;
-            position:relative;
-    }
-        .profile-picture{
-            position: absolute; 
-            margin-top:-200px;
-            align-items:center;
-            width:150px;
-            height:150px;
+        .profile-picture {
+            width: 100px;
+            height: 100px;
             border-radius:100%;
-            transform: translateX(-50%);
-    }
+            transform: translateY(-35%);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding:2px;
+            box-sizing: content-box;
+            background-color: #118F6A;
+        }
+        
+        .user-info {
+            padding: 20px;
+            transform:translateY(-20%);
+        }
+
+        .username {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .email {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .role {
+            font-size: 1.2em;
+            color: #888;
+        }
+    
         .container {
             text-align:center;
             justify-content: center;
             align-items: center;
         }
+        .edit-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            background: linear-gradient(87deg, #ade38d 0, #118F6A 100%) !important;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+
+        .edit-button:hover {
+          background-color: #45a049;
+        }
+        .profile-card .card-header {
+            position: relative;
+            width:300px;
+        }
+        .larger-box {
+            background: linear-gradient(87deg, #ade38d 0, #118F6A 100%) !important; /* Use your desired gradient colors */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important; /* Adjust the shadow if needed */
+            border-radius: 15px !important; /* Adjust the border-radius for rounded corners */
+            padding: 30px 30px !important; /* Adjust the padding to make it larger */
+        }
+        
     </style>
 </head>
 
@@ -210,18 +238,20 @@
 </header>
 
   <main>
-   <div class="profile-container">
-   
-   <img class="profile-picture" src="download.png" alt="User Profile Picture">
-   <a href="{{ route('profile.edit') }}"><button class="edit-button" id="EditDATA"><span class="icon">&#9998;</span></button></a><!-- tombol edit semua data user -->
-      <div class="profile-content">
-       <strong>
-       <p style="font-size: 25px;">User Name </p>
-       <p style="font-size: 25px;">john.doe@example.com </p>
-       <p style="font-size: 25px;">Role</p>
-       </strong>
-       <!-- Tambahkan informasi pengguna lainnya sesuai kebutuhan -->
-</div>
+  <div class="profile-card">
+       <div class="card-header">
+              <div class="larger-box">
+                <img src="http://127.0.0.1:8000/build/assets/logotextwhite-bf4967ae.png" alt="GembalaCerdas" width="225" height="50" class="mx-auto d-block" style="margin:5px; top:0;">
+              </div>
+            </div>
+        <img class="profile-picture" src="{{ asset('/download.png') }}" alt="Profile Picture">
+        <div class="user-info">
+            <div class="username">John Doe</div>
+            <div class="email">john.doe@example.com</div>
+            <div class="role">role</div>
+            <a href="{{ route('profile.edit') }}" class="edit-button">Edit Profile</a>
+        </div>
+    </div>
 
 </main>
 
