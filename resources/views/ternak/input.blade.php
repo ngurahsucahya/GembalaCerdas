@@ -72,10 +72,10 @@
                           </a>
                         </li>
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
-                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/search">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
-                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Search Ternak</h6>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Data Ternak</h6>
                                 
                               </div>
                             </div>
@@ -157,10 +157,11 @@
     </div>
 
     <div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/background2.png')}});" loading="lazy">
-        <div class="card card-body blur shadow-blur opacity-8" style="margin: 120px 20px 10px; padding: 50px 50px 20px;">
-            <div class="col-lg-7 text-center mx-auto">
-              <h3 class="text-dark pt-3 mt-n5">Input Data Ternak</h3>
-            </div>
+    <div class="col-12">
+			<div class="col-lg-7 text-center mx-auto" style="margin-top: 150px">
+        <h3 class="text-dark pt-3 mt-n5">Input Data Ternak</h3>
+      </div>
+        <div class="card card-body blur shadow-blur opacity-8" style="margin: 10px 20px 10px; padding: 50px 50px 20px;">
             <form action="{{ url('/ternak/add') }}" method="POST">
                 @csrf
                 <section class="py-1">
@@ -303,6 +304,7 @@
 
                 <button type="submit"  class="btn bg-gradient-success  mb-0 me-1 mt-2 mt-md-0">Submit</button>
             </form>
+        </div>
         </div>
         </div>
         <script>
