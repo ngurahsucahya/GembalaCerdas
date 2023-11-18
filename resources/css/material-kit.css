@@ -212,6 +212,28 @@ p {
   margin-bottom: 1rem;
 }
 
+.search-container {
+  text-align: center;
+}
+
+.search-box {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #118F6A;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
 abbr[title] {
   text-decoration: underline dotted;
   cursor: help;
@@ -2660,6 +2682,20 @@ progress {
   --bs-table-active-bg: #485976;
   --bs-table-active-color: #fff;
   --bs-table-hover-bg: #435572;
+  --bs-table-hover-color: #fff;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+.table-custom {
+  --bs-table-color: #fff;
+  --bs-table-bg: rgba(52, 71, 103, 0.6);;
+  --bs-table-border-color: #485976;
+  --bs-table-striped-bg: #3e506f;
+  --bs-table-striped-color: #fff;
+  --bs-table-active-bg: #485976;
+  --bs-table-active-color: #fff;
+  --bs-table-hover-bg: black;
   --bs-table-hover-color: #fff;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -20626,14 +20662,14 @@ fieldset:disabled .btn {
 
 .btn-primary,
 .btn.bg-gradient-primary {
-  box-shadow: 0 3px 3px 0 rgba(233, 30, 99, 0.15), 0 3px 1px -2px rgba(233, 30, 99, 0.2), 0 1px 5px 0 rgba(233, 30, 99, 0.15);
+  box-shadow: 0 3px 3px 0 rgba(85, 197, 149, 0.15), 0 3px 1px -2px rgba(85, 197, 149, 0.2), 0 1px 5px 0 rgba(85, 197, 149, 0.15);
 }
 
 .btn-primary:hover,
 .btn.bg-gradient-primary:hover {
   background-color: #118F6A ;
   border-color: #118F6A ;
-  box-shadow: 0 14px 26px -12px rgba(233, 30, 99, 0.4), 0 4px 23px 0 rgba(233, 30, 99, 0.15), 0 8px 10px -5px rgba(233, 30, 99, 0.2);
+  box-shadow: 0 14px 26px -12px rgba(85, 197, 149, 0.4), 0 4px 23px 0 rgba(85, 197, 149, 0.15), 0 8px 10px -5px rgba(85, 197, 149,0.2);
 }
 
 .btn-primary .btn.bg-outline-primary,
@@ -22265,7 +22301,7 @@ body.dark-version {
 .input-group.input-group-dynamic .form-control:focus,
 .input-group.input-group-static .form-control,
 .input-group.input-group-static .form-control:focus {
-  background-image: linear-gradient(0deg, #118F6A  2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0);
+  background-image: linear-gradient(0deg, #118F6A  2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #595959 1px, rgba(209, 209, 209, 0) 0);
   border-radius: 0 !important;
 }
 
@@ -22311,7 +22347,7 @@ body.dark-version {
 .input-group.input-group-dynamic.is-focused.is-valid .form-control:focus,
 .input-group.input-group-static.is-focused.is-valid .form-control,
 .input-group.input-group-static.is-focused.is-valid .form-control:focus {
-  background-image: linear-gradient(0deg, #4CAF50 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0);
+  background-image: linear-gradient(0deg, #4CAF50 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #595959 1px, rgba(209, 209, 209, 0) 0);
   border-radius: 0 !important;
 }
 
@@ -22324,7 +22360,7 @@ body.dark-version {
 .input-group.input-group-dynamic.is-focused.is-invalid .form-control:focus,
 .input-group.input-group-static.is-focused.is-invalid .form-control,
 .input-group.input-group-static.is-focused.is-invalid .form-control:focus {
-  background-image: linear-gradient(0deg, #F44335 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0);
+  background-image: linear-gradient(0deg, #F44335 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #595959 1px, rgba(209, 209, 209, 0) 0);
   border-radius: 0 !important;
 }
 
@@ -22340,7 +22376,7 @@ body.dark-version {
 .input-group.input-group-dynamic.is-invalid .form-control:focus,
 .input-group.input-group-static.is-invalid .form-control,
 .input-group.input-group-static.is-invalid .form-control:focus {
-  background-image: linear-gradient(0deg, #F44335 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, rgba(209, 209, 209, 0) 0);
+  background-image: linear-gradient(0deg, #F44335 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #595959 1px, rgba(209, 209, 209, 0) 0);
   border-radius: 0 !important;
 }
 
@@ -25009,7 +25045,8 @@ body:not(.dark-version) .sidenav.bg-transparent .collapse .nav-item .nav-link.ac
 .pagination.pagination-primary .page-item.active>.page-link,
 .pagination.pagination-primary .page-item.active>.page-link:focus,
 .pagination.pagination-primary .page-item.active>.page-link:hover {
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+  color:white;
+  background-image: linear-gradient(195deg, #55C595 0%, #118F6A 100%);
   border: none;
 }
 
