@@ -62,7 +62,7 @@
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
                             <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Deskripsi fenotip: {{$ternak->deskripsi_fenotip}}</h4>
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%"> <br>
-                            <button class="btn bg-gradient-info w-auto me-1 mb-0" style="margin-top:10px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button>
+                            @if(auth()->user()->role != 'employee') <button class="btn bg-gradient-info w-auto me-1 mb-0" style="margin-top:10px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button> @endif
                         </div>
                     </div>
                     </div>

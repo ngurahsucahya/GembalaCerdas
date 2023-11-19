@@ -59,10 +59,14 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;
-    Route::get('/ternak/detail/{id}', 'detail')->middleware([
+    Route::get('/ternak/detail/{id}', 'detail')->middleware('auth');
+});
+
+Route::controller(\App\Http\Controllers\NotifController::class)->group(function(){
+    Route::post('/notif/add', 'add')->middleware([
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
-    ]);;
+    ]);
 });
 
 Route::fallback(function(){
