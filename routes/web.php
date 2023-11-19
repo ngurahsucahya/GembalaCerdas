@@ -59,6 +59,10 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;
+    Route::get('/ternak/detail/{id}', 'detail')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);;
 });
 
 Route::fallback(function(){

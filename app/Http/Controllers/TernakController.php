@@ -213,4 +213,30 @@ class TernakController extends Controller
 
         // return dd($data);
     }
+    public function detail($id)
+    {
+        $list_ras = [
+            'Garut',
+            'Ekor Gemuk',
+            'Ekor Tipis',
+            'Merio',
+            'Suffolk',
+            'Texel',
+            'Domer',
+            'Dorper',
+            'Corriedele',
+            'Batur',
+            'Barbados Blackbelly',
+            'Compass Agrinak',
+        ];
+
+        $ternak = Ternak::find($id);
+        if ($ternak === null){
+            return redirect()->intended('/ternak')->withErrors([
+                'detail' => 'ternak not found',
+            ]);
+        }
+        // return dd($ternak);
+        return view('ternak.detail', compact('ternak', 'list_ras'));
+    }
 }

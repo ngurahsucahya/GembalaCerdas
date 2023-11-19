@@ -91,7 +91,7 @@
 						</td>
 						<div class="custom-card-buttons">
 							<td>
-								<button class="btn btn-sm bg-gradient-info w-auto me-1 mb-0" style="margin-right: 5px;">Detail</button>
+								<button class="btn btn-sm bg-gradient-info w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/ternak/detail/{{$ternak->id}}'">Detail</button>
 								<button class="btn btn-sm bg-gradient-primary w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button>
 								<button class="btn btn-sm bg-gradient-warning w-auto me-1 mb-0" onclick="deleteTernak({{ $ternak->id }})">Delete</button>
 							</td>
