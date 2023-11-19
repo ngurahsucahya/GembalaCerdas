@@ -40,7 +40,7 @@
             <div class="col-lg-7 text-center mx-auto">
               <!-- <h1 class="text-white pt-3 mt-n5">GembalaCerdas</h1> -->
               <img src="{{ Vite::asset('resources/images/logotextwhite.png') }}" alt="GembalaCerdas" width="450" height="105">
-              <p class="lead text-white mt-3">Ceritanya mau dikasih jargon<br/>hehe</p>
+              <p class="lead text-white mt-3">Ceritanya mau dikasih tagline<br/>hehe</p>
             </div>
           </div>
         </div>

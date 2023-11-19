@@ -37,15 +37,15 @@
 			<div class="col-lg-7 text-center mx-auto" style="margin-top: 150px">
         <h3 class="text-white pt-3 mt-n5">Edit Data Ternak</h3>
       </div>
-        <div class="boxs opacity-6" style="margin: 10px 20px 10px; padding: 20px 50px 20px;">
+        <div style="margin: 10px 20px 10px; padding: 20px 50px 20px;">
             <form action="/ternak/update/{{$ternak->id}}" method="POST">
                 @csrf
                 <section class="py-1">
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                         <div class="input-group input-group-static mb-1">
-                            <label for="rfid" style="color:white">RFID</label>
-                            <input class="form-control" placeholder="cth. AB716aA" type="text"  id="rfid" name="rfid" value="{{ $ternak->rfid }}" style="color:white">
+                            <label for="rfid"  style="color:white"  >RFID</label>
+                            <input class="form-control" placeholder="cth. AB716aA" type="text"  id="rfid" name="rfid" value="{{ $ternak->rfid }}"  style="color:white"  >
                             @error('rfid')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -58,8 +58,8 @@
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                         <div class="input-group input-group-static mb-1">
-                            <label for="nama_ternak" style="color:white">Nama Ternak</label>
-                            <input class="form-control" placeholder="cth. BB 128" type="text"  id="nama_ternak" name="nama_ternak" value="{{ $ternak->nama_ternak }}" style="color:white" required>
+                            <label for="nama_ternak"  style="color:white"  >Nama Ternak</label>
+                            <input class="form-control" placeholder="cth. BB 128" type="text"  id="nama_ternak" name="nama_ternak" value="{{ $ternak->nama_ternak }}"  style="color:white"   required>
                             @error('nama_ternak')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -72,8 +72,8 @@
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                         <div class="input-group input-group-static mb-1">
-                            <label for="ras" style="color:white">Ras</label> <img src="{{Vite::asset('resources/images/down-arrow-dark.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
-                            <select class="form-control" id="ras" name="ras" style="color:white" required>
+                            <label for="ras"  style="color:white"  >Ras</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                            <select class="form-control" id="ras" name="ras"  style="color:white"   required>
                                 <option value="{{ $ternak->ras }}" {{ $ternak->ras === '' ? 'selected' : '' }} >Select Ras</option>
                                 @foreach ($list_ras as $each_ras)
                                     <option value="{{ $each_ras }}" {{ $ternak->ras === $each_ras ? 'selected' : '' }}>{{ $each_ras }}</option>
@@ -91,8 +91,8 @@
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                         <div class="input-group input-group-static mb-1">
-                            <label for="jenis_kelamin" style="color:white">Jenis Kelamin</label> <img src="{{Vite::asset('resources/images/down-arrow-dark.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
-                            <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" style="color:white" required>
+                            <label for="jenis_kelamin"  style="color:white"  >Jenis Kelamin</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                            <select class="form-control" id="jenis_kelamin" name="jenis_kelamin"  style="color:white"   required>
                                 <option value="{{ $ternak->jenis_kelamin }}" {{ $ternak->jenis_kelamin === '' ? 'selected' : '' }}>Select Jenis Kelamin</option>
                                 <option value="Jantan" {{ $ternak->jenis_kelamin === 'Jantan' ? 'selected' : '' }}>Jantan</option>
                                 <option value="Betina" {{ $ternak->jenis_kelamin === 'Betina' ? 'selected' : '' }}>Betina</option>
@@ -108,8 +108,8 @@
                 <div class="row py-1">
                     <div class="mx-auto">
                         <div class="input-group input-group-static">
-                        <label for="tanggal_lahir" style="color:white">Tanggal Lahir</label>
-                        <input class="form-control datepicker" type="date" id="tanggal_lahir" name="tanggal_lahir" value="{{ $ternak->tanggal_lahir }}" style="color:white" required>
+                        <label for="tanggal_lahir"  style="color:white"  >Tanggal Lahir</label>
+                        <input class="form-control datepicker" type="date" id="tanggal_lahir" name="tanggal_lahir" value="{{ $ternak->tanggal_lahir }}"  style="color:white"   required>
                         @error('tanggal_lahir')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -121,8 +121,8 @@
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                         <div class="input-group input-group-static mb-1">
-                            <label for="bobot_badan" style="color:white">Bobot Badan</label>
-                            <input type="text" pattern="[0-9]*" placeholder="cth. 128" inputmode="numeric" class="form-control" id="bobot_badan" name="bobot_badan" value="{{ $ternak->bobot_badan }}" style="color:white">
+                            <label for="bobot_badan"  style="color:white"  >Bobot Badan</label>
+                            <input type="text" pattern="[0-9,.]*" placeholder="cth. 128" inputmode="numeric" class="form-control" id="bobot_badan" name="bobot_badan" value="{{ $ternak->bobot_badan }}"  style="color:white"  >
                             @error('bobot_badan')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -135,8 +135,8 @@
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                         <div class="input-group input-group-static mb-1">
-                            <label for="deskripsi_fenotip" style="color:white">Deskripsi Fenotip</label>
-                            <textarea class="form-control"  id="deskripsi_fenotip" name="deskripsi_fenotip" style="color:white">{{ $ternak->deskripsi_fenotip }}</textarea>
+                            <label for="deskripsi_fenotip"  style="color:white"  >Deskripsi Fenotip</label>
+                            <textarea class="form-control"  id="deskripsi_fenotip" name="deskripsi_fenotip"  style="color:white"  >{{ $ternak->deskripsi_fenotip }}</textarea>
                             @error('deskripsi_fenotip')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -149,8 +149,8 @@
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                         <div class="input-group input-group-static mb-1" id="statusField" >
-                            <label for="status_sekarang" style="color:white">Status</label>
-                            <select class="form-control" id="status_sekarang" name="status_sekarang" style="color:white">
+                            <label for="status_sekarang"  style="color:white"  >Status</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                            <select class="form-control" id="status_sekarang" name="status_sekarang"  style="color:white"  >
                                 <option value="{{ $ternak->status_sekarang }}" {{ $ternak->status_sekarang === '' ? 'selected' : '' }}>Select Status</option>
                                 <option value="Induk" {{ $ternak->status_sekarang === 'Induk' ? 'selected' : '' }}>Induk</option>
                                 <option value="Pejantan" {{ $ternak->status_sekarang === 'Pejantan' ? 'selected' : '' }}>Pejantan</option>
@@ -168,8 +168,8 @@
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                         <div class="input-group input-group-static mb-1" id="idAnakField" style="display: {{ $ternak->status_sekarang === 'Anak' ? 'block' : 'none' }};">
-                            <label for="id_anak" style="color:white">ID Anak</label>
-                            <input type="text" placeholder="cth. 1" class="form-control" id="id_anak" name="id_anak" value="{{ $ternak->id_anak }}" style="color:white">
+                            <label for="id_anak"  style="color:white"  >ID Anak</label>
+                            <input type="text" placeholder="cth. 1" class="form-control" id="id_anak" name="id_anak" value="{{ $ternak->id_anak }}"  style="color:white"  >
                             @error('id_anak')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -208,10 +208,10 @@
 
         if (this.value === 'Anak') {
             idAnakField.style.display = 'block';
-            idAnakField.querySelector('input').style="color:white" required = true;
+            idAnakField.querySelector('input').required = true;
         } else {
             idAnakField.style.display = 'none';
-            idAnakField.querySelector('input').style="color:white" required = false;
+            idAnakField.querySelector('input').required = false;
         }
     });
 </script>

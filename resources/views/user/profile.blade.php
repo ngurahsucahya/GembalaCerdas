@@ -131,9 +131,9 @@
             </div>
         <img class="profile-picture" src="{{ asset('/download.png') }}" alt="Profile Picture">
         <div class="user-info">
-            <div class="username">John Doe</div>
-            <div class="email">john.doe@example.com</div>
-            <div class="role">role</div>
+            <div class="username">{{$user->name}}</div>
+            <div class="email">{{$user->email}}</div>
+            <div class="role">{{$user->role}}</div>
             <a href="{{ route('profile.edit') }}" class="edit-button">Edit Profile</a>
         </div>
     </div>
