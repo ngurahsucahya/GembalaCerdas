@@ -37,23 +37,32 @@
                 <div class="container my-auto">
                 <div class="row">
                 <div class="col-lg-10 col-md-8 col-12 mx-auto">
-                    <div class="card z-index-0 fadeIn3 fadeInBottom">
+                    <div class="z-index-0 fadeIn3 fadeInBottom align-items-start border-radius-lg" style="background-image:url({{Vite::asset('resources/images/cardblur.png')}}); padding:20px; background-size: cover; background-attachment: fixed; height auto;">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                            <div class="bg-gradient-primary shadow-light border-radius-lg py-3 pe-1">
                                 <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Detail Data Ternak</h4>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <h3>ID: {{$ternak->id}}<h3>
-                            <h4>RFID: {{$ternak->rfid}}<h4>
-                            <h4>Nama Ternak: {{$ternak->nama_ternak}}<h4>
-                            <h4>Ras: {{$ternak->ras}}<h4>
-                            <h4>Jenis Kelamin: {{$ternak->jenis_kelamin}}<h4>
-                            <h4>Tanggal Lahir: {{$ternak->tanggal_lahirk}}<h4>
-                            <h4>Status: {{$ternak->status_sekarang}}<h4>
-                            <h4>Bobot Badan: {{$ternak->bobot_badan}}<h4>
-                            <h4>Deskripsi fenotip: {{$ternak->deskripsi_fenotip}}<h4>
-                            <button class="btn bg-gradient-info w-auto me-1 mb-0" style="margin-top:10px" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button>
+                        <div class="card-body" style="margin-left:40px;">
+                            <h3 class="text-white" style="margin-top:20px; margin-left:10px; margin-bottom:0px;">ID: {{$ternak->id}}</h3>
+                            <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
+                            <h4 class="text-white"  style="margin-left:10px; margin-bottom:0px;" >RFID: {{$ternak->rfid}}</h4>
+                            <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
+                            <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Nama Ternak: {{$ternak->nama_ternak}}</h4>
+                            <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
+                            <h4   class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Ras: {{$ternak->ras}}</h4>
+                            <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
+                            <h4   class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Jenis Kelamin: {{$ternak->jenis_kelamin}}</h4>
+                            <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
+                            <h4   class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Tanggal Lahir: {{$ternak->tanggal_lahir}}</h4>
+                            <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
+                            <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Status: {{$ternak->status_sekarang}}</h4>
+                            <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
+                            <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Bobot Badan: {{$ternak->bobot_badan}}</h4>
+                            <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
+                            <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Deskripsi fenotip: {{$ternak->deskripsi_fenotip}}</h4>
+                            <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%"> <br>
+                            <button class="btn bg-gradient-info w-auto me-1 mb-0" style="margin-top:10px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button>
                         </div>
                     </div>
                     </div>
