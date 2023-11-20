@@ -46,14 +46,14 @@
             <div class="col-lg-7 text-center mx-auto" style="margin-top: 130px">
               <h3 class="text-white pt-3 mt-n5">Pindai Ternak</h3>
               <div class="card mt-3">
-              <!-- @foreach($livestocks as $livestock) -->
+
                     <div class="card-body">
                         <h5 class="card-title">RFID:</h5>
                         <p class="card-text">Nama Ternak:</p>
                         <p class="card-text">Jenis Kelamin: </p>
                         <p class="card-text">Kandang:</p>
                     </div>
-              <!-- @endforeach -->
+              
                 </div>
             </div>
 	</div>
