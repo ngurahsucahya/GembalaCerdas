@@ -28,6 +28,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuBlocks">
                       <div class="d-none d-lg-block">
+                      @if(auth()->user()->role != 'employee')
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
                           <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/input">
                             <div class="w-100 d-flex align-items-center justify-content-between">
@@ -38,11 +39,22 @@
                             </div>
                           </a>
                         </li>
+                        @endif
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
                           <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
                                 <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Data Ternak</h6>
+                                
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/riwayatkawin/input">
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                              <div>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Riwayat Kawin Ternak</h6>
                                 
                               </div>
                             </div>
@@ -97,7 +109,10 @@
                       <img src="{{Vite::asset('resources/images/notif.png')}}" alt="profile" class="arrow ms-auto ms-md-2" width="35" height="35">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
-                      <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Tidak ada notifikasi</h6>
+                      @foreach(\App\Models\notif::latest()->limit(5)->get() as $notiff)
+                      <h8 class="text-dark d-flex justify-content-cente align-items-center p-0">{{$notiff->author}} | {{$notiff->created_at}}</h8>
+                      <h6 class="text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">{{$notiff->content}}</h6>
+                      @endforeach
                     </ul>
                   </li>
 
@@ -110,7 +125,8 @@
                     </li>
                   @endif
                   <li class="nav-item my-auto ms-3 ms-lg-0">
-                    <form action="/logout" method="post"> @csrf <div>
+                    <form action="/logout" method="post"> @csrf
+                      <div>
                         <button type="submit" class="btn btn-sm  bg-gradient-danger  mb-0 me-1 mt-2 mt-md-0" id="logout">Logout</button>
                       </div>
                     </form>

@@ -15,6 +15,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{Vite::asset('resources/images/logo.png')}}">
     <title>Data Ternak | GembalaCerdas</title>
     <!--     Fonts and icons     -->
@@ -92,7 +93,7 @@
 						<div class="custom-card-buttons">
 							<td>
 								<button class="btn btn-sm bg-gradient-info w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/ternak/detail/{{$ternak->id}}'">Detail</button>
-								<button class="btn btn-sm bg-gradient-primary w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button>
+								@if(auth()->user()->role != 'employee') <button class="btn btn-sm bg-gradient-primary w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button> @endif
 								<button class="btn btn-sm bg-gradient-warning w-auto me-1 mb-0" onclick="deleteTernak({{ $ternak->id }})">Delete</button>
 							</td>
 						</div>
@@ -144,20 +145,20 @@
 	<script>
 		function deleteTernak(id) {
 			if(confirm("Apakah Anda yakin ingin menghapus ternak ini?")) {
-				var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-				fetch(`/ternak/delete/${id}`, {
+				const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+
+				fetch(`/ternak/delete/${id}`,{
 					method: 'DELETE',
 					headers: {
 						'X-CSRF-TOKEN': csrfToken,
 						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						id: id
-					}),
-				}).then(response => response.json()).then(data => {
+					}
+				})
+				.then(response => response.json())
+				.then(data => {
 					if(data.success) {
-						location.reload();
 						alert("berhasil");
+						location.reload();
 					} else {
 						alert("gagal");
 						location.reload();
@@ -165,97 +166,6 @@
 				});
 			}
 		}
-		</script>
+	</script>
 </body>
 </html>
-
-<!--   
-<body>
-	NAVIGATION BAR
-	<nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
-		<div class="container"> <img src="{{ asset('images/logo.png') }}" alt="GembalaCerdas" width="45" height="45">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav">
-					<li class="nav-item"> <a class="nav-link active text-center" aria-current="page" href="/dashboard">Dashboard
-                        </a> </li>
-					<li class="nav-item"> <a class="nav-link active text-center" aria-current="page" href="/data-ternak"><u>Data Ternak</u></a> </li>
-					<li class="nav-item"> <a class="nav-link active text-center" aria-current="page" href="/input_ternak">Input Ternak</a> </li>
-					<li class="nav-item">
-                        <a class="nav-link active text-center" aria-current="page" href="/form_kandang">Pindah Kandang</a>
-                     </li>
-					<li class="nav-item"> <img src="{{ asset('images/notif.png') }}" alt="Notif" width="27" height="30"> </li>
-					<form action="/logout" method="post"> @csrf
-						<div class="d-grid gap-2">
-							<button type="submit" class="btn btn-warning btn-block" id="logout">Logout</button>
-						</div>
-					</form>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<div class="container mt-5">
-		<h1>Data Ternak</h1>
-		<form method="GET" action="/ternak" class="mb-4">
-			<div class="input-group">
-				<input type="text" name="query" class="form-control" placeholder="Ketik disini..." value="" required>
-				<button type="submit" class="btn btn-primary">Cari</button>
-			</div>
-		</form>
-		<table>
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Nama</th>
-					<th>Ras Domba</th>
-					<th>Jenis Kelamin</th>
-					<th>Tanggal Lahir</th>
-					<th>Bobot Badan</th>
-					<th>Edit</th>
-					<th>Delete</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					@foreach ($ternaks as $ternak)
-						<td>
-							<p>x</p>
-						</td>
-						<td>
-							<p>x</p>
-						</td>
-						<td>
-							<p>x</p>
-						</td>
-						<td>
-							<p>x</p>
-						</td>
-						<td>
-							<p>x</p>
-						</td>
-						<td>
-							<p>x</p>
-						</td>
-						<td>
-							<p>x</p>
-						</td>
-						<td>
-							<p>x</p>
-						</td>
-						<td>
-							<p>x</p>
-						</td>
-						<div class="custom-card-buttons">
-							<td>
-								<button class="btn btn-primary" style="margin-right: 5px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button>
-							</td>
-							<td>
-								<button class="btn btn-danger" onclick="deleteTernak({{ $ternak->id }})">Delete</button>
-							</td>
-						</div>
-					@endforeach
-		</table>
-	</div>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@2.11.8/dist/umd/popper.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
-</body> -->

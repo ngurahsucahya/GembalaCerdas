@@ -82,8 +82,17 @@
               </div>
             </div>
           </div>
-        </div>
       </section>
-      </div>
+      @if(auth()->user()->role != 'employee')
+        <div class="search-container py-3">
+          <form action="{{ url('/notif/add') }}" method="POST">
+          @csrf
+              <input type="hidden" id="author" name="author" value={{auth()->user()->name}}>
+              <input type="text" id="content" name="content" class="form-input search-box" placeholder="Type notification here..." required>
+              <button type="submit" class="btn bg-gradient-info  mb-0 me-1 mt-2 mt-md-0">Add Notif</button>
+          </form>
+        </div>
+      @endif
+    </div>
   </body> 
 </html>

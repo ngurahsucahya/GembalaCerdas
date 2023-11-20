@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('riwayat_kawins', function (Blueprint $table) {
+        Schema::create('notifs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('tanggal_kawin');
-            $table->foreignId('id_induk');
-            $table->foreignId('id_pejantan');
+            $table->string('author', 50);
+            $table->string('content', 255);
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('riwayat_kawins');
+        Schema::dropIfExists('notifs');
     }
 };

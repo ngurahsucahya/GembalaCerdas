@@ -37,6 +37,11 @@
                <h3 class="text-white pt-3 mt-n5">Input Data Ternak</h3>
             </div>
             <div style="margin: 10px 20px 10px; padding: 50px 50px 20px; ">
+               @if(session('success'))
+                  <div class="alert alert-success">
+                     {{ session('success') }}
+                  </div>
+               @endif
                <form action="{{ url('/ternak/add') }}" method="POST">
                   @csrf
                   <section class="py-1">

@@ -53,9 +53,25 @@ class TernakController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $list_ras = [
+            'Garut',
+            'Ekor Gemuk',
+            'Ekor Tipis',
+            'Merio',
+            'Suffolk',
+            'Texel',
+            'Domer',
+            'Dorper',
+            'Corriedele',
+            'Batur',
+            'Barbados Blackbelly',
+            'Compass Agrinak',
+        ];
+
         $data = $request->validate([
             'rfid' => 'nullable|string|max:50',
-            'nama_ternak' => 'required|string|max:255|unique:ternaks',
+            'nama_ternak' => 'required|string|max:255|unique:ternaks,nama_ternak,' . $id,
             'ras' => 'nullable|in:' . implode(',', $list_ras),
             'jenis_kelamin' => 'required|in:Jantan,Betina',
             'tanggal_lahir' => 'required|date',
@@ -76,6 +92,7 @@ class TernakController extends Controller
             'id_anak.numeric' => 'Id anak is not valid',
         ]);
 
+
         if ($data['jenis_kelamin'] === 'Jantan' && $data['status_sekarang'] === 'Induk'){
             return back()->withErrors([
                 'update' => 'Invalid data',
@@ -93,7 +110,7 @@ class TernakController extends Controller
         try {
             $ternak = Ternak::findOrFail($id);
             $ternak->update($request->all());
-            return back();
+            return back()->with('success', 'Data berhasil diubah');
         } catch (ModelNotFoundException $e) {
             return back()->withErrors([
                 'update' => 'Cannot update data',
@@ -103,22 +120,20 @@ class TernakController extends Controller
     
     public function delete($id)
     {   
-        try {
-            $ternak = Ternak::findORFail($id);
-            if ($ternak->status_sekarang === 'Induk'){
-                $induk = Induk::where('id', $ternak->statusable_id)->firstOrFail();
-                $induk->delete();
-            } else if ($ternak->status_sekarang === 'Pejantan'){
-                $pejantan = Pejantan::where('id', $ternak->statusable_id)->firstOrFail();
-                $pejantan->delete();
-            }
-            $ternak->delete();
-            return back();
-        } catch (ModelNotFoundException $e) {
-            return back()->withErrors([
-                'delete' => 'Cannot delete data',
-            ]);
+        $ternak = Ternak::find($id);
+        if (is_null($ternak)){
+            return response()->json(['gagal' => true]);
         }
+
+        if ($ternak->status_sekarang === 'Induk'){
+            $induk = Induk::where('id', $ternak->statusable_id)->firstOrFail();
+            $induk->delete();
+        } else if ($ternak->status_sekarang === 'Pejantan'){
+            $pejantan = Pejantan::where('id', $ternak->statusable_id)->firstOrFail();
+            $pejantan->delete();
+        }
+        $ternak->delete();
+        return response()->json(['success' => true]);
     }
 
     public function input(){
@@ -204,7 +219,7 @@ class TernakController extends Controller
                 $pejantan = Pejantan::create();
                 $pejantan->ternak()->save($ternak);
             } 
-            return back();
+            return back()->with('success', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {
             return back()->withErrors([
                 'input' => 'Cannot input data',
@@ -238,5 +253,22 @@ class TernakController extends Controller
         }
         // return dd($ternak);
         return view('ternak.detail', compact('ternak', 'list_ras'));
+    }
+
+    public function inputRkawin(){
+        $list_pejantan=Ternak::all()->where('status_sekarang','Pejantan')->pluck('id');
+        $list_induk=Ternak::all()->where('status_sekarang','Induk')->pluck('id');
+        return view('ternak.inputriwayatkawin', compact('list_pejantan','list_induk'));
+    }
+
+    public function addRkawin(Request $request)
+    {
+        $data = $request->all();
+        
+            RiwayatKawin::create($data);
+            return back();
+        
+
+        // return dd($data);
     }
 }
