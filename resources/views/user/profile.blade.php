@@ -50,7 +50,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             text-align: center;
-            transform: translate(155%,40%);
+            transform: translate(190%,40%);
         }
 
         .profile-picture {
@@ -122,6 +122,7 @@
 
 <body>
   <x-navbar/>
+  <span class="mask bg-gradient-dark opacity-6"></span>
   <main>
   <div class="profile-card">
        <div class="card-header">

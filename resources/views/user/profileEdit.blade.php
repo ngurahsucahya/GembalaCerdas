@@ -16,7 +16,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="{{Vite::asset('resources/images/logo.png')}}">
-    <title>User profile</title>
+    <title>Profile Edit</title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
     <!-- Font Awesome Icons -->
@@ -98,6 +98,7 @@
 <body>
 <header><!-- NAVIGATION BAR-->
 <x-navbar/>
+<span class="mask bg-gradient-dark opacity-6" style="  height: 120vh;"></span>
 </header>
 <!-- End Navbar -->
 
