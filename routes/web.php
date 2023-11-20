@@ -55,7 +55,7 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;
-    Route::post('/ternak/delete/{id}', 'delete')->middleware([
+    Route::delete('/ternak/delete/{id}', 'delete')->middleware([
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;
