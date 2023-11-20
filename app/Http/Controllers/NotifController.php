@@ -15,7 +15,6 @@ class NotifController extends Controller
         $data = $request->all();
         try {
             notif::create($data);
-            $notiff= notif::all();
             return back();
         } catch (\Exception $e) {
             return back()->withErrors([

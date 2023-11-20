@@ -60,6 +60,15 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
         'auth',
     ]);;
     Route::get('/ternak/detail/{id}', 'detail')->middleware('auth');
+
+    Route::get('/ternak/riwayatkawin/input', 'inputRkawin')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);;
+    Route::post('/ternak/riwayatkawin/add', 'addRkawin')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);;
 });
 
 Route::controller(\App\Http\Controllers\NotifController::class)->group(function(){

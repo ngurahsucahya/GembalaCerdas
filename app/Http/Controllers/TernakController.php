@@ -239,4 +239,21 @@ class TernakController extends Controller
         // return dd($ternak);
         return view('ternak.detail', compact('ternak', 'list_ras'));
     }
+
+    public function inputRkawin(){
+        $list_pejantan=Ternak::all()->where('status_sekarang','Pejantan')->pluck('id');
+        $list_induk=Ternak::all()->where('status_sekarang','Induk')->pluck('id');
+        return view('ternak.inputriwayatkawin', compact('list_pejantan','list_induk'));
+    }
+
+    public function addRkawin(Request $request)
+    {
+        $data = $request->all();
+        
+            RiwayatKawin::create($data);
+            return back();
+        
+
+        // return dd($data);
+    }
 }

@@ -62,9 +62,48 @@
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
                             <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Deskripsi fenotip: {{$ternak->deskripsi_fenotip}}</h4>
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%"> <br>
+                            
+                            @if($ternak->status_sekarang !="Anak")
+                                <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Riwayat Kawin</h4>
+                                <table class="table table-custom text-center table-responsive" style="width:70%">
+                                <thead>
+                                    <tr>
+                                        @if($ternak->status_sekarang=="Pejantan")
+                                            <th>ID Induk</th>
+                                        @else
+                                            <th>ID Pejantan</th>
+                                        @endif
+                                        <th>Tanggal kawin</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(\App\Models\RiwayatKawin::all() as $rk)
+                                        @if($ternak->status_sekarang=="Pejantan")
+                                            @if($rk->id_pejantan == $ternak->id)
+                                                <td>
+                                                    <p>{{$rk->id_induk}}</p>
+                                                </td>
+                                            @endif
+                                        @else
+                                            @if($rk->id_induk == $ternak->id)
+                                                <td>
+                                                    <p>{{$rk->id_pejantan}}</p>
+                                                </td>
+                                            @endif
+                                        @endif
+
+                                            <td>
+                                                <p>{{$rk->tanggal_kawin}}</p>
+                                            </td>
+                                    @endforeach
+                                </tbody>
+                                </table>
+                                <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%"> <br>
+                            @endif
+
                             @if(auth()->user()->role != 'employee') <button class="btn bg-gradient-info w-auto me-1 mb-0" style="margin-top:10px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button> @endif
+                        
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>    

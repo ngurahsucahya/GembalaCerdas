@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('riwayat_kawins', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->date('tanggal_kawin');
             $table->foreignId('id_induk');
             $table->foreignId('id_pejantan');
         });

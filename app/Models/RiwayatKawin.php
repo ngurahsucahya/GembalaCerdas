@@ -12,6 +12,7 @@ class RiwayatKawin extends Model
     protected $fillable = [
         'id_induk',
         'id_pejantan',
+        'tanggal_kawin'
     ];
 
     public function induk()

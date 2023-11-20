@@ -51,6 +51,16 @@
                           </a>
                         </li>
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/riwayatkawin/input">
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                              <div>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Riwayat Kawin Ternak</h6>
+                                
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
                           <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/kesehatan">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
@@ -99,7 +109,7 @@
                       <img src="{{Vite::asset('resources/images/notif.png')}}" alt="profile" class="arrow ms-auto ms-md-2" width="35" height="35">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
-                      @foreach(\App\Models\notif::latest()->limit(10)->get() as $notiff)
+                      @foreach(\App\Models\notif::latest()->limit(5)->get() as $notiff)
                       <h8 class="text-dark d-flex justify-content-cente align-items-center p-0">{{$notiff->author}} | {{$notiff->created_at}}</h8>
                       <h6 class="text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">{{$notiff->content}}</h6>
                       @endforeach
