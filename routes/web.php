@@ -69,6 +69,9 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;
+    Route::get('/rfid', function () {
+        return view('ternak.rfid');
+    })->middleware('auth');
 
 
 
@@ -110,3 +113,4 @@ Route::controller(\App\Http\Controllers\NotifController::class)->group(function(
 Route::fallback(function(){
     return view('error.custom');
 });
+
