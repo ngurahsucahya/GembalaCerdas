@@ -32,12 +32,12 @@
    <body class="index-page bg-gray-200">
       <x-navbar/>
       <div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/background2.png')}});" loading="lazy">
-         <div class="col-12">
+         <div class="row mx-auto">
             <div class="col-lg-7 text-center mx-auto" style="margin-top: 150px">
                <h3 class="text-white pt-3 mt-n5">Input Riwayat Kawin</h3>
             </div>
             
-            <div style="margin: 10px 20px 10px; padding: 50px 50px 20px; ">
+            <div class="mx-auto" style="margin: 10px; ">
                @if(session('success'))
                   <div class="alert alert-success">
                      {{ session('success') }}

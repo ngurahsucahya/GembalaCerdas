@@ -60,25 +60,8 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
         'auth',
     ]);;
     Route::get('/ternak/detail/{id}', 'detail')->middleware('auth');
-<<<<<<< HEAD
-=======
-
-    Route::get('/ternak/riwayatkawin/input', 'inputRkawin')->middleware([
-        \App\Http\Middleware\NotEmployeeMiddleware::class,
-        'auth',
-    ]);;
-    Route::post('/ternak/riwayatkawin/add', 'addRkawin')->middleware([
-        \App\Http\Middleware\NotEmployeeMiddleware::class,
-        'auth',
-    ]);;
-    Route::get('/rfid', function () {
-        return view('ternak.rfid');
-    })->middleware('auth');
-
-
-
->>>>>>> 9607b7ad39f7f094d078894017620698617a4ab9
 });
+
 Route::controller(\App\Http\Controllers\KandangController::class)->group(function(){
     // Main Kandang page
     Route::get('/kandang', 'index')->middleware('auth');
