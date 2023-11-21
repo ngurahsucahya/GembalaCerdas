@@ -31,18 +31,18 @@
     <style>
        body {
       background-color: #f4f4f4;
-      background-image: url('{{ asset('background.png') }}');
       background-size: cover;
       background-repeat: no-repeat;
       width: 100%;
-      height: 120vh;
+      height: 150vh;
     }
       .box {
       background-color: rgba(255, 255, 255, 0.8); 
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      transform:translate(55%,20%);
+      margin: 50px auto;
+      transform:translateY(10%);
       width:700px;
       height:700px;
   }
@@ -68,22 +68,7 @@ textarea {
 
 }
 
-.submit-button {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    background: linear-gradient(87deg,#74f52f 0, #118F6A 100%);
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
-}
+
 #deskripsi {
     width: 100%;
     height: 200px; /* Adjust the height as needed */
@@ -91,9 +76,6 @@ textarea {
     box-sizing: border-box;
 }
 
-.submit-button:hover {
-    background-color: #45a049;
-}
 
 .card-header {
     width: 100%; /* Adjust the max-width as needed */
@@ -117,7 +99,7 @@ textarea {
 }
         </style>
 <body style="background-image: url('{{Vite::asset('resources/images/background3.png')}}');">
-<span class="mask bg-gradient-dark opacity-6" style= height:120vh;></span>
+<span class="mask bg-gradient-dark opacity-6" style= height:150vh;></span>
     <header>
     <x-navbar/>
 </header>
@@ -128,7 +110,7 @@ textarea {
               <h2> Input Kandang </h2>
               </div>
             </div>
-<label for="nama_kandang">Nama Kandang:</label>
+            <label for="nama_kandang">Nama Kandang:</label>
             <input type="text" id="nama_kandang" name="nama_kandang" required>
 
             <label for="ternak">Ternak:</label>
@@ -141,7 +123,8 @@ textarea {
             <label for="deskripsi">Deskripsi:</label>
             <textarea id="deskripsi" name="deskripsi" required></textarea>
 
-            <button type="submit" class="submit-button">Submit</button>
+            <button type="submit" class="btn bg-gradient-success mb-0 me-1 mt-2 mt-md-0" style="background: linear-gradient(87deg, #74f52f 0, #118F6A 100%);">Submit</button>
+
   </div>
 </main>
 

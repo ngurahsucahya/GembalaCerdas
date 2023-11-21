@@ -50,7 +50,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             text-align: center;
-            transform: translate(190%,40%);
+            margin: 50px auto;
+            transform:translateY(20%);
         }
 
         .profile-picture {
