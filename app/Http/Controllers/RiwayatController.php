@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Models\RiwayatKawin;
 use \App\Models\RiwayatLahir;
+use \App\Models\RiwayatKesehatan;
 use \App\Models\Ternak;
 
 class RiwayatController extends Controller
 {
     public function kesehatan()
     {
-        return view('riwayat.kesehatan');
+        $Rkesehatan = RiwayatKesehatan::all();
+        return view('riwayat.kesehatan',compact('Rkesehatan'));
     }
 
     public function kawin()
@@ -36,6 +38,18 @@ class RiwayatController extends Controller
         $data = $request->all();
         
         RiwayatKawin::create($data);
+        return back()->with('success', 'Data berhasil ditambahkan');;
+    }
+
+    public function inputRkesehatan($id){
+        return view('riwayat.inputkesehatan',compact('id'));
+    }
+
+    public function addRkesehatan(Request $request)
+    {
+        $data = $request->all();
+        
+        RiwayatKesehatan::create($data);
         return back()->with('success', 'Data berhasil ditambahkan');;
     }
 }

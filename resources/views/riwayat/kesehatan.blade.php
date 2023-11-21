@@ -45,37 +45,40 @@
 	<div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/background2.png')}}); align-items: center;" loading="lazy">
 		<div class="col-12">
 			<div class="col-lg-7 text-center mx-auto" style="margin-top: 130px">
-              <h3 class="text-white pt-3 mt-n5">Riwayat Kawin</h3>
+              <h3 class="text-white pt-3 mt-n5">Riwayat Kesehatan Ternak</h3>
             </div>
 		
 			<div class="container text-center mx-auto" style="margin-top:10px">
-            @if(count($Rkawin) > 0)
+			@if(count($Rkesehatan) > 0)
 			<table class="table table-custom table-responsive">
 			<thead>
 				<tr>
-					<th>ID Pejantan</th>
-					<th>ID Induk</th>
-					<th>Tanggal Kawin</th>
+					<th>ID Ternak</th>
+					<th>ID Pemeriksa</th>
+					<th>Tanggal Pemeriksaan</th>
+					<th>Deskripsi</th>
 				</tr>
 			</thead>
 			<tbody>
-					@foreach ($Rkawin as $RK)
+					@foreach ($Rkesehatan as $RK)
 					<tr>
 						<td>
-							<p>{{$RK->id_pejantan}}</p>
+							<p>{{$RK->id_ternak}}</p>
 						</td>
 						<td>
-							<p>{{$RK->id_induk}}</p>
+							<p>{{$RK->id_pemeriksa}}</p>
 						</td>
 						<td>
-							<p>{{$RK->tanggal_kawin}}</p>
+							<p>{{$RK->tanggal_pemeriksaan}}</p>
 						</td>
-						
+						<td>
+							<p>{{$RK->deskripsi}}</p>
+						</td>
 					</tr>
 					@endforeach
 			</table>
-            @else
-                <div class="container alert alert-warning" role="alert" style="width:80%; margin-top:15px"> belum ada riwayat kawin </div>
+			@else
+                <div class="container alert alert-warning" role="alert" style="width:80%; margin-top:15px"> belum ada riwayat kesehatan </div>
             @endif
 			</div>
 		</div>

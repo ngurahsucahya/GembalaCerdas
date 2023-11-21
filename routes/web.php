@@ -107,6 +107,16 @@ Route::controller(\App\Http\Controllers\RiwayatController::class)->group(functio
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;
+
+    Route::get('/riwayat/kesehatan', 'kesehatan')->middleware('auth');
+    Route::get('/riwayat/kesehatan/input/{id}', 'inputRkesehatan')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);;
+    Route::post('/riwayat/kesehatan/add', 'addRkesehatan')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);;
 });
 
 Route::fallback(function(){

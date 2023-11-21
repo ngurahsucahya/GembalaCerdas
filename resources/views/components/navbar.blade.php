@@ -28,7 +28,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuBlocks">
                       <div class="d-none d-lg-block">
-                      @if(auth()->user()->role != 'employee')
+                        @if(auth()->user()->role != 'employee')
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
                           <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/input">
                             <div class="w-100 d-flex align-items-center justify-content-between">
@@ -50,6 +50,7 @@
                             </div>
                           </a>
                         </li>
+                        @if(auth()->user()->role != 'employee')
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
                           <a class="dropdown-item py-2 ps-3 border-radius-md" >
                             <div class="w-100 d-flex align-items-center justify-content-between">
@@ -68,8 +69,17 @@
                             </a>
                           </div>
                         </li>
+                        @else
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/riwayat/kawin">
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                              <div>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Riwayat Kawin Ternak</h6>
+                              </div>
+                            </div>
+                          </a>
+                        @endif
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
-                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/kesehatan">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/riwayat/kesehatan">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
                                 <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Riwayat Kesehatan Ternak</h6>
@@ -116,10 +126,14 @@
                       <img src="{{Vite::asset('resources/images/notif.png')}}" alt="profile" class="arrow ms-auto ms-md-2" width="35" height="35">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
-                      @foreach(\App\Models\notif::latest()->limit(5)->get() as $notiff)
-                      <h8 class="text-dark d-flex justify-content-cente align-items-center p-0">{{$notiff->author}} | {{$notiff->created_at}}</h8>
-                      <h6 class="text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">{{$notiff->content}}</h6>
-                      @endforeach
+                      @if(count(\App\Models\notif::latest()->limit(5)->get()) > 0)
+                        @foreach(\App\Models\notif::latest()->limit(5)->get() as $notiff)
+                        <h8 class="text-dark d-flex justify-content-cente align-items-center p-0">{{$notiff->author}} | {{$notiff->created_at}}</h8>
+                        <h6 class="text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">{{$notiff->content}}</h6>
+                        @endforeach
+                      @else
+                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Tidak ada notifikasi</h6>
+                      @endif
                     </ul>
                   </li>
 

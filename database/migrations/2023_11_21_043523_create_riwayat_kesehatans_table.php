@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('riwayat_kesehatans', function (Blueprint $table) {
             $table->id();
+            $table->date('tanggal_pemeriksaan');
+            $table->text('deskripsi');
+            $table->foreignId('id_ternak');
+            $table->foreignId('id_pemeriksa');
             $table->timestamps();
         });
     }

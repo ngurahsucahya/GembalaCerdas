@@ -40,31 +40,31 @@
                     <div class="z-index-0 fadeIn3 fadeInBottom align-items-start border-radius-lg" style="background-image:url({{Vite::asset('resources/images/cardblur.png')}}); padding:20px; background-size: cover; background-attachment: fixed; height auto;">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-light border-radius-lg py-3 pe-1">
-                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Detail Data Ternak</h4>
+                                <h3 class="text-white font-weight-bolder text-center mt-2 mb-0">Detail Data Ternak</h3>
                             </div>
                         </div>
                         <div class="card-body" style="margin-left:40px;">
-                            <h3 class="text-white" style="margin-top:20px; margin-left:10px; margin-bottom:0px;">ID: {{$ternak->id}}</h3>
+                            <h4 class="text-white" style="margin-top:20px; margin-left:10px; margin-bottom:0px;">ID: {{$ternak->id}}</h4>
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
-                            <h4 class="text-white"  style="margin-left:10px; margin-bottom:0px;" >RFID: {{$ternak->rfid}}</h4>
+                            <h5 class="text-white"  style="margin-left:10px; margin-bottom:0px;" >RFID: {{$ternak->rfid}}</h5>
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
-                            <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Nama Ternak: {{$ternak->nama_ternak}}</h4>
+                            <h5  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Nama Ternak: {{$ternak->nama_ternak}}</h5>
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
-                            <h4   class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Ras: {{$ternak->ras}}</h4>
+                            <h5   class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Ras: {{$ternak->ras}}</h5>
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
-                            <h4   class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Jenis Kelamin: {{$ternak->jenis_kelamin}}</h4>
+                            <h5   class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Jenis Kelamin: {{$ternak->jenis_kelamin}}</h5>
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
-                            <h4   class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Tanggal Lahir: {{$ternak->tanggal_lahir}}</h4>
+                            <h5   class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Tanggal Lahir: {{$ternak->tanggal_lahir}}</h5>
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
-                            <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Status: {{$ternak->status_sekarang}}</h4>
+                            <h5  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Status: {{$ternak->status_sekarang}}</h5>
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
-                            <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Bobot Badan: {{$ternak->bobot_badan}}</h4>
+                            <h5  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Bobot Badan: {{$ternak->bobot_badan}}</h5>
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%">
-                            <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Deskripsi fenotip: {{$ternak->deskripsi_fenotip}}</h4>
+                            <h5  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Deskripsi fenotip: {{$ternak->deskripsi_fenotip}}</h5>
                             <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%"> <br>
                             
                             @if($ternak->status_sekarang !="Anak")
-                                <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Riwayat Kawin</h4>
+                                <h5  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Riwayat Kawin</h5>
                                 @if(count(\App\Models\RiwayatKawin::where('id_pejantan', $ternak->id)->orwhere('id_induk', $ternak->id)->get())>0)
                                 <table class="table table-info-custom text-center table-responsive " style="width:70%">
                                 <thead>
@@ -101,6 +101,41 @@
                                 @endif
                                 <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%;"> <br>
                             @endif
+
+                            <h5  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Riwayat Kesehatan</h5>
+                                @if(count(\App\Models\RiwayatKesehatan::where('id_ternak', $ternak->id)->get())>0)
+                                <table class="table table-info-custom text-center table-responsive " style="width:70%">
+                                <thead>
+                                    <tr>
+                                        <th>ID Ternak</th>
+                                        <th>ID Pemeriksa</th>
+                                        <th>Tanggal Pemeriksaan</th>
+                                        <th>Deskripsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(\App\Models\RiwayatKesehatan::where('id_ternak', $ternak->id)->get() as $RK)
+                                    <tr>
+                                        <td>
+                                            <p>{{$RK->id_ternak}}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{$RK->id_pemeriksa}}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{$RK->tanggal_pemeriksaan}}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{$RK->deskripsi}}</p>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                                </table>
+                                @else
+                                    <div class="alert alert-warning" role="alert" style="width:80%; margin-top:15px"> belum ada riwayat kesehatan </div>
+                                @endif
+                                <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%;"> <br>
 
                             @if(auth()->user()->role != 'employee') <button class="btn bg-gradient-info w-auto me-1 mb-0" style="margin-top:10px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button> @endif
                         
