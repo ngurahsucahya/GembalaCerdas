@@ -60,7 +60,51 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
         'auth',
     ]);;
     Route::get('/ternak/detail/{id}', 'detail')->middleware('auth');
+<<<<<<< HEAD
+=======
+
+    Route::get('/ternak/riwayatkawin/input', 'inputRkawin')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);;
+    Route::post('/ternak/riwayatkawin/add', 'addRkawin')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);;
+    Route::get('/rfid', function () {
+        return view('ternak.rfid');
+    })->middleware('auth');
+
+
+
+>>>>>>> 9607b7ad39f7f094d078894017620698617a4ab9
 });
+Route::controller(\App\Http\Controllers\KandangController::class)->group(function(){
+    // Main Kandang page
+    Route::get('/kandang', 'index')->middleware('auth');
+
+    // Redirect /kandang/add to /input
+    Route::get('/kandang/add', function () {
+        return redirect('/input');
+    })->middleware('auth');
+
+    Route::get('/kandang/edit', function () {
+        return redirect('/pindahkandang');
+    })->middleware('auth');
+
+
+
+    // Route for pindahkandang.blade.php
+    Route::get('/pindahkandang', function () {
+        return view('kandang.pindahkandang');
+    })->middleware('auth');
+
+    // Route for input.blade.php
+    Route::get('/input', function () {
+        return view('kandang.input');
+    })->middleware('auth');
+});
+
 
 Route::controller(\App\Http\Controllers\NotifController::class)->group(function(){
     Route::post('/notif/add', 'add')->middleware([
@@ -84,3 +128,4 @@ Route::controller(\App\Http\Controllers\RiwayatController::class)->group(functio
 Route::fallback(function(){
     return view('error.custom');
 });
+
