@@ -49,8 +49,8 @@
             </div>
 			<div class="search-container">
 				<form method="GET" action="/ternak">
-						<input type="text" name="query" class="form-input search-box" placeholder="Search..." value="" required>
-						<button type="submit" class="search-button">Cari</button>
+					<input type="text" name="query" class="form-input search-box" placeholder="Search..." value="" required>
+					<button type="submit" class="search-button">Cari</button>
 				</form>
 			</div>
 			

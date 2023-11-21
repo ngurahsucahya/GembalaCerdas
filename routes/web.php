@@ -60,6 +60,7 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
         'auth',
     ]);;
     Route::get('/ternak/detail/{id}', 'detail')->middleware('auth');
+    Route::get('/ternak', 'search');
 });
 
 Route::controller(\App\Http\Controllers\KandangController::class)->group(function(){

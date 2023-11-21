@@ -254,4 +254,17 @@ class TernakController extends Controller
         // return dd($ternak);
         return view('ternak.detail', compact('ternak', 'list_ras'));
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $ternaks = Ternak::where('nama_ternak', 'like', '%' . $query . '%')
+            ->orWhere('ras', 'like', '%' . $query . '%')
+            ->orWhere('jenis_kelamin', 'like', '%' . $query . '%')
+            ->orWhere('rfid', 'like', '%' . $query . '%')
+            ->get();
+
+        return view('ternak.index', ['ternaks' => $ternaks]);
+    }
 }
