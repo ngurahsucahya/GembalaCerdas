@@ -53,7 +53,7 @@
                               <select class="form-control" id="id_pejantan" name="id_pejantan"  style="color:white" required>
                               <option value="" {{ old('pejantan') === '' ? 'selected' : '' }} >Select Pejantan</option>
                               @foreach ($list_pejantan as $each_pejantan)
-                                 <option value="{{ $each_pejantan }}" {{ old('pejantan') === $each_pejantan ? 'selected' : '' }}>{{ $each_pejantan }}</option>
+                                 <option value="{{ $each_pejantan['id'] }}" {{ old('pejantan') === $each_pejantan['id'] ? 'selected' : '' }}>{{ $each_pejantan['nama_ternak'] }}</option>
                               @endforeach
                               </select>
                               @error('id_pejantan')
@@ -72,7 +72,7 @@
                               <select class="form-control" id="id_induk" name="id_induk"  style="color:white" required>
                               <option value="" {{ old('induk') === '' ? 'selected' : '' }} >Select induk</option>
                               @foreach ($list_induk as $each_induk)
-                                 <option value="{{ $each_induk }}" {{ old('induk') === $each_induk ? 'selected' : '' }}>{{ $each_induk }}</option>
+                                 <option value="{{ $each_induk['id'] }}" {{ old('induk') === $each_induk['id'] ? 'selected' : '' }}>{{ $each_induk['nama_ternak'] }}</option>
                               @endforeach
                               </select>
                               @error('id_induk')

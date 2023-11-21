@@ -21,7 +21,6 @@ class TernakController extends Controller
     {
         $ternaks = Ternak::all();
         return view('ternak.index', compact('ternaks'));
-        // return dd($ternaks);
     }
 
     public function edit($id)
@@ -47,8 +46,8 @@ class TernakController extends Controller
                 'edit' => 'Cannot edit data',
             ]);
         }
-        // return dd($ternak);
-        return view('ternak.edit', compact('ternak', 'list_ras'));
+
+        return view('ternak.edit', compact('ternak'));
     }
 
     public function update(Request $request, $id)
@@ -107,15 +106,14 @@ class TernakController extends Controller
             ]);
         }
 
-        try {
-            $ternak = Ternak::findOrFail($id);
-            $ternak->update($request->all());
-            return back()->with('success', 'Data berhasil diubah');
-        } catch (ModelNotFoundException $e) {
+        $ternak = Ternak::findOrFail($id);
+        if ($ternak === null){
             return back()->withErrors([
                 'update' => 'Cannot update data',
             ]);
         }
+        $ternak->update($request->all());
+        return back();
     }
     
     public function delete($id)

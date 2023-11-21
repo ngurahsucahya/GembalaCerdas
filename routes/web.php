@@ -84,7 +84,7 @@ Route::controller(\App\Http\Controllers\KandangController::class)->group(functio
     })->middleware('auth');
 
     // Route for input.blade.php
-    Route::get('/input', function () {
+    Route::get('/kandang/input', function () {
         return view('kandang.input');
     })->middleware('auth');
 });
@@ -98,22 +98,24 @@ Route::controller(\App\Http\Controllers\NotifController::class)->group(function(
 });
 
 Route::controller(\App\Http\Controllers\RiwayatController::class)->group(function(){
+    Route::get('/riwayat/kesehatan', 'kesehatan')->middleware('auth');
     Route::get('/riwayat/kawin', 'kawin')->middleware('auth');
-    Route::get('/riwayat/kawin/input', 'inputRkawin')->middleware([
+    Route::get('/riwayat/lahir', 'lahir')->middleware('auth');
+    Route::get('/riwayat/kawin/input', 'inputRiwayatKawin')->middleware([
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;
-    Route::post('/riwayat/kawin/add', 'addRkawin')->middleware([
+    Route::post('/riwayat/kawin/add', 'addRiwayatKawin')->middleware([
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;
 
     Route::get('/riwayat/kesehatan', 'kesehatan')->middleware('auth');
-    Route::get('/riwayat/kesehatan/input/{id}', 'inputRkesehatan')->middleware([
+    Route::get('/riwayat/kesehatan/input/{id}', 'inputRiwayatKesehatan')->middleware([
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;
-    Route::post('/riwayat/kesehatan/add', 'addRkesehatan')->middleware([
+    Route::post('/riwayat/kesehatan/add', 'addRiwayatKesehatan')->middleware([
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);;

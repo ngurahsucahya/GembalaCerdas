@@ -49,7 +49,7 @@
             </div>
 		
 			<div class="container text-center mx-auto" style="margin-top:10px">
-			@if(count($Rkesehatan) > 0)
+			@if(count($RiwayatKesehatan) > 0)
 			<table class="table table-custom table-responsive">
 			<thead>
 				<tr>
@@ -60,7 +60,7 @@
 				</tr>
 			</thead>
 			<tbody>
-					@foreach ($Rkesehatan as $RK)
+					@foreach ($RiwayatKesehatan as $RK)
 					<tr>
 						<td>
 							<p>{{$RK->id_ternak}}</p>
