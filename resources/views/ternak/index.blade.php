@@ -55,8 +55,9 @@
 			</div>
 			
 			
-        	<!-- <div class="card card-body blur shadow-blur opacity-8" style="margin: 10px 50px 10px; padding: 50px 50px 20px;"> -->
 			<div class="container text-center mx-auto" style="margin-top:10px">
+
+			@if(count($ternaks)>0)
 			<table class="table table-custom table-responsive">
 			<thead>
 				<tr>
@@ -100,6 +101,10 @@
 					</tr>
 					@endforeach
 			</table>
+
+			@else
+				<div class="alert alert-warning" role="alert"> Data Tidak Ditemukan </div>
+			@endif
 
 			<section class="py-1">
 			<div class="container">

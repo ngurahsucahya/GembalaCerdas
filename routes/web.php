@@ -60,15 +60,6 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
         'auth',
     ]);;
     Route::get('/ternak/detail/{id}', 'detail')->middleware('auth');
-
-    Route::get('/ternak/riwayatkawin/input', 'inputRkawin')->middleware([
-        \App\Http\Middleware\NotEmployeeMiddleware::class,
-        'auth',
-    ]);;
-    Route::post('/ternak/riwayatkawin/add', 'addRkawin')->middleware([
-        \App\Http\Middleware\NotEmployeeMiddleware::class,
-        'auth',
-    ]);;
 });
 
 Route::controller(\App\Http\Controllers\NotifController::class)->group(function(){
@@ -76,6 +67,18 @@ Route::controller(\App\Http\Controllers\NotifController::class)->group(function(
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
     ]);
+});
+
+Route::controller(\App\Http\Controllers\RiwayatController::class)->group(function(){
+    Route::get('/riwayat/kawin', 'kawin')->middleware('auth');
+    Route::get('/riwayat/kawin/input', 'inputRkawin')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);;
+    Route::post('/riwayat/kawin/add', 'addRkawin')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);;
 });
 
 Route::fallback(function(){

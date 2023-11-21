@@ -65,7 +65,8 @@
                             
                             @if($ternak->status_sekarang !="Anak")
                                 <h4  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Riwayat Kawin</h4>
-                                <table class="table table-custom text-center table-responsive" style="width:70%">
+                                @if(count(\App\Models\RiwayatKawin::where('id_pejantan', $ternak->id)->orwhere('id_induk', $ternak->id)->get())>0)
+                                <table class="table table-info-custom text-center table-responsive " style="width:70%">
                                 <thead>
                                     <tr>
                                         @if($ternak->status_sekarang=="Pejantan")
@@ -77,28 +78,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach(\App\Models\RiwayatKawin::all() as $rk)
+                                    @foreach(\App\Models\RiwayatKawin::where('id_pejantan', $ternak->id)->orwhere('id_induk', $ternak->id)->get() as $rk)
+                                    <tr>
                                         @if($ternak->status_sekarang=="Pejantan")
-                                            @if($rk->id_pejantan == $ternak->id)
-                                                <td>
-                                                    <p>{{$rk->id_induk}}</p>
-                                                </td>
-                                            @endif
-                                        @else
-                                            @if($rk->id_induk == $ternak->id)
-                                                <td>
-                                                    <p>{{$rk->id_pejantan}}</p>
-                                                </td>
-                                            @endif
-                                        @endif
-
                                             <td>
-                                                <p>{{$rk->tanggal_kawin}}</p>
+                                                <p>{{$rk->id_induk}}</p>
                                             </td>
+                                        @else
+                                            <td>
+                                                <p>{{$rk->id_pejantan}}</p>
+                                            </td>
+                                        @endif
+                                        <td>
+                                            <p>{{$rk->tanggal_kawin}}</p>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                                 </table>
-                                <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%"> <br>
+                                @else
+                                    <div class="alert alert-warning" role="alert" style="width:80%; margin-top:15px"> Tidak ada riwayat kawin </div>
+                                @endif
+                                <img src="{{Vite::asset('resources/images/line.png')}}" alt="line" style="width:90%;"> <br>
                             @endif
 
                             @if(auth()->user()->role != 'employee') <button class="btn bg-gradient-info w-auto me-1 mb-0" style="margin-top:10px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button> @endif

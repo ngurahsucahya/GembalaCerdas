@@ -51,14 +51,22 @@
                           </a>
                         </li>
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
-                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/riwayatkawin/input">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" >
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
                                 <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Riwayat Kawin Ternak</h6>
-                                
                               </div>
+                              <img src="{{Vite::asset('resources/images/down-arrow-dark.svg')}}" alt="down-arrow" class="arrow">
                             </div>
                           </a>
+                          <div class="dropdown-menu mt-0 py-3 px-2 mt-3">
+                            <a class="dropdown-item ps-3 border-radius-md mb-1" href="/riwayat/kawin/input">
+                              Input Riwayat Kawin
+                            </a>
+                            <a class="dropdown-item ps-3 border-radius-md mb-1" href="/riwayat/kawin">
+                              Data Riwayat Kawin
+                            </a>
+                          </div>
                         </li>
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
                           <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak/kesehatan">
@@ -94,8 +102,7 @@
                           <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/edit">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
-                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Pindah Kandang</h6>
-                                
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Pindah Kandang</h6>  
                               </div>
                             </div>
                           </a>

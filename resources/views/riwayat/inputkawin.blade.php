@@ -36,8 +36,14 @@
             <div class="col-lg-7 text-center mx-auto" style="margin-top: 150px">
                <h3 class="text-white pt-3 mt-n5">Input Riwayat Kawin</h3>
             </div>
+            
             <div style="margin: 10px 20px 10px; padding: 50px 50px 20px; ">
-               <form action="{{ url('/ternak/riwayatkawin/add') }}" method="POST">
+               @if(session('success'))
+                  <div class="alert alert-success">
+                     {{ session('success') }}
+                  </div>
+               @endif
+               <form action="{{ url('/riwayat/kawin/add') }}" method="POST">
                   @csrf
                   <section class="py-1">
                      <div class="row justify-space-between py-2">
