@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('anaks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_lahir');
             $table->decimal('bobot_lahir', 5, 2)->nullable();
             $table->timestamps();
         });

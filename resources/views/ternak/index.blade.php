@@ -93,7 +93,7 @@
 						</td>
 						<div class="custom-card-buttons">
 							<td>
-								@if(auth()->user()->role == 'doctor') <button class="btn btn-sm bg-gradient-warning w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/riwayat/kesehatan/input/{{$ternak->id}}'">ADD Riwayat Kesehatan</button> @endif
+								@if(auth()->user()->role == 'doctor') <button class="btn btn-sm bg-gradient-warning w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/riwayat/kesehatan/{{$ternak->id}}/input'">ADD Riwayat Kesehatan</button> @endif
 								<button class="btn btn-sm bg-gradient-info w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/ternak/detail/{{$ternak->id}}'">Detail</button>
 								@if(auth()->user()->role != 'employee') <button class="btn btn-sm bg-gradient-primary w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button> @endif
 								<button class="btn btn-sm bg-gradient-danger w-auto me-1 mb-0" onclick="deleteTernak({{ $ternak->id }})">Delete</button>

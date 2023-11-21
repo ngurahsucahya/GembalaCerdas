@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('id_kawin');
             $table->foreignId('id_anak');
+            $table->date('tanggal_lahir');
         });
     }
 

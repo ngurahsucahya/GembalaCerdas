@@ -67,19 +67,8 @@ Route::controller(\App\Http\Controllers\KandangController::class)->group(functio
     // Main Kandang page
     Route::get('/kandang', 'index')->middleware('auth');
 
-    // Redirect /kandang/add to /input
-    Route::get('/kandang/add', function () {
-        return redirect('/input');
-    })->middleware('auth');
-
-    Route::get('/kandang/edit', function () {
-        return redirect('/pindahkandang');
-    })->middleware('auth');
-
-
-
     // Route for pindahkandang.blade.php
-    Route::get('/pindahkandang', function () {
+    Route::get('/kandang/pindah', function () {
         return view('kandang.pindahkandang');
     })->middleware('auth');
 
@@ -101,24 +90,30 @@ Route::controller(\App\Http\Controllers\RiwayatController::class)->group(functio
     Route::get('/riwayat/kesehatan', 'kesehatan')->middleware('auth');
     Route::get('/riwayat/kawin', 'kawin')->middleware('auth');
     Route::get('/riwayat/lahir', 'lahir')->middleware('auth');
+    Route::get('/riwayat/kesehatan/{id}/input', 'inputRiwayatKesehatan')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);
+    Route::get('/riwayat/lahir/input', 'inputRiwayatLahir')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);
     Route::get('/riwayat/kawin/input', 'inputRiwayatKawin')->middleware([
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
-    ]);;
-    Route::post('/riwayat/kawin/add', 'addRiwayatKawin')->middleware([
-        \App\Http\Middleware\NotEmployeeMiddleware::class,
-        'auth',
-    ]);;
-
-    Route::get('/riwayat/kesehatan', 'kesehatan')->middleware('auth');
-    Route::get('/riwayat/kesehatan/input/{id}', 'inputRiwayatKesehatan')->middleware([
-        \App\Http\Middleware\NotEmployeeMiddleware::class,
-        'auth',
-    ]);;
+    ]);
     Route::post('/riwayat/kesehatan/add', 'addRiwayatKesehatan')->middleware([
         \App\Http\Middleware\NotEmployeeMiddleware::class,
         'auth',
-    ]);;
+    ]);
+    Route::post('/riwayat/kawin/add', 'addRiwayatKawin')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);
+    Route::post('/riwayat/lahir/add', 'addRiwayatLahir')->middleware([
+        \App\Http\Middleware\NotEmployeeMiddleware::class,
+        'auth',
+    ]);
 });
 
 Route::fallback(function(){
