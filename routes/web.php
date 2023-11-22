@@ -64,18 +64,9 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
 });
 
 Route::controller(\App\Http\Controllers\KandangController::class)->group(function(){
-    // Main Kandang page
     Route::get('/kandang', 'index')->middleware('auth');
-
-    // Route for pindahkandang.blade.php
-    Route::get('/kandang/pindah', function () {
-        return view('kandang.pindahkandang');
-    })->middleware('auth');
-
-    // Route for input.blade.php
-    Route::get('/kandang/input', function () {
-        return view('kandang.input');
-    })->middleware('auth');
+    Route::get('/kandang/pindah', 'pindahKandang')->middleware('auth');
+    Route::get('/kandang/input', 'input')->middleware('auth');
 });
 
 
