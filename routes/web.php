@@ -87,6 +87,9 @@ Route::controller(\App\Http\Controllers\KandangController::class)->group(functio
     Route::get('/kandang/input', function () {
         return view('kandang.input');
     })->middleware('auth');
+    Route::get('/kandang/assign', function () {
+        return view('kandang.assign');
+    })->middleware('auth');
 });
 
 
