@@ -47,7 +47,7 @@ class TernakController extends Controller
             ]);
         }
 
-        return view('ternak.edit', compact('ternak'));
+        return view('ternak.edit', compact('ternak','list_ras'));
     }
 
     public function update(Request $request, $id)

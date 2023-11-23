@@ -50,6 +50,18 @@
                             </div>
                           </a>
                         </li>
+                      </div>
+                    </ul>
+                  </li>
+
+                  <li class="nav-item dropdown dropdown-hover mx-2  my-auto ms-3 ms-lg-0">
+                    <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
+                      Riwayat Ternak
+                      <img src="{{Vite::asset('resources/images/down-arrow-dark.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuBlocks">
+                      <div class="d-none d-lg-block">
+                        
                         @if(auth()->user()->role != 'employee')
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
                           <a class="dropdown-item py-2 ps-3 border-radius-md" >
@@ -79,6 +91,34 @@
                           </a>
                         @endif
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                        @if(auth()->user()->role != 'employee')
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" >
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                              <div>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Riwayat Kelahiran Ternak</h6>
+                              </div>
+                              <img src="{{Vite::asset('resources/images/down-arrow-dark.svg')}}" alt="down-arrow" class="arrow">
+                            </div>
+                          </a>
+                          <div class="dropdown-menu mt-0 py-3 px-2 mt-3">
+                            <a class="dropdown-item ps-3 border-radius-md mb-1" href="/riwayat/lahir/input">
+                              Input Riwayat Lahir
+                            </a>
+                            <a class="dropdown-item ps-3 border-radius-md mb-1" href="/riwayat/lahir">
+                              Data Riwayat Lahir
+                            </a>
+                          </div>
+                        @else
+                        <a class="dropdown-item py-2 ps-3 border-radius-md" href="/riwayat/lahir">
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                              <div>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Riwayat Kelahiran Ternak</h6>
+                              </div>
+                            </div>
+                          </a>
+                        @endif
+                        </li>
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
                           <a class="dropdown-item py-2 ps-3 border-radius-md" href="/riwayat/kesehatan">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
@@ -88,9 +128,11 @@
                             </div>
                           </a>
                         </li>
+
                       </div>
                     </ul>
                   </li>
+
                   <li class="nav-item dropdown dropdown-hover mx-2  my-auto ms-3 ms-lg-0">
                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                        kandang

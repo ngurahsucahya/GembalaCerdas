@@ -24,7 +24,7 @@ class Anak extends Model
      */
     protected $fillable = [
         'bobot_lahir',
-        'id_lahir'
+        'id_anak',
     ];
 
     public function riwayatLahir(): HasOne

@@ -33,6 +33,7 @@
       <x-navbar/>
       <div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/background2.png')}});" loading="lazy">
          <div class="row mx-auto">
+            
             <div class="col text-center mx-auto" style="margin-top: 150px">
                <h3 class="text-white pt-3 mt-n5">Input Data Ternak</h3>
             </div>
@@ -108,6 +109,15 @@
                   </section>
                   <div class="row py-1">
                      <div class="mx-auto">
+                        @if(session('anaktoinput'))
+                           <div class="input-group input-group-static mb-1" >
+                              <input type="hidden" id="tanggal_lahir" name="tanggal_lahir" value="{{ session('anaktoinput')['tanggal_lahir'] }}">
+                              <h7 style="color:white" >Tanggal_lahir: {{ session('anaktoinput')['tanggal_lahir'] }}</h7>
+                              @error('tanggal_lahir')
+                              <small class="text-danger">{{ $message }}</small>
+                              @enderror
+                           </div>
+                        @else
                         <div class="input-group input-group-static">
                            <label for="tanggal_lahir" style="color:white" >Tanggal Lahir</label>
                            <input class="form-control datepicker" type="date" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" style="color:white"  required>
@@ -115,11 +125,21 @@
                            <small class="text-danger">{{ $message }}</small>
                            @enderror
                         </div>
+                        @endif
                      </div>
                   </div>
                   <section class="py-1">
                      <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
+                           @if(session('anaktoinput'))
+                           <div class="input-group input-group-static mb-1" >
+                              <input type="hidden" id="bobot_badan" name="bobot_badan" value="{{ session('anaktoinput')['bobot'] }}">
+                              <h7 style="color:white" >Bobot Badan: {{ session('anaktoinput')['bobot'] }}</h7>
+                              @error('bobot_badan')
+                              <small class="text-danger">{{ $message }}</small>
+                              @enderror
+                           </div>
+                           @else
                            <div class="input-group input-group-static mb-1">
                               <label for="bobot_badan" style="color:white" >Bobot Badan</label>
                               <input type="text" pattern="[0-9,.]*" placeholder="cth. 128" inputmode="numeric" class="form-control" id="bobot_badan" name="bobot_badan" value="{{ old('bobot_badan') }}" style="color:white" >
@@ -127,9 +147,11 @@
                               <small class="text-danger">{{ $message }}</small>
                               @enderror
                            </div>
+                           @endif
                         </div>
                      </div>
                   </section>
+
                   <section class="py-1">
                      <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
@@ -146,6 +168,17 @@
                   <section class="py-1">
                      <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
+                           @if(session('anaktoinput'))
+                           <div class="input-group input-group-static mb-1" >
+                              <label for="status_sekarang" style="color:white">Status</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                              <select class="form-control" id="status_sekarang" name="status_sekarang" style="color:white" >
+                              <option value="Anak" {{ old('status_sekarang') === 'Anak' ? 'selected' : '' }}>Anak</option>
+                              </select>
+                              @error('status_sekarang')
+                              <small class="text-danger">{{ $message }}</small>
+                              @enderror
+                           </div>
+                           @else
                            <div class="input-group input-group-static mb-1" id="statusField" style="display: {{ old('status_sekarang') === '' ? 'block' : 'none' }};">
                               <label for="status_sekarang" style="color:white">Status</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
                               <select class="form-control" id="status_sekarang" name="status_sekarang" style="color:white" >
@@ -158,12 +191,22 @@
                               <small class="text-danger">{{ $message }}</small>
                               @enderror
                            </div>
+                           @endif
                         </div>
                      </div>
                   </section>
                   <section class="py-1">
                      <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
+                           @if(session('anaktoinput'))
+                           <div class="input-group input-group-static mb-1" >
+                              <input type="hidden" id="id_anak" name="id_anak" value="{{ session('anaktoinput')['id'] }}">
+                              <h7 style="color:white" >ID anak: {{ session('anaktoinput')['id'] }}</h7>
+                              @error('id_anak')
+                              <small class="text-danger">{{ $message }}</small>
+                              @enderror
+                           </div>
+                           @else
                            <div class="input-group input-group-static mb-1" id="idAnakField" style="display: {{ old('status_sekarang') === 'Anak' ? 'block' : 'none' }};">
                               <label for="id_anak" style="color:white" >ID Anak</label>
                               <input type="text" placeholder="cth. 1" class="form-control" id="id_anak" name="id_anak" value="{{ old('id_anak') }}" style="color:white" >
@@ -171,6 +214,7 @@
                               <small class="text-danger">{{ $message }}</small>
                               @enderror
                            </div>
+                           @endif
                         </div>
                      </div>
                   </section>
@@ -190,10 +234,12 @@
                  statusField.style.display = 'block';
                  document.querySelector('#status_sekarang option[value="Induk"]').disabled = true;
                  document.querySelector('#status_sekarang option[value="Pejantan"]').disabled = false;
+                 document.querySelector('#status_sekarang option[value="Anak"]').disabled = true;
              } else if (this.value === 'Betina') {
                  statusField.style.display = 'block';
                  document.querySelector('#status_sekarang option[value="Induk"]').disabled = false;
                  document.querySelector('#status_sekarang option[value="Pejantan"]').disabled = true;
+                 document.querySelector('#status_sekarang option[value="Anak"]').disabled = true;
              } else {
                  statusField.style.display = 'block';
              }
