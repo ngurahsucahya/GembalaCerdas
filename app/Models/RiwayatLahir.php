@@ -10,8 +10,9 @@ class RiwayatLahir extends Model
     use HasFactory;
 
     protected $fillable = [
-        'bobot_lahir',
-        'id_lahir'
+        'id_kawin',
+        'id_anak',
+        'tanggal_lahir',
     ];
 
     public function anak()

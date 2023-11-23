@@ -8,6 +8,7 @@ use \App\Models\Pejantan;
 use \App\Models\RiwayatKawin;
 use \App\Models\RiwayatLahir;
 use \App\Models\Anak;
+use App\Models\RfidData;
 
 use Illuminate\Http\Request;
 
@@ -47,7 +48,7 @@ class TernakController extends Controller
             ]);
         }
 
-        return view('ternak.edit', compact('ternak'));
+        return view('ternak.edit', compact('ternak','list_ras'));
     }
 
     public function update(Request $request, $id)

@@ -25,7 +25,10 @@ class RiwayatController extends Controller
 
     public function lahir()
     {
-        return view('riwayat.lahir');
+        $Rlahir= Riwayatlahir::all();
+        $Rkawin = RiwayatKawin::all();
+        $ternak = Ternak::all();
+        return view('riwayat.lahir', compact('Rlahir','Rkawin', 'ternak'));
     }
 
     public function inputRiwayatKawin()
@@ -48,6 +51,9 @@ class RiwayatController extends Controller
             'tanggal_kawin.required' => 'Tanggal kawin harus diisi',
         ]);
 
+        $pejantan = Ternak::find($request->id_pejantan)->statusable_id;
+        $induk = Ternak::find($request->id_induk)->statusable_id;
+
         $data = [
             'id_pejantan' => $request->id_pejantan,
             'id_induk' => $request->id_induk,
@@ -69,21 +75,24 @@ class RiwayatController extends Controller
     {
         $data = $request->validate([
             'id_ternak' => 'required',
-            'tanggal' => 'required',
-            'keterangan' => 'required',
+            'id_pemeriksa' => 'required',
+            'tanggal_pemeriksaan' => 'required',
+            'deskripsi' => 'required',
         ], [
             'id_ternak.required' => 'ID Ternak harus diisi',
-            'tanggal.required' => 'Tanggal harus diisi',
-            'keterangan.required' => 'Keterangan harus diisi',
+            'id_pemeriksa.required' => 'ID pemeriksa harus diisi',
+            'tanggal_pemeriksaan.required' => 'Tanggal harus diisi',
+            'deskripsi.required' => 'deskripsi harus diisi',
         ]);
         
         RiwayatKesehatan::create($data);
         return back()->with('success', 'Data berhasil ditambahkan');;
     }
 
-    public function inputRiwayatLahir($id)
+    public function inputRiwayatLahir()
     {
-        return view('riwayat.inputlahir',compact('id'));
+        $Rkawin=RiwayatKawin::all();
+        return view('riwayat.inputlahir', compact('Rkawin'));
     }
 
     public function addRiwayatLahir(Request $request)
@@ -99,14 +108,24 @@ class RiwayatController extends Controller
             'bobot_lahir' => 'Bobot Harus diisi'
         ]);
 
-        $data_anak = $request->bobot_lahir;
+        $data_anak = [
+            'bobot_lahir' => $request->bobot_lahir,
+        ];
+
         $anak = Anak::create($data_anak);
         $data_lahir = [
             'id_kawin' => $request->id_kawin,
             'id_anak' => $anak->id,
-            'tanggal_lahir' => $request->tanggal,
+            'tanggal_lahir' => $request->tanggal_lahir,
         ];
+
+        $anaktoinput=[
+            'id' => $anak->id,
+            'bobot' => $anak->bobot_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+        ];
+
         RiwayatLahir::create($data_lahir);
-        return redirect()->intended('/ternak/input')->with(compact('anak'));
+        return redirect()->intended('/ternak/input')->with(compact('anaktoinput'));
     }
 }
