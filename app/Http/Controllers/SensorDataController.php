@@ -24,4 +24,17 @@ class SensorDataController extends Controller
             return redirect()->back()->with('error', 'API Key salah.');
         }
     }
+
+    // public function store(Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'suhu' => 'required',
+    //         'kelembapan' => 'required',
+    //         'kandang' => 'required',
+    //     ]);
+
+    //     SensorData::create($validatedData);
+
+    //     return redirect()->back()->with('success', 'Sensor data added successfully!');
+    // }
 }

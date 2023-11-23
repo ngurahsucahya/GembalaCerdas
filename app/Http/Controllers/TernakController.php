@@ -8,6 +8,7 @@ use \App\Models\Pejantan;
 use \App\Models\RiwayatKawin;
 use \App\Models\RiwayatLahir;
 use \App\Models\Anak;
+use App\Models\RfidData;
 
 use Illuminate\Http\Request;
 

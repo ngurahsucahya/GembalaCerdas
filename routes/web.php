@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RfidDataController;
+use App\Http\Controllers\SensorDataController;
+use App\Http\Controllers\ChartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +14,23 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//Pemantauan Lingkungan
+Route::get('/sensor-data/create', [SensorDataController::class, 'create'])->name('sensor-data.create');
+Route::post('/sensor-data/store', [SensorDataController::class, 'store'])->name('sensor-data.store');
+Route::get('/sensor', function () {
+    return view('testunit.sensor');
+})->middleware('auth');
+
+//Grafik
+Route::get('/get-sensor-data', [ChartController::class, 'getSensorData']);
+
+//RFID
+Route::get('/rfid', function () {
+    return view('ternak.testrfid');
+})->middleware('auth');
+Route::post('/rfid-data', [RfidDataController::class, 'store'])->name('rfid-data.store')->middleware('auth');
+Route::get('/latest-ternak', [RfidDataController::class, 'getLatestRfidAndShowTernak'])->name('latest-ternak')->middleware('auth');
 
 Route::controller(\App\Http\Controllers\DashboardController::class)
     ->middleware('auth')->group(function(){
@@ -61,6 +80,10 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
     ]);;
     Route::get('/ternak/detail/{id}', 'detail')->middleware('auth');
     Route::get('/ternak', 'search');
+    Route::get('/pindai', function () {
+        return view('ternak.rfid');
+    })->middleware('auth');
+    
 });
 
 Route::controller(\App\Http\Controllers\KandangController::class)->group(function(){
@@ -75,6 +98,9 @@ Route::controller(\App\Http\Controllers\KandangController::class)->group(functio
     // Route for input.blade.php
     Route::get('/kandang/input', function () {
         return view('kandang.input');
+    })->middleware('auth');
+    Route::get('/kandang/assign', function () {
+        return view('kandang.assign');
     })->middleware('auth');
 });
 
