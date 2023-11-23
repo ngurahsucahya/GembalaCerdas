@@ -28,6 +28,28 @@
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Moment.js (required for time-based charts) -->
+    <script src="https://cdn.jsdelivr.net/npm/moment"></script>
+    <style>
+  .chart-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .chart {
+    max-width: 48%;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 768px) {
+    .chart {
+      max-width: 100%;
+    }
+  }
+</style>
   </head>
   <body class="index-page bg-gray-200">
     <x-navbar/>
@@ -48,6 +70,7 @@
     </header>
     
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6" style="margin-bottom:10px">
+    <h3 class="text-center">Persebaran Ternak</h3>
       <section class="pt-3 pb-4" id="count-stats">
           <div class="row">
             <div class="col-lg-9 mx-auto py-3">
@@ -82,7 +105,17 @@
               </div>
             </div>
           </div>
+          <h3 class="text-center">Pemantauan Lingkungan Kandang</h3>
+          <div class="chart-container" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <div class="chart" style="flex: 1; max-width: 48%;">
+              <canvas id="temperatureChart" style="width: 100%; height: auto;"></canvas>
+            </div>
+            <div class="chart" style="flex: 1; max-width: 48%;">
+              <canvas id="humidityChart" style="width: 100%; height: auto;"></canvas>
+            </div>
+          </div>
       </section>
+
       @if(auth()->user()->role != 'employee')
         <div class="search-container py-3">
           <form action="{{ url('/notif/add') }}" method="POST">
@@ -94,5 +127,74 @@
         </div>
       @endif
     </div>
-  </body> 
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js" integrity="sha384-MCkSA1x1lFNtuY4tRnSuHwiSHPHibZ75+XG5AJBh0HSbE2Wy+6Y72QaZwBRQIlxi" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy/9ADmIaXaV6QprJgoP1W1a2KtOTI2aI6" crossorigin="anonymous"></script>
+
+<script>
+
+    fetch('/get-sensor-data')
+        .then(response => response.json())
+        .then(data => {
+            const labels = data.map(entry => entry.created_at);
+            const temperatureData = data.map(entry => entry.suhu);
+            const humidityData = data.map(entry => entry.kelembapan);
+
+            const formattedLabels = labels.map(label => new Date(label).toLocaleDateString());
+
+            const temperatureCtx = document.getElementById('temperatureChart').getContext('2d');
+            new Chart(temperatureCtx, {
+                type: 'line',
+                data: {
+                    labels: formattedLabels,
+                    datasets: [{
+                        label: 'Temperature',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: temperatureData,
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'category',
+                            labels: formattedLabels,
+                        },
+                        y: {
+                            beginAtZero: true,
+                        },
+                    }
+                }
+            });
+
+            const humidityCtx = document.getElementById('humidityChart').getContext('2d');
+            new Chart(humidityCtx, {
+                type: 'line',
+                data: {
+                    labels: formattedLabels,
+                    datasets: [{
+                        label: 'Humidity',
+                        borderColor: 'rgb(75, 192, 192)',
+                        data: humidityData,
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'category',
+                            labels: formattedLabels,
+                        },
+                        y: {
+                            beginAtZero: true,
+                        },
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching sensor data:', error));
+</script>
+
+
+</body> 
 </html>

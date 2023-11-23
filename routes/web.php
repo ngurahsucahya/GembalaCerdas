@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RfidDataController;
+use App\Http\Controllers\SensorDataController;
+use App\Http\Controllers\ChartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +14,16 @@ use App\Http\Controllers\RfidDataController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//Pemantauan Lingkungan
+Route::get('/sensor-data/create', [SensorDataController::class, 'create'])->name('sensor-data.create');
+Route::post('/sensor-data/store', [SensorDataController::class, 'store'])->name('sensor-data.store');
+Route::get('/sensor', function () {
+    return view('testunit.sensor');
+})->middleware('auth');
+
+//Grafik
+Route::get('/get-sensor-data', [ChartController::class, 'getSensorData']);
 
 //RFID
 Route::get('/rfid', function () {

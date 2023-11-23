@@ -40,6 +40,18 @@
                           </a>
                         </li>
                         @endif
+
+                        <!-- Pindai Ternak dropdown -->
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                            <a class="dropdown-item py-2 ps-3 border-radius-md" href="/latest-ternak">
+                                <div class="w-100 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Pindai Ternak</h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
                           <a class="dropdown-item py-2 ps-3 border-radius-md" href="/ternak">
                             <div class="w-100 d-flex align-items-center justify-content-between">
@@ -91,6 +103,8 @@
                       </div>
                     </ul>
                   </li>
+
+                  
                   <li class="nav-item dropdown dropdown-hover mx-2  my-auto ms-3 ms-lg-0">
                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                        kandang
