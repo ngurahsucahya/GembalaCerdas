@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RfidDataController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//RFID
+Route::get('/rfid', function () {
+    return view('ternak.testrfid');
+})->middleware('auth');
+Route::post('/rfid-data', [RfidDataController::class, 'store'])->name('rfid-data.store')->middleware('auth');
+Route::get('/latest-ternak', [RfidDataController::class, 'getLatestRfidAndShowTernak'])->name('latest-ternak')->middleware('auth');
 
 Route::controller(\App\Http\Controllers\DashboardController::class)
     ->middleware('auth')->group(function(){
@@ -61,6 +68,10 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
     ]);;
     Route::get('/ternak/detail/{id}', 'detail')->middleware('auth');
     Route::get('/ternak', 'search');
+    Route::get('/pindai', function () {
+        return view('ternak.rfid');
+    })->middleware('auth');
+    
 });
 
 Route::controller(\App\Http\Controllers\KandangController::class)->group(function(){
