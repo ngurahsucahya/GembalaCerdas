@@ -144,11 +144,6 @@
                       </div>
                     </ul>
                   </li>
-
-<<<<<<< HEAD
-=======
-                  
->>>>>>> 71ea9e663ecc3919ee35661e665ce28796eff4b5
                   <li class="nav-item dropdown dropdown-hover mx-2  my-auto ms-3 ms-lg-0">
                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
                        kandang

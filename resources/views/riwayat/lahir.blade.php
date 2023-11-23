@@ -55,15 +55,15 @@
 				<tr>
 					<th>ID Pejantan</th>
 					<th>ID Induk</th>
-                    <th>ID Anak</th>
+                    <th>Nama Anak</th>
 					<th>Tanggal lahir</th>
 				</tr>
 			</thead>
 			<tbody>
-					@foreach ($Rlahir as $RK)
+					@foreach ($Rlahir as $RL)
 					<tr>
                         @foreach ($Rkawin as $rkwin)
-                        @if($rkwin->id =  $RK->id)
+                        @if($rkwin->id =  $RL->id)
                             <td>
                                 <p>{{$rkwin->id_pejantan}}</p>
                             </td>
@@ -74,17 +74,15 @@
                         @endforeach
 
                         @foreach ($ternak as $t)
-                        @if($t->id_anak =  $RK->id_anak && $t->id_anak != NULL)
-                            <td>
-                                <p>{{$t->id}}x</p>
-                                <p>{{$t->id_anak}}y</p>
-                                <p>{{$RK->id_anak}}z</p>
-                            </td>
-                        @endif
+                            @if($t->id_anak ==  $RL->id_anak && $t->id_anak != NULL)
+                                <td>
+                                    <p>{{$t->nama_ternak}}</p>
+                                </td>
+                            @endif
                         @endforeach
 
 						<td>
-							<p>{{$RK->tanggal_lahir}}</p>
+							<p>{{$RL->tanggal_lahir}}</p>
 						</td>
 						
 					</tr>
