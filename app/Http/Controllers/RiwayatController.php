@@ -51,6 +51,8 @@ class RiwayatController extends Controller
             'tanggal_kawin.required' => 'Tanggal kawin harus diisi',
         ]);
 
+        $pejantan = Ternak::find($request->id_pejantan)->statusable_id;
+        $induk = Ternak::find($request->id_induk)->statusable_id;
 
         $data = [
             'id_pejantan' => $request->id_pejantan,
