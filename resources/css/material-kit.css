@@ -137,7 +137,8 @@ h4,
 h5,
 .h5,
 h6,
-.h6 {
+.h6, 
+.h7{
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-weight: 400;
@@ -205,6 +206,10 @@ h5,
 h6,
 .h6 {
   font-size: 1rem;
+}
+
+.h7 {
+  font-size: 0.75rem;
 }
 
 p {

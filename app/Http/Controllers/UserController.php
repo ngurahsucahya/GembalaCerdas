@@ -90,10 +90,32 @@ class UserController extends Controller
         $user = Auth::user();
         return view('user.profile', compact('user'));
     }
+
     public function edit()
     {
     $user = Auth::user();
     return view('user.profileEdit', ['user' => $user]);
     }
+    
+    public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+        ], [
+            'name.required' => 'Name is required',
+            'email.required' => 'Email is required',
+            'email.email' => 'Invalid email address',
+            'email.unique' => 'Email already exists',
+        ]);
 
+        $user=User::findOrFail($id);
+        if ($user === null){
+            return back()->withErrors([
+                'update' => 'Cannot update profile',
+            ]);
+        }
+        $user->update($request->all());
+        $update= 'data berhasil di edit';
+        return redirect()->intended('/profile')->with(compact('user','update'));
+    }
 }

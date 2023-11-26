@@ -200,9 +200,15 @@
                     </ul>
                   </li>
 
-                  <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false" href="/profile">
-                    <img src="{{Vite::asset('resources/images/profile.png')}}" alt="profile" class="arrow ms-auto ms-md-2" width="35" height="35" style=margin-right:10px>
-                  </a>
+                  <li>
+                    <div style="display: flex; align-items: center; justify-content: center; margin-right:15px;">
+                    <a href="/profile" >
+                      <img src="{{Vite::asset('resources/images/profile.png')}}" alt="profile" width="35" height="35">
+                      <div class="h7" style="padding:0px;">{{auth()->user()->name}}</div>
+                    </a>
+                  </div>
+                  </li>
+
                   @if(auth()->user()->role == 'admin')
                     <li class="nav-item my-auto ms-3 ms-lg-0">
                       <a href="/register" class="btn btn-sm  bg-gradient-success  mb-0 me-1 mt-2 mt-md-0">Register</a>

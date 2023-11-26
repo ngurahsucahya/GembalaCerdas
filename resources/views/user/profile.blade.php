@@ -125,7 +125,13 @@
   <x-navbar/>
   <span class="mask bg-gradient-dark opacity-6"></span>
   <main>
+    
   <div class="profile-card">
+  @if(session('update'))
+    <div class="alert alert-success">
+            {{ session('update') }}
+    </div>
+@endif
        <div class="card-header">
               <div class="larger-box">
                 <img src="http://127.0.0.1:8000/build/assets/logotextwhite-bf4967ae.png" alt="GembalaCerdas" width="225" height="50" class="mx-auto d-block" style="margin:5px; top:0;">
@@ -136,7 +142,7 @@
             <div class="username">{{$user->name}}</div>
             <div class="email">{{$user->email}}</div>
             <div class="role">{{$user->role}}</div>
-            <a href="{{ route('profile.edit') }}" class="edit-button">Edit Profile</a>
+            <a href="/profile/edit" class="edit-button">Edit Profile</a>
         </div>
     </div>
 

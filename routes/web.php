@@ -43,6 +43,8 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(function()
     Route::get('/register', 'register')->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
     Route::get('/profile', 'profile')->middleware('auth');
     Route::get('/profile/edit', 'edit')->middleware('auth')->name('profile.edit');
+    Route::post('/profile/update/{id}', 'update')->middleware('auth');
+    
     Route::get('/register', 'register')->middleware([
         \App\Http\Middleware\OnlyAdminMiddleware::class,
         'auth',

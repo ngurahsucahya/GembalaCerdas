@@ -106,34 +106,35 @@
 
   <div class="form-space">
     <h2>Edit Profile</h2>
-    <form>
+    <form action="/profile/update/{{$user->id}}" method="post">
+      @csrf
       <div class="text-center">
-        <img src="imej" class="avatar img-circle img-thumbnail" alt="test">
+        <img src="{{Vite::asset('resources/images/profile.png')}}"  alt="profile" class="arrow ms-auto ms-md-2" width="75" height="75">
         <h5>Upload foto baru...</h5>
         
         <input type="file" class="form-control">
       </div>
 
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" placeholder="Enter new username" value="current_username">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter new username" value={{$user->name}}>
 
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" placeholder="Enter new email" value="current_email">
+      <input type="email" id="email" name="email" placeholder="Enter new email" value={{$user->email}}>
 
-      <label for="password">Password:</label>
+      <!-- <label for="password">Password:</label>
       <input type="password" id="password" name="password" placeholder="Enter new password">
-      <!--  nanti value nya itu autofill ke data si user sekarang-->
+       nanti value nya itu autofill ke data si user sekarang -->
 
-      <label for="role">Role:</label>
+      <!-- <label for="role">Role:</label>
       <select id="role" name="role">
         <option value="user">Employee</option>
         <option value="admin">Doctor</option>
 
-      <!-- jika si user selesai meng edit, redirect kembali ke profile -->
-      </select>
-      <button type="button" class="submit-button" onclick="submitForm()">Save Changes</button>
+      </select> -->
+      
+      <!-- Role sama password keliatannya perlu dibikin fungsi khusus, jadi ga sembarangan bisa edit -->
 
-      <!-- route sama function nya belum dibuat -->
+      <button type="submit" class="submit-button">Save Changes</button>
     </form>
   </div>
 
