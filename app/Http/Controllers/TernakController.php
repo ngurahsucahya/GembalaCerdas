@@ -245,14 +245,26 @@ class TernakController extends Controller
         ];
 
         $ternak = Ternak::find($id);
-        // return dd(RiwayatLahir::find(Pejantan::find($ternak->id)->riwayatKawin->id)->anak->id);
         if ($ternak === null){
             return redirect()->intended('/ternak')->withErrors([
                 'detail' => 'ternak not found',
             ]);
         }
-        // return dd($ternak);
-        return view('ternak.detail', compact('ternak', 'list_ras'));
+
+        if ($ternak->status_sekarang === 'Induk'){
+            $riwayatKawin = Induk::find($ternak->id)->riwayatKawin;
+            $idPartners = $riwayatKawin->pluck('id_pejantan');
+            $idKawins = $riwayatKawin->pluck('id');
+        } else if ($ternak->status_sekarang === 'Pejantan'){
+            $riwayatKawin = Pejantan::find($ternak->id)->riwayatKawin;
+            $idPartners = $riwayatKawin->pluck('id_induk');
+            $idKawins = $riwayatKawin->pluck('id');
+        }
+        $RiwayatLahir = RiwayatLahir::whereIn('id_kawin', $idKawins);
+        $tanggalLahirs = $RiwayatLahir->pluck('tanggal_lahir');
+        $idAnaks = Ternak::whereIn('id_anak', $RiwayatLahir->pluck('id_anak'))->pluck('id');
+
+        return view('ternak.detail', compact('ternak', 'list_ras', 'idPartners', 'tanggalLahirs', 'idAnaks'));
     }
 
     public function search(Request $request)
