@@ -39,10 +39,10 @@
         </div>
         <div class="mx-auto" style="margin: 10px; ">
             @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+                  <div class="alert alert-success">
+                     {{ session('success') }}
+                  </div>
+               @endif
             <form action="/ternak/update/{{$ternak->id}}" method="POST">
                 @csrf
                 <section class="py-1">
