@@ -12,7 +12,8 @@ class KandangController extends Controller
 {
     public function index() 
     {
-        return view('kandang.index');
+        $kandangs = Kandang::all();
+        return view('kandang.index', compact('kandangs'));
     }
 
     public function add() 
