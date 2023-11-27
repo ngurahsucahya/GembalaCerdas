@@ -69,8 +69,8 @@
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                             <div class="input-group input-group-static mb-1">
-                                <label for="deskripsi" style="color:white" >Deskripsi Kandang</label> 
-                                <textarea class="form-control" id="deskripsi" name="deskripsi" style="color:white" placeholder="Enter Deskripsi"></textarea>
+                                <label for="deskripsi_kandang" style="color:white" >Deskripsi Kandang</label> 
+                                <textarea class="form-control" id="deskripsi_kandang" name="deskripsi_kandang" style="color:white" placeholder="Enter Deskripsi"></textarea>
                             </div>
                         </div>
                     </div>

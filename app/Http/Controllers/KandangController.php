@@ -41,10 +41,12 @@ class KandangController extends Controller
         $data = $request->validate([
             'nama_kandang' => 'required',
             'kapasitas' => 'required',
+            'deskripsi_kandang' => 'nullable'
         ], [
             'nama_kandang.required' => 'Nama kandang harus diisi',
             'kapasitas.required' => 'Kapasitas kandang harus diisi',
         ]);
+        
         try {
             Kandang::create($data);
             return back();

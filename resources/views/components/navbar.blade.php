@@ -161,21 +161,22 @@
                             </div>
                           </a>
                         </li>
+
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
-                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/pindah">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/assign">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
-                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Pindah Kandang</h6>  
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Tambah Ternak ke kandang</h6>  
                               </div>
                             </div>
                           </a>
                         </li>
 
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
-                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/assign">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/pindah">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
-                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Tambah Ternak</h6>  
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Pindah Kandang</h6>  
                               </div>
                             </div>
                           </a>
