@@ -36,7 +36,7 @@
       <div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/Group29.png')}});" loading="lazy">
          <div class="row mx-auto">
             <div class="col-lg-7 text-center mx-auto" style="margin-top: 150px">
-               <h3 class="text-white pt-3 mt-n5">Input Kandang</h3>
+               <h3 class="text-white pt-3 mt-n5">Tambah Kandang</h3>
             </div>
             
             <div class="mx-auto" style="margin: 10px; ">
@@ -69,8 +69,8 @@
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                             <div class="input-group input-group-static mb-1">
-                                <label for="deskripsi" style="color:white" >Deskripsi Kandang</label> 
-                                <textarea class="form-control" id="deskripsi" name="deskripsi" style="color:white" placeholder="Enter Deskripsi"></textarea>
+                                <label for="deskripsi_kandang" style="color:white" >Deskripsi Kandang</label> 
+                                <textarea class="form-control" id="deskripsi_kandang" name="deskripsi_kandang" style="color:white" placeholder="Enter Deskripsi"></textarea>
                             </div>
                         </div>
                     </div>

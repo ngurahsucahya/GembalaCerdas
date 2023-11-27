@@ -92,8 +92,18 @@ class TernakController extends Controller
             'id_anak.numeric' => 'Id anak is not valid',
         ]);
 
+        $ternak = Ternak::find($id);
+        if ($ternak === null){
+            return back()->withErrors([
+                'update' => 'Cannot update data',
+            ]);
+        }
 
         if ($data['jenis_kelamin'] === 'Jantan' && $data['status_sekarang'] === 'Induk'){
+            return back()->withErrors([
+                'update' => 'Invalid data',
+            ]);
+        } else if ($data['status_sekarang'] === 'Induk' && $ternak->status_sekarang === 'Pejantan'){
             return back()->withErrors([
                 'update' => 'Invalid data',
             ]);
@@ -101,20 +111,30 @@ class TernakController extends Controller
             return back()->withErrors([
                 'update' => 'Invalid data',
             ]);
-        } else if (is_null($data['id_anak']) && $data['status_sekarang'] === 'Anak'){
+        } else if ($data['status_sekarang'] === 'Pejantan' && $ternak->status_sekarang === 'Induk'){
             return back()->withErrors([
                 'update' => 'Invalid data',
             ]);
-        }
-
-        $ternak = Ternak::findOrFail($id);
-        if ($ternak === null){
+        }else if ($data['status_sekarang'] === 'Anak' && (is_null($data['id_anak']) || $ternak->status_sekarang === 'Induk' || $ternak->status_sekarang === 'Pejantan')){
             return back()->withErrors([
-                'update' => 'Cannot update data',
+                'update' => 'Invalid data',
             ]);
+        } else if ($ternak->status_sekarang === 'Anak'){
+            if ($data['status_sekarang'] === 'Induk'){
+                $status = Induk::create();
+            } else if ($data['status_sekarang'] === 'Pejantan'){
+                $status = Pejantan::create();
+            }
         }
-        $ternak->update($request->all());
-        return back();
+        
+        if ($ternak->status_sekarang !== $data['status_sekarang']){
+            $ternak->update($data);
+            $status->ternak()->save($ternak);
+        } else {
+            $ternak->update($data);
+        }
+        
+        return back()->with('success', 'Data berhasil diupdate');
     }
     
     public function delete($id)
@@ -250,8 +270,20 @@ class TernakController extends Controller
                 'detail' => 'ternak not found',
             ]);
         }
-        // return dd($ternak);
-        return view('ternak.detail', compact('ternak', 'list_ras'));
+        if ($ternak->status_sekarang === 'Induk'){
+            $riwayatKawin = RiwayatKawin::where('id_induk', $ternak->id);
+            $idPartners = $riwayatKawin->pluck('id_pejantan');
+            $idKawins = $riwayatKawin->pluck('id');
+        } else if ($ternak->status_sekarang === 'Pejantan'){
+            $riwayatKawin = RiwayatKawin::where('id_pejantan', $ternak->id);
+            $idPartners = $riwayatKawin->pluck('id_induk');
+            $idKawins = $riwayatKawin->pluck('id');
+        }
+        $RiwayatLahir = RiwayatLahir::whereIn('id_kawin', $idKawins);
+        $tanggalLahirs = $RiwayatLahir->pluck('tanggal_lahir');
+        $idAnaks = Ternak::whereIn('id_anak', $RiwayatLahir->pluck('id_anak'))->pluck('id');
+
+        return view('ternak.detail', compact('ternak', 'list_ras', 'idPartners', 'tanggalLahirs', 'idAnaks'));
     }
 
     public function search(Request $request)

@@ -17,7 +17,7 @@ class RiwayatLahir extends Model
 
     public function anak()
     {
-        return $this->belongsTo(Anak::class, 'id_lahir');
+        return $this->belongsTo(Anak::class, 'id_anak');
     }
 
     public function riwayatKawin()

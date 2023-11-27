@@ -152,44 +152,26 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive mt-0 mt-lg-3 p-3 border-radius-lg" aria-labelledby="dropdownMenuDocs">
                     <div class="d-none d-lg-block">
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
-                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/input">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/add">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
-                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Input Kandang</h6>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Tambah Kandang</h6>
                                 
                               </div>
                             </div>
                           </a>
                         </li>
-                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
-                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/pindah">
-                            <div class="w-100 d-flex align-items-center justify-content-between">
-                              <div>
-                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Pindah Kandang</h6>  
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                      
+
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
                           <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/assign">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                               <div>
-                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Tambah Ternak</h6>  
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Input kandang</h6>  
                               </div>
                             </div>
                           </a>
                         </li>
-                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
-                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/data">
-                            <div class="w-100 d-flex align-items-center justify-content-between">
-                              <div>
-                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Data Kandang</h6>  
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                        
+
                       </div>
                     </ul>
                   </li>

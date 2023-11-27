@@ -27,7 +27,7 @@
       @vite('resources/css/material-kit.css')
       <!-- Nepcha Analytics (nepcha.com) -->
       <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
-      <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+      <!-- <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script> -->
    </head>
    <body class="index-page bg-gray-200">
         <x-navbar/>
@@ -66,7 +66,7 @@
                             @if($ternak->status_sekarang !="Anak")
                                 <h5  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Riwayat Kawin</h5>
                                 @if(count(\App\Models\RiwayatKawin::where('id_pejantan', $ternak->id)->orwhere('id_induk', $ternak->id)->get())>0)
-                                <table class="table table-info-custom text-center table-responsive " style="width:70%">
+                                <table class="table table-info-custom text-center table-responsive " style="width:93%; margin-top:10px">
                                 <thead>
                                     <tr>
                                         @if($ternak->status_sekarang=="Pejantan")
@@ -97,14 +97,59 @@
                                 </tbody>
                                 </table>
                                 @else
-                                    <div class="alert alert-warning" role="alert" style="width:80%; margin-top:15px"> Tidak ada riwayat kawin </div>
+                                    <div class="alert alert-warning" role="alert" style="width:80%; margin-top:15px"> Belum ada riwayat kawin </div>
                                 @endif
                                 <img src="{{Vite::asset('resources/images/linetipis.png')}}" alt="line" width=93% height=1px > <br>
+                            <h5  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Riwayat Keturunan</h5>
+                                <!-- <h6 class="text-white" style="margin-left:10px; margin-bottom:0px;">Pejantan: {{$ternak->deskripsi_fenotip}}   |   Induk: {{$ternak->bobot_badan}}</h6> -->
+                                @if(count(\App\Models\RiwayatKawin::where('id_pejantan', $ternak->id)->orwhere('id_induk', $ternak->id)->get())>0)
+                                <table class="table table-info-custom text-center table-responsive " style="width:93%; margin-top:10px">
+                                <thead>
+                                    <tr>
+                                        <th>ID Anak</th>
+                                        @if($ternak->status_sekarang=="Pejantan")
+                                            <th>ID Induk</th>
+                                        @else
+                                            <th>ID Pejantan</th>
+                                        @endif
+                                        <th>Tanggal Lahir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(\App\Models\RiwayatKawin::where('id_pejantan', $ternak->id)->orwhere('id_induk', $ternak->id)->get() as $rk)
+
+                                        @foreach(\App\Models\Riwayatlahir::where('id_kawin', $rk->id)->get() as $rl)
+                                        <tr>
+                                            <td>
+                                                <p>{{$rl->id_anak}}</p>
+                                            </td>
+                                            @if($ternak->status_sekarang=="Pejantan")
+                                                <td>
+                                                    <p>{{$rk->id_induk}}</p>
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <p>{{$rk->id_pejantan}}</p>
+                                                </td>
+                                            @endif
+                                            <td>
+                                                <p>{{$rl->tanggal_lahir}}</p>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    
+                                    @endforeach
+                                </tbody>
+                                </table>
+                                @else
+                                    <div class="alert alert-warning" role="alert" style="width:80%; margin-top:15px"> Tidak ada riwayat keturunan </div>
+                                @endif
+                            <img src="{{Vite::asset('resources/images/linetipis.png')}}" alt="line" width=93% height=1px > <br>
                             @endif
 
                             <h5  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Riwayat Kesehatan</h5>
                                 @if(count(\App\Models\RiwayatKesehatan::where('id_ternak', $ternak->id)->get())>0)
-                                <table class="table table-info-custom text-center table-responsive " style="width:70%">
+                                <table class="table table-info-custom text-center table-responsive " style="width:93%; margin-top:10px">
                                 <thead>
                                     <tr>
                                         <th>ID Pemeriksa</th>
@@ -132,6 +177,35 @@
                                     <div class="alert alert-warning" role="alert" style="width:80%; margin-top:15px"> belum ada riwayat kesehatan </div>
                                 @endif
                                 <img src="{{Vite::asset('resources/images/linetipis.png')}}" alt="line" width=93% height=1px > <br>
+                            
+                            
+
+                            <h5  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Riwayat Kandang</h5>
+                            @if(count(\App\Models\RiwayatKandang::where('id_ternak', $ternak->id)->get())>0)
+                                <table class="table table-info-custom text-center table-responsive " style="width:93%; margin-top:10px">
+                                <thead>
+                                    <tr>
+                                        <th>ID kandang</th>
+                                        <th>Tanggal Pengelompokan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(\App\Models\RiwayatKandang::where('id_ternak', $ternak->id)->latest('tanggal_pengelompokan')->get() as $RK)
+                                    <tr>
+                                        <td>
+                                            <p>{{$RK->id_kandang}}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{$RK->tanggal_pengelompokan}}</p>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                                </table>
+                                @else
+                                    <div class="alert alert-warning" role="alert" style="width:80%; margin-top:15px"> ternak belum dimasukan ke kandang manapun</div>
+                                @endif
+                            <img src="{{Vite::asset('resources/images/linetipis.png')}}" alt="line" width=93% height=1px > <br>
 
                             @if(auth()->user()->role != 'employee') <button class="btn bg-gradient-info w-auto me-1 mb-0" style="margin-top:10px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button> @endif
                         
