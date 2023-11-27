@@ -170,7 +170,7 @@
                             </div>
                           </a>
                         </li>
-
+                      
                         <li class="nav-item dropdown dropdown-hover dropdown-subitem">
                           <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/assign">
                             <div class="w-100 d-flex align-items-center justify-content-between">
@@ -180,6 +180,16 @@
                             </div>
                           </a>
                         </li>
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="/kandang/data">
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                              <div>
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Data Kandang</h6>  
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        
                       </div>
                     </ul>
                   </li>

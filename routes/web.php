@@ -96,6 +96,7 @@ Route::controller(\App\Http\Controllers\KandangController::class)->group(functio
     Route::post('/kandang/add', 'addKandang')->middleware('auth');
     Route::post('/kandang/assignternak', 'assignTernakToKandang')->middleware('auth');
     Route::post('kandang/pindahternak', 'pindahKandangTo')->middleware('auth');
+    Route::get('kandang/data', 'datakandang')->middleware('auth');
 });
 
 

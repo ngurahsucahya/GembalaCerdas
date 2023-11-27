@@ -117,4 +117,8 @@ class KandangController extends Controller
             ]);
         }
     }
+    public function dataKandang()
+    {
+        return view('kandang.data');
+    }
 }
