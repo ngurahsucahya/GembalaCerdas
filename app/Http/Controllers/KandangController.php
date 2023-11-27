@@ -20,7 +20,8 @@ class KandangController extends Controller
         return view('kandang.add');
     }
 
-    public function assign() {
+    public function assign() 
+    {
         $ternaks = Ternak::all();
         $kandangs = Kandang::all();
         return view('kandang.assign', compact('ternaks', 'kandangs'));
@@ -56,7 +57,7 @@ class KandangController extends Controller
             'id_ternak.required' => 'ID ternak harus diisi',
             'id_kandang.required' => 'ID kandang harus diisi',
         ]);
-        
+
         $ternak_id = Ternak::find($data['id_ternak'])->id;
         $kandang_id = Kandang::find($data['id_kandang'])->id;
         if ($ternak_id === null || $kandang_id === null) {

@@ -19,4 +19,9 @@ class Induk extends Model
     {
         return $this->morphOne(Ternak::class, 'statusable');
     }
+
+    public function riwayatKawin(): HasOne
+    {
+        return $this->hasOne(RiwayatKawin::class, 'id_induk');
+    }
 }

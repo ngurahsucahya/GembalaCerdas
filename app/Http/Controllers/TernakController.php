@@ -245,6 +245,7 @@ class TernakController extends Controller
         ];
 
         $ternak = Ternak::find($id);
+        // return dd(RiwayatLahir::find(Pejantan::find($ternak->id)->riwayatKawin->id)->anak->id);
         if ($ternak === null){
             return redirect()->intended('/ternak')->withErrors([
                 'detail' => 'ternak not found',
