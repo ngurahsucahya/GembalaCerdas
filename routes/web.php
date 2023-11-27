@@ -90,12 +90,10 @@ Route::controller(\App\Http\Controllers\TernakController::class)->group(function
 
 Route::controller(\App\Http\Controllers\KandangController::class)->group(function(){
     Route::get('/kandang', 'index')->middleware('auth');
-    Route::get('/kandang/pindah', 'pindahKandang')->middleware('auth');
-    Route::get('/kandang/input', 'input')->middleware('auth');
+    Route::get('/kandang/add', 'add')->middleware('auth');
     Route::get('/kandang/assign', 'assign')->middleware('auth');
-    Route::post('/kandang/add', 'addKandang')->middleware('auth');
+    Route::post('/kandang/addkandang', 'addKandang')->middleware('auth');
     Route::post('/kandang/assignternak', 'assignTernakToKandang')->middleware('auth');
-    Route::post('kandang/pindahternak', 'pindahKandangTo')->middleware('auth');
 });
 
 
