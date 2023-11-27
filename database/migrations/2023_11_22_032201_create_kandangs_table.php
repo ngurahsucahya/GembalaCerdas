@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('kandangs', function (Blueprint $table) {
             $table->id();
+            $table->text('nama_kandang');
             $table->integer('kapasitas');
-            $table->integer('populasi');
             $table->text('deskripsi_kandang')->nullable();
             $table->timestamps();
         });

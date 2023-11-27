@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('riwayat_kandangs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kandang_id');
-            $table->foreignId('ternak_id');
+            $table->foreignId('id_kandang');
+            $table->foreignId('id_ternak');
             $table->date('tanggal_pengelompokan');
             $table->timestamps();
         });

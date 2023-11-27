@@ -40,16 +40,18 @@
             </div>
             
             <div class="mx-auto" style="margin: 10px; ">
-            <!--- <form action="{{ url('/riwayat/kawin/add') }}" method="POST">
-                  @csrf ntar ubah yh -->
+            - <form action="{{ url('/kandang/pindahternak') }}" method="POST">
+                  @csrf
                   <section class="py-1">
                      <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                            <div class="input-group input-group-static mb-1">
                               <label for="id_ternak" style="color:white" >Ternak</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
                               <select class="form-control" id="id_ternak" name="id_ternak"  style="color:white" required>
-                              <option value="" >Select Ternak</option>
-                              <!-- Add options as needed -->
+                                 <option value="" {{ old('id_ternak') === '' ? 'selected' : '' }} >Select Ternak</option>
+                                    @foreach($ternaks as $ternak)
+                                       <option value="{{$ternak->id}}" {{ old('id_ternak') === '' ? 'selected' : '' }} >{{$ternak->nama_ternak}}</option>
+                                    @endforeach
                               </select>
                            </div>
                         </div>
@@ -57,24 +59,26 @@
                   </section>
 
                   <section class="py-1">
-        <div class="row justify-space-between py-2">
-            <div class=" mx-auto">
-                <div class="input-group input-group-static mb-1">
-                    <label for="nama_kandang" style="color:white" >Asal Kandang</label> 
-                        <input type="text" class="form-control" id="nama_kandang" name="nama_kandang"  style="color:white" value ="Autofill saat milih ternak" required >
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-1">
                      <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                            <div class="input-group input-group-static mb-1">
-                              <label for="kandang_tujuan" style="color:white" >Kandang Tujuan</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
-                              <select class="form-control" id="kandang_tujuan" name="kandang_tujuan"  style="color:white" required>
-                              <option value="" >Pilih Kandang Tujuan</option>
-                              <!-- Add options as needed -->
+                              <label for="nama_kandang" style="color:white" >Asal Kandang</label> 
+                                    <input type="text" class="form-control" id="nama_kandang" name="nama_kandang"  style="color:white" value ="" required >
+                              </div>
+                           </div>
+                        </div>
+                  </section>
+
+                  <section class="py-1">
+                     <div class="row justify-space-between py-2">
+                        <div class=" mx-auto">
+                           <div class="input-group input-group-static mb-1">
+                              <label for="id_kandang_baru" style="color:white" >Kandang Tujuan</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                              <select class="form-control" id="id_kandang_baru" name="id_kandang_baru"  style="color:white" required>
+                                 <option value="" {{ old('id_kandang_baru') === '' ? 'selected' : '' }} >Select Kandang</option>
+                                    @foreach($kandangs as $kandang)
+                                       <option value="{{$kandang->id}}" {{ old('id_kandang_baru') === '' ? 'selected' : '' }} >{{$kandang->nama_kandang}}</option>
+                                    @endforeach
                               </select>
                            </div>
                         </div>
@@ -82,15 +86,21 @@
                   </section>
 
                   <div class="row py-1">
-    <div class="mx-auto">
-        <div class="input-group input-group-static">
-            <button type="submit" class="btn bg-gradient-success mb-0 me-1 mt-2 mt-md-0">Submit</button>
-        </div>
-    </div>
-</div>
-</form>
-</div>
-</div>
-</div>
-</body>
+                     <div class="mx-auto">
+                        <div class="input-group input-group-static">
+                              <button type="submit" class="btn bg-gradient-success mb-0 me-1 mt-2 mt-md-0">Submit</button>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <script>
+         const TernakID = document.getElementById('id_ternak');
+         TernakID.addEventListener('change', () =>{
+            console.log(TernakID.value)
+         });
+      </script>
+   </body>
 </html>

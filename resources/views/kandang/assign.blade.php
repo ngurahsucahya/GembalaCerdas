@@ -40,54 +40,52 @@
             </div>
             
             <div class="mx-auto" style="margin: 10px; ">
-            <!--- <form action="{{ url('/riwayat/kawin/add') }}" method="POST">
-                  @csrf ntar ubah yh -->
+            - <form action="{{ url('/kandang/assignternak') }}" method="POST">
+                  @csrf
 
                   <section class="py-1">
-    <div class="row justify-space-between py-2">
-        <div class="mx-auto">
-            <div class="input-group input-group-static mb-1">
-                <label for="select_ternak" style="color:white">Pilih Ternak</label>
-                <input list="ternak_options" type="text" class="form-control" id="select_ternak" name="select_ternak" style="color:white" required placeholder="Select or type Ternak">
-                <datalist id="ternak_options">
-                    <option value="Option 1">
-                    <option value="Option 2">
-                    <option value="Option 3">
-                    <!-- Add more options as needed -->
-                </datalist>
+                        <div class="row justify-space-between py-2">
+                            <div class="mx-auto">
+                                <div class="input-group input-group-static mb-1">
+                                    <label for="id_ternak" style="color:white">Pilih Ternak</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                                    <select class="form-control" id="id_ternak" name="id_ternak"  style="color:white" required>
+                                    <option value="" {{ old('id_ternak') === '' ? 'selected' : '' }} >Select Ternak</option>
+                                        @foreach($ternaks as $ternak)
+                                            <option value="{{$ternak->id}}" {{ old('id_ternak') === '' ? 'selected' : '' }} >{{$ternak->nama_ternak}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="py-1">
+                        <div class="row justify-space-between py-2">
+                            <div class="mx-auto">
+                                <div class="input-group input-group-static mb-1">
+                                    <label for="select_kandang" style="color:white">Pilih Kandang</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+                                    <select class="form-control" id="id_kandang" name="id_kandang"  style="color:white" required>
+                                    <option value="" {{ old('id_kandang') === '' ? 'selected' : '' }} >Select Kandang</option>
+                                        @foreach($kandangs as $kandang)
+                                            <option value="{{$kandang->id}}" {{ old('id_kandang') === '' ? 'selected' : '' }} >{{$kandang->nama_kandang}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <div class="row py-1">
+                        <div class="mx-auto">
+                            <div class="input-group input-group-static">
+                                <button type="submit" class="btn bg-gradient-success mb-0 me-1 mt-2 mt-md-0">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</section>
-
-<section class="py-1">
-    <div class="row justify-space-between py-2">
-        <div class="mx-auto">
-            <div class="input-group input-group-static mb-1">
-                <label for="select_kandang" style="color:white">Pilih Kandang</label>
-                <input list="kandang_options" type="text" class="form-control" id="select_kandang" name="select_kandang" style="color:white" required placeholder="Select or type Kandang">
-                <datalist id="kandang_options">
-                    <option value="Option A">
-                    <option value="Option B">
-                    <option value="Option C">
-                    <!-- Add more options as needed -->
-                </datalist>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<div class="row py-1">
-    <div class="mx-auto">
-        <div class="input-group input-group-static">
-            <button type="submit" class="btn bg-gradient-success mb-0 me-1 mt-2 mt-md-0">Submit</button>
-        </div>
-    </div>
-</div>
-</form>
-</div>
-</div>
-</div>
 </body>
 </html>

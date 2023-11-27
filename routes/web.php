@@ -92,9 +92,10 @@ Route::controller(\App\Http\Controllers\KandangController::class)->group(functio
     Route::get('/kandang', 'index')->middleware('auth');
     Route::get('/kandang/pindah', 'pindahKandang')->middleware('auth');
     Route::get('/kandang/input', 'input')->middleware('auth');
-    Route::get('/kandang/assign', function () {
-        return view('kandang.assign');
-    })->middleware('auth');
+    Route::get('/kandang/assign', 'assign')->middleware('auth');
+    Route::post('/kandang/add', 'addKandang')->middleware('auth');
+    Route::post('/kandang/assignternak', 'assignTernakToKandang')->middleware('auth');
+    Route::post('kandang/pindahternak', 'pindahKandangTo')->middleware('auth');
 });
 
 

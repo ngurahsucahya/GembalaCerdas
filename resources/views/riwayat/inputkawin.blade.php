@@ -51,9 +51,9 @@
                            <div class="input-group input-group-static mb-1">
                               <label for="id_pejantan" style="color:white" >Pejantan</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
                               <select class="form-control" id="id_pejantan" name="id_pejantan"  style="color:white" required>
-                              <option value="" {{ old('pejantan') === '' ? 'selected' : '' }} >Select Pejantan</option>
+                              <option value="" {{ old('id_pejantan') === '' ? 'selected' : '' }} >Select Pejantan</option>
                               @foreach ($list_pejantan as $each_pejantan)
-                                 <option value="{{ $each_pejantan['id'] }}" {{ old('pejantan') === $each_pejantan['id'] ? 'selected' : '' }}>{{ $each_pejantan['nama_ternak'] }}</option>
+                                 <option value="{{ $each_pejantan['id'] }}" {{ old('id_pejantan') === $each_pejantan['id'] ? 'selected' : '' }}>{{ $each_pejantan['nama_ternak'] }}</option>
                               @endforeach
                               </select>
                               @error('id_pejantan')

@@ -40,52 +40,52 @@
             </div>
             
             <div class="mx-auto" style="margin: 10px; ">
-            <!--- <form action="{{ url('/riwayat/kawin/add') }}" method="POST">
-                  @csrf ntar ubah yh -->
+            <form action="{{ url('/kandang/add') }}" method="POST">
+                  @csrf
 
-<section class="py-1">
-    <div class="row justify-space-between py-2">
-        <div class=" mx-auto">
-            <div class="input-group input-group-static mb-1">
-                <label for="nama_kandang" style="color:white" >Nama Kandang</label> 
-                <input type="text" class="form-control" id="nama_kandang" name="nama_kandang"  style="color:white" required placeholder="Enter Nama Kandang">
-            </div>
+                <section class="py-1">
+                    <div class="row justify-space-between py-2">
+                        <div class=" mx-auto">
+                            <div class="input-group input-group-static mb-1">
+                                <label for="nama_kandang" style="color:white" >Nama Kandang</label> 
+                                <input type="text" class="form-control" id="nama_kandang" name="nama_kandang"  style="color:white" required placeholder="Enter Nama Kandang">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="py-1">
+                    <div class="row justify-space-between py-2">
+                        <div class=" mx-auto">
+                            <div class="input-group input-group-static mb-1">
+                                <label for="kapasitas" style="color:white" >Kapasitas</label> 
+                                <input type="number" class="form-control" id="kapasitas" name="kapasitas"  style="color:white" required placeholder="Enter Kapasitas">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="py-1">
+                    <div class="row justify-space-between py-2">
+                        <div class=" mx-auto">
+                            <div class="input-group input-group-static mb-1">
+                                <label for="deskripsi" style="color:white" >Deskripsi Kandang</label> 
+                                <textarea class="form-control" id="deskripsi" name="deskripsi" style="color:white" placeholder="Enter Deskripsi"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="row py-1">
+                    <div class="mx-auto">
+                        <div class="input-group input-group-static">
+                            <button type="submit" class="btn bg-gradient-success mb-0 me-1 mt-2 mt-md-0">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</section>
-
-<section class="py-1">
-    <div class="row justify-space-between py-2">
-        <div class=" mx-auto">
-            <div class="input-group input-group-static mb-1">
-                <label for="kapasitas" style="color:white" >Kapasitas</label> 
-                <input type="number" class="form-control" id="kapasitas" name="kapasitas"  style="color:white" required placeholder="Enter Kapasitas">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-1">
-    <div class="row justify-space-between py-2">
-        <div class=" mx-auto">
-            <div class="input-group input-group-static mb-1">
-                <label for="deskripsi" style="color:white" >Deskripsi Kandang</label> 
-                <textarea class="form-control" id="deskripsi" name="deskripsi" style="color:white" required placeholder="Enter Deskripsi"></textarea>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="row py-1">
-    <div class="mx-auto">
-        <div class="input-group input-group-static">
-            <button type="submit" class="btn bg-gradient-success mb-0 me-1 mt-2 mt-md-0">Submit</button>
-        </div>
-    </div>
-</div>
-</form>
-</div>
-</div>
 </div>
 </body>
 </html>

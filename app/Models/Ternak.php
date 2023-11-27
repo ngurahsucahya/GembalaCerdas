@@ -64,6 +64,11 @@ class Ternak extends Model
         return $this->hasOne(Anak::class, 'id_anak');
     }
 
+    public function riwayatKandang()
+    {
+        return $this->hasMany(RiwayatKandang::class, 'id_ternak');
+    }
+
     public function updateStatus()
     {
         if (is_null($this->statusable_type) && !is_null($this->id_anak)){
