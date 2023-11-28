@@ -39,8 +39,14 @@
                <h3 class="text-white pt-3 mt-n5">Tambah Kandang</h3>
             </div>
             
+            
             <div class="mx-auto" style="margin: 10px; ">
-            <form action="{{ url('/kandang/add') }}" method="POST">
+            @if(session('add'))
+                  <div class="alert alert-success">
+                     {{ session('add') }}
+                  </div>
+            @endif
+            <form action="{{ url('/kandang/addkandang') }}" method="POST">
                   @csrf
 
                 <section class="py-1">

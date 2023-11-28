@@ -156,10 +156,22 @@
                         <div class="input-group input-group-static mb-1" id="statusField" >
                             <label for="status_sekarang"  style="color:white"  >Status</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
                             <select class="form-control" id="status_sekarang" name="status_sekarang"  style="color:white"  >
-                                <option value="{{ $ternak->status_sekarang }}" {{ $ternak->status_sekarang === '' ? 'selected' : '' }}>Select Status</option>
-                                <option value="Induk" {{ $ternak->status_sekarang === 'Induk' ? 'selected' : '' }}>Induk</option>
-                                <option value="Pejantan" {{ $ternak->status_sekarang === 'Pejantan' ? 'selected' : '' }}>Pejantan</option>
-                                <option value="Anak" {{ $ternak->status_sekarang === 'Anak' ? 'selected' : '' }}>Anak</option>
+                                @if( $ternak->status_sekarang == "Pejantan" )
+                                    <option value="{{ $ternak->status_sekarang }}" {{ $ternak->status_sekarang === '' ? 'selected' : '' }}>Select Status</option>
+                                    <option value="Induk" disabled>Induk</option>
+                                    <option value="Pejantan" {{ $ternak->status_sekarang === 'Pejantan' ? 'selected' : '' }}>Pejantan</option>
+                                    <option value="Anak" disabled>Anak</option>
+                                @elseif ( $ternak->status_sekarang  == "Induk")
+                                    <option value="{{ $ternak->status_sekarang }}" {{ $ternak->status_sekarang === '' ? 'selected' : '' }}>Select Status</option>
+                                    <option value="Induk" {{ $ternak->status_sekarang === 'Induk' ? 'selected' : '' }}>Induk</option>
+                                    <option value="Pejantan" disabled>Pejantan</option>
+                                    <option value="Anak" disabled>Anak</option>
+                                @else
+                                    <option value="{{ $ternak->status_sekarang }}" {{ $ternak->status_sekarang === '' ? 'selected' : '' }}>Select Status</option>
+                                    <option value="Induk" {{ $ternak->status_sekarang === 'Induk' ? 'selected' : '' }}>Induk</option>
+                                    <option value="Pejantan" {{ $ternak->status_sekarang === 'Pejantan' ? 'selected' : '' }}>Pejantan</option>
+                                    <option value="Anak" {{ $ternak->status_sekarang === 'Anak' ? 'selected' : '' }}>Anak</option>
+                                @endif
                             </select>
                             @error('status_sekarang')
                                 <small class="text-danger">{{ $message }}</small>
@@ -173,11 +185,8 @@
                     <div class="row justify-space-between py-2">
                         <div class=" mx-auto">
                         <div class="input-group input-group-static mb-1" id="idAnakField" style="display: {{ $ternak->status_sekarang === 'Anak' ? 'block' : 'none' }};">
-                            <label for="id_anak"  style="color:white"  >ID Anak</label>
-                            <input type="text" placeholder="cth. 1" class="form-control" id="id_anak" name="id_anak" value="{{ $ternak->id_anak }}"  style="color:white"  >
-                            @error('id_anak')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                                <input type="hidden" id="id_anak" name="id_anak" value="{{ $ternak->id_anak }}">
+                              <h7 style="color:white" >ID anak: {{ $ternak->id_anak }}</h7>
                         </div>
                         </div>
                     </div>

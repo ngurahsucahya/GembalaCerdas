@@ -40,6 +40,11 @@
             </div>
             
             <div class="mx-auto" style="margin: 10px; ">
+            @if(session('assign'))
+                  <div class="alert alert-success">
+                     {{ session('assign') }}
+                  </div>
+            @endif
             - <form action="{{ url('/kandang/assignternak') }}" method="POST">
                   @csrf
 

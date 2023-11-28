@@ -45,7 +45,7 @@ class KandangController extends Controller
         
         try {
             Kandang::create($data);
-            return back();
+            return back()->with('add', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {
             return back()->withErrors([
                 'add' => 'Cannot add data',
@@ -80,7 +80,7 @@ class KandangController extends Controller
                 'tanggal_pengelompokan' => now(),
             ]);
 
-            return back();
+            return back()->with('assign', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {
             return back()->withErrors([
                 'assign' => 'Cannot assign data',

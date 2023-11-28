@@ -278,6 +278,8 @@ class TernakController extends Controller
             $riwayatKawin = RiwayatKawin::where('id_pejantan', $ternak->id);
             $idPartners = $riwayatKawin->pluck('id_induk')->toArray();
             $idKawins = $riwayatKawin->pluck('id');
+        }else{
+            return view('ternak.detail', compact('ternak', 'list_ras'));
         }
         $RiwayatLahir = RiwayatLahir::whereIn('id_kawin', $idKawins);
         $tanggalLahirs = $RiwayatLahir->pluck('tanggal_lahir')->toArray();
@@ -287,7 +289,7 @@ class TernakController extends Controller
 
         // return dd($idAnaks,$idPartners,$tanggalLahirs);
         // return dd($RiwayatKeturunan);
-        return view('ternak.detail', compact('ternak', 'list_ras', 'idPartners', 'tanggalLahirs', 'idAnaks','RiwayatKeturunan'));
+        return view('ternak.detail', compact('ternak', 'list_ras', 'RiwayatKeturunan'));
     }
 
     public function search(Request $request)
