@@ -73,41 +73,13 @@
 				</tr>
 			</thead>
 			<tbody>
-					@foreach ($kandangs as $kandang)
-					<tr>
-						<td>
-							<p>{{$ternak->id}}</p>
-						</td>
-						<td>
-							<p>{{$ternak->nama_ternak}}</p>
-						</td>
-						<td>
-							<p>{{$ternak->ras}}</p>
-						</td>
-						<td>
-							<p>{{$ternak->jenis_kelamin}}</p>
-						</td>
-						<td>
-							<p>{{$ternak->tanggal_lahir}}</p>
-						</td>
-						<td>
-							<p>{{$ternak->bobot_badan}}</p>
-						</td>
-						<div class="custom-card-buttons">
-							<td>
-								@if(auth()->user()->role == 'doctor') <button class="btn btn-sm bg-gradient-warning w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/riwayat/kesehatan/{{$ternak->id}}/input'">ADD Riwayat Kesehatan</button> @endif
-								<button class="btn btn-sm bg-gradient-info w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/ternak/detail/{{$ternak->id}}'">Detail</button>
-								@if(auth()->user()->role != 'employee') <button class="btn btn-sm bg-gradient-primary w-auto me-1 mb-0" style="margin-right: 5px;" onclick="window.location.href='/ternak/edit/{{$ternak->id}}'">Edit</button> @endif
-								<button class="btn btn-sm bg-gradient-danger w-auto me-1 mb-0" onclick="deleteTernak({{ $ternak->id }})">Delete</button>
-							</td>
-						</div>
-					</tr>
-					@endforeach
+					
+					
 			</table>
 
-			@else
+			
 				<div class="alert alert-warning" role="alert"> Data Tidak Ditemukan </div>
-			@endif
+			
 
 			<section class="py-1">
 			<div class="container">

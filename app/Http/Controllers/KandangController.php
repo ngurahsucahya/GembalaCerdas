@@ -20,6 +20,10 @@ class KandangController extends Controller
     {
         return view('kandang.add');
     }
+    public function riwayat() 
+    {
+        return view('kandang.data');
+    }
 
     public function assign() 
     {
@@ -82,5 +86,7 @@ class KandangController extends Controller
                 'assign' => 'Cannot assign data',
             ]);
         }
+        
     }
+    
 }
