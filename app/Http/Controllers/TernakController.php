@@ -272,18 +272,22 @@ class TernakController extends Controller
         }
         if ($ternak->status_sekarang === 'Induk'){
             $riwayatKawin = RiwayatKawin::where('id_induk', $ternak->id);
-            $idPartners = $riwayatKawin->pluck('id_pejantan');
+            $idPartners = $riwayatKawin->pluck('id_pejantan')->toArray();
             $idKawins = $riwayatKawin->pluck('id');
         } else if ($ternak->status_sekarang === 'Pejantan'){
             $riwayatKawin = RiwayatKawin::where('id_pejantan', $ternak->id);
-            $idPartners = $riwayatKawin->pluck('id_induk');
+            $idPartners = $riwayatKawin->pluck('id_induk')->toArray();
             $idKawins = $riwayatKawin->pluck('id');
         }
         $RiwayatLahir = RiwayatLahir::whereIn('id_kawin', $idKawins);
-        $tanggalLahirs = $RiwayatLahir->pluck('tanggal_lahir');
-        $idAnaks = Ternak::whereIn('id_anak', $RiwayatLahir->pluck('id_anak'))->pluck('id');
+        $tanggalLahirs = $RiwayatLahir->pluck('tanggal_lahir')->toArray();
+        $idAnaks = Ternak::whereIn('id_anak', $RiwayatLahir->pluck('id_anak'))->pluck('id')->toArray();
 
-        return view('ternak.detail', compact('ternak', 'list_ras', 'idPartners', 'tanggalLahirs', 'idAnaks'));
+        $RiwayatKeturunan =array_map(null, $idAnaks, $idPartners, $tanggalLahirs);
+
+        // return dd($idAnaks,$idPartners,$tanggalLahirs);
+        // return dd($RiwayatKeturunan);
+        return view('ternak.detail', compact('ternak', 'list_ras', 'idPartners', 'tanggalLahirs', 'idAnaks','RiwayatKeturunan'));
     }
 
     public function search(Request $request)
