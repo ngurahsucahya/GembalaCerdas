@@ -102,7 +102,7 @@
                                 <img src="{{Vite::asset('resources/images/linetipis.png')}}" alt="line" width=93% height=1px > <br>
                             <h5  class="text-white"  style="margin-left:10px; margin-bottom:0px;" >Riwayat Keturunan</h5>
                                 <!-- <h6 class="text-white" style="margin-left:10px; margin-bottom:0px;">Pejantan: {{$ternak->deskripsi_fenotip}}   |   Induk: {{$ternak->bobot_badan}}</h6> -->
-                                @if(count(\App\Models\RiwayatKawin::where('id_pejantan', $ternak->id)->orwhere('id_induk', $ternak->id)->get())>0)
+                                @if(count($RiwayatKeturunan)>0)
                                 <table class="table table-info-custom text-center table-responsive " style="width:93%; margin-top:10px">
                                 <thead>
                                     <tr>
@@ -116,28 +116,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach(\App\Models\RiwayatKawin::where('id_pejantan', $ternak->id)->orwhere('id_induk', $ternak->id)->get() as $rk)
-
-                                        @foreach(\App\Models\Riwayatlahir::where('id_kawin', $rk->id)->get() as $rl)
+                                    @foreach($RiwayatKeturunan as $rketurunan)
                                         <tr>
                                             <td>
-                                                <p>{{$rl->id_anak}}</p>
+                                                <p>{{$rketurunan[0]}}</p>
                                             </td>
-                                            @if($ternak->status_sekarang=="Pejantan")
-                                                <td>
-                                                    <p>{{$rk->id_induk}}</p>
-                                                </td>
-                                            @else
-                                                <td>
-                                                    <p>{{$rk->id_pejantan}}</p>
-                                                </td>
-                                            @endif
                                             <td>
-                                                <p>{{$rl->tanggal_lahir}}</p>
+                                                <p>{{$rketurunan[1]}}</p>
+                                            </td>
+                                            <td>
+                                                <p>{{$rketurunan[2]}}</p>
                                             </td>
                                         </tr>
-                                        @endforeach
-                                    
                                     @endforeach
                                 </tbody>
                                 </table>
