@@ -157,17 +157,14 @@
                             <label for="status_sekarang"  style="color:white"  >Status</label> <img src="{{Vite::asset('resources/images/down-arrow-white.svg')}}" alt="down-arrow" class="arrow ms-auto ms-md-2">
                             <select class="form-control" id="status_sekarang" name="status_sekarang"  style="color:white"  >
                                 @if( $ternak->status_sekarang == "Pejantan" )
-                                    <option value="{{ $ternak->status_sekarang }}" {{ $ternak->status_sekarang === '' ? 'selected' : '' }}>Select Status</option>
                                     <option value="Induk" disabled>Induk</option>
                                     <option value="Pejantan" {{ $ternak->status_sekarang === 'Pejantan' ? 'selected' : '' }}>Pejantan</option>
                                     <option value="Anak" disabled>Anak</option>
                                 @elseif ( $ternak->status_sekarang  == "Induk")
-                                    <option value="{{ $ternak->status_sekarang }}" {{ $ternak->status_sekarang === '' ? 'selected' : '' }}>Select Status</option>
                                     <option value="Induk" {{ $ternak->status_sekarang === 'Induk' ? 'selected' : '' }}>Induk</option>
                                     <option value="Pejantan" disabled>Pejantan</option>
                                     <option value="Anak" disabled>Anak</option>
                                 @else
-                                    <option value="{{ $ternak->status_sekarang }}" {{ $ternak->status_sekarang === '' ? 'selected' : '' }}>Select Status</option>
                                     <option value="Induk" {{ $ternak->status_sekarang === 'Induk' ? 'selected' : '' }}>Induk</option>
                                     <option value="Pejantan" {{ $ternak->status_sekarang === 'Pejantan' ? 'selected' : '' }}>Pejantan</option>
                                     <option value="Anak" {{ $ternak->status_sekarang === 'Anak' ? 'selected' : '' }}>Anak</option>

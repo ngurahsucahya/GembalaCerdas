@@ -42,7 +42,7 @@
   <body class="index-page bg-gray-200">
   	<x-navbar/>
 	
-	<div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/Group29.png')}}); align-items: center;" loading="lazy">
+	<div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/background4.png')}}); align-items: center;" loading="lazy">
 		<div class="col-12">
 			<div class="col-lg-7 text-center mx-auto" style="margin-top: 140px">
               <h3 class="text-white pt-3 mt-n5">Data Kandang</h3>

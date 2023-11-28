@@ -28,21 +28,13 @@
     @vite('resources/css/material-kit.css')
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
-    <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-	<!-- <style>
-		body{
-			background-image: url('{{Vite::asset('resources/images/background2.png')}}');
-			background-size: cover;
-			background-repeat: no-repeat;
-			width: 100%;
-			height: 120vh;
-		}
-	</style> -->
+    <!-- <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script> -->
+	
   </head>
   <body class="index-page bg-gray-200">
   	<x-navbar/>
 	
-	<div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/background2.png')}}); align-items: center;" loading="lazy">
+	<div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/background5.png')}}); align-items: center;" loading="lazy">
 		<div class="col-12">
 			<div class="col-lg-7 text-center mx-auto" style="margin-top: 130px">
               <h3 class="text-white pt-3 mt-n5">Riwayat Kesehatan Ternak</h3>

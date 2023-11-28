@@ -33,7 +33,7 @@
    </head>
    <body class="overlay">
       <x-navbar/>
-      <div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/Group29.png')}});" loading="lazy">
+      <div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/background4.png')}});" loading="lazy">
          <div class="row mx-auto">
             <div class="col-lg-7 text-center mx-auto" style="margin-top: 150px">
                <h3 class="text-white pt-3 mt-n5">Tambah Kandang</h3>
