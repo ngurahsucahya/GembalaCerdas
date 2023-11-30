@@ -31,7 +31,7 @@
    </head>
    <body class="index-page bg-gray-200">
         <x-navbar/>
-        <div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/background2.png')}});" loading="lazy">
+        <div class="page-header align-items-start min-vh-100" style="background-image: url({{Vite::asset('resources/images/background6.png')}});" loading="lazy">
             <div class="col-12">
             <div style="margin: 100px 20px 10px; padding: 50px 50px 20px; ">
                 <div class="container my-auto">
