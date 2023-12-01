@@ -1,37 +1,30 @@
 # Gembala Cerdas
 
-nambahin command sama note
-
-buat migrate database sama seeder
+## About
+Final project Basis Data KOM205 Kelompok 4
 
 ```
-$ php artisan migrate
-$ php artisan db:seed UserTestSeeder
+I Gusti Ngurah Sucahya Satria Adi Pratama (G6401221031)
+Numero Uno Arroefy (G6401221014)
+Ahmad Nur Rohim (G6401221001)
+Ryan Muhammad Syahran (G6401221026)
 ```
 
-untuk refresh database jika ada kolum tambahan dll
-```
-$ php artisan migrate:refresh --seed
-```
+## Deploy
 
-Edit file css via resources lalu di kompile dengan npm
+requirement : 
 
-dilakukan sekali di awal 
-```
-$ npm install
-```
+- Laravel
+- nodejs
 
-untuk kompile
-```
-$ npm run build
-```
+step :
 
-email dan password untuk test
-bisa di cek di [Seeder](database/seeders/UserTestSeeder.php)
+1. clone this repository
+2. run `npm install`
+3. run `npm run build`
+4. run `mv .env.example .env` (set .env)
+5. run `php artisan migrate`
+6. run `php artisan db:seed UserTestSeeder` (optional for user db initialization)
+7. run `php artisan serve`
 
-NOTE : 
-
-- tambahin `value = "{{old('email')}}"` di form login bagian email, biar auto filled ketika ada error, begitu juga di register tapi dengan tambahan `value = "{{old('name')}}"`
-- Untuk Controller :
-    - UserController itu untuk fitur berkaitan dengan database user (login, logout, register)
-- pingin nambahin fitur live searching nanti pas udah ada fiture search
+by running step 6, you could login with creds on [Seeder](database/seeders/UserTestSeeder.php).
